@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+
+
+.ScoreRowHeader
+{
+  float: left;
+  width: 12%;
+  background-color:#663366;
+  color: white;
+  position: relative;
+  align: center;
+  text-align: center;
+  padding: 0px;
+} 
+.ScorePosition1
+{
+  float: left;
+  width: 21%;
+  background-color:#669999;
+  color: white;
+  position: relative;
+  align: center;
+  text-align: center;
+  padding: 0px;
+}
+.ScorePosition2
+{
+  float: left;
+  width: 21%;
+  background-color:#666666;
+  color: white;
+  position: relative;
+  align: center;
+  text-align: center;
+  padding: 0px;
+}
+

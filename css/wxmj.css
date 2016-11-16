@@ -1,0 +1,52 @@
+@charset "utf-8";
+.hidden{
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	visibility: hidden;
+}
+
+div.summary {
+    background-color: blue;
+    color: white;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid white;
+/**	display:block; */
+}
+
+th {
+	width: 100%;
+	border: 1px solid white;			
+}
+
+tr {
+	width: 100%;
+	border: 1px solid white;
+	
+}
+
+
+td{
+	width: 100%;
+	border: 1px solid white;
+	
+}
+
+
+thead {
+/**	display: inline-block; */
+	width: 100%;
+}
+
+tbody {
+	width: 100%;
+/**	display: inline-block; */
+/**   overflow: auto; */
+}
+
