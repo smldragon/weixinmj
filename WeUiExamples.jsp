@@ -9,23 +9,30 @@
 </head>
 <body>
 	
-<div class="weui-msg">
-    <div class="weui-icon-area"><i class="weui-icon-success weui-icon_msg"></i>
-	</div>
-    <div class="weui-textarea">
-        <h2 class="weui-msg__title">操作成功</h2>
-        <p class="weui-msg__desc">内容详情，可根据实际需要安排</p>
-    </div>
-	
-    <div class="weui-msg__opr-area">
-        <p class="weui-btn_area">
-            <a href="#" class="weui-btn weui-btn_primary">确定</a>
-            <a href="#" class="weui-btn weui-btn_default">取消</a>
-        </p>
-    </div>
-    <div class="weui-msg__extra-area">
-        <a href="">查看详情</a>
-    </div>
+<div class="weui-cells weui-cell_access">
+
+    <a class="weui-cell" href="#">
+        <div class="weui-cell__hd">
+            <img src="" alt="icon" style="width:20px;margin-right:5px;display:block">
+        </div>
+        <div class="weui-cell__bd weui_cell_primary">
+            <p>cell standard</p>
+        </div>
+        <div class="weui_cell__ft">
+            说明文字
+        </div>
+    </a>
+    <a class="weui-cell" href="#">
+        <div class="weui-cell__hd">
+            <img src="" alt="icon" style="width:20px;margin-right:5px;display:block">
+        </div>
+        <div class="weui-cell__bd weui_cell_primary">
+            <p>cell standard</p>
+        </div>
+        <div class="weui-cell__ft">
+            说明文字
+        </div>
+    </a>
 </div>
 </body>
 </html>

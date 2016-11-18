@@ -10,6 +10,6 @@
 	<body>
 <button class="weui_btn weui-btn_plain-primary">按钮00000</button><br>
 <button class="weui_btn weui-btn_plain-primary">按钮00000</button><br>
-<button class="weui-btn_mini weui-btn_plain-primary">警告</button>
+<button class="weui-btn_mini weui-btn_plain-primary">警告222222222222222222222222222</button>
 	</body>
 </html>

@@ -27,3 +27,5 @@
 			
 		<button  class="weui-btn_mini weui-btn_plain-primary" onClick="scoreConfig.changeScoreConfig('<%=gameIdStr%>')">提交</button>
 	</div>
+	
+	
