@@ -334,6 +334,9 @@ var selectCellMethod = function() {
 		
 		setValue: function(selectTagElementName,newValue) {
 			
+			if ( newValue === value) {
+				return;
+			}
 			var newValueElement = getChildById(selectTagElementName,newValue);
 			setChildImgDisplayProperty(newValueElement,'');
 			
