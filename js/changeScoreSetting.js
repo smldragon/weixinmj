@@ -20,8 +20,12 @@ var playerSetting = function (){
 		setScoreConfigSetting : function(scoreConfigSetting_) {
 			scoreConfigSetting = scoreConfigSetting_;
 		},
+		getScoreConfigSetting: function() {
+			return scoreConfigSetting;
+		},
 		setDefaultSelectedItem: function() {
-			selectTagMethod.setSelectedByValue('scoreSetting',scoreConfigSetting);
+			var scoreSettingOptions = document.getElementById("scoreSetting");
+			selectCellMethod.setValue(scoreSettingOptions,scoreConfigSetting);
 		}
 	}
 }();

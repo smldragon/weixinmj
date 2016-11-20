@@ -12,14 +12,14 @@
 <div class="weui-cells weui-cell_access">
 
     <a class="weui-cell" href="#">
-        <div class="weui-cell__hd">
-            <img src="" alt="icon" style="width:20px;margin-right:5px;display:block">
-        </div>
         <div class="weui-cell__bd weui_cell_primary">
             <p>cell standard</p>
         </div>
         <div class="weui_cell__ft">
             说明文字
+        </div>
+		 <div class="weui-cell__hd">
+			<i class="weui-icon-success-no-circle"></i>
         </div>
     </a>
     <a class="weui-cell" href="#">

@@ -29,9 +29,16 @@ var scoreConfig = function () {
 		setScoreConfig: function(scoreConfig_) {
 			scoreConfig = scoreConfig_;
 		},
-		changeScoreConfig: function(gameId) {
+		changeScoreConfig: function(invokingEle,gameId) {
+			//var scoreSettingOptions = document.getElementById("scoreSetting");
+			//var newConfig = scoreSettingOptions.options[scoreSettingOptions.selectedIndex].value;
+			//the above two is for combobox option.
+			
+			var newConfig = invokingEle.id;  //for selection cell
+			
 			var scoreSettingOptions = document.getElementById("scoreSetting");
-			var newConfig = scoreSettingOptions.options[scoreSettingOptions.selectedIndex].value;
+			selectCellMethod.setValue(scoreSettingOptions,newConfig);
+			
 			var jsonString = {'gameId':gameId};
 			jsonString[globalVariables.WebSocketEventTypeHandler] = configSettingEvent;
 			jsonString[scoreConfigSettingHandler] = newConfig;

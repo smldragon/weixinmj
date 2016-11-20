@@ -45,6 +45,7 @@
 	score.setRefreshScoreAction('<%=WxMjActions.refreshScores%>');
 	score.setAddScoreAction('<%=WxMjActions.addScores%>');
 	scoreConfig.setScoreConfig('<%=view.getScoreSetting()%>');
+	selectCellMethod.setImgClassName("weui-icon-success-no-circle"); //the css class is defined in weui.css. same value as used in changeScoreSetting.jsp <i> tag
 </script>
 <!doctype html>
 <html>

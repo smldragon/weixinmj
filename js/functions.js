@@ -326,6 +326,88 @@ var selectTagMethod = {
 		}
 	}
 }
+var selectCellMethod = function() {
+
+	var imgClassName;  //defined in startGame.jsp
+	var value = null;	
+	return {
+		
+		setValue: function(selectTagElementName,newValue) {
+			
+			var newValueElement = getChildById(selectTagElementName,newValue);
+			setChildImgDisplayProperty(newValueElement,'');
+			
+			var oldValueElement = getChildById(selectTagElementName,value);
+			setChildImgDisplayProperty(oldValueElement,'none');
+			
+			value = newValue;
+		},
+		getValue: function() {
+			return value;
+		},
+		setImgClassName: function(imgClassName_) {
+			imgClassName = imgClassName_;
+		},
+		
+	}
+	function setChildImgDisplayProperty(parentEle,display) {
+
+		if ( parentEle === null) {
+			return;
+		}
+
+		var imgClassElement = getChildByClassType(parentEle,"weui-icon-success-no-circle");
+		if ( imgClassElement !== null) {
+
+			imgClassElement.style.display = display;
+		}
+	}
+	function getChildById(parentElement,childId) {
+		
+		if ( parentElement === null) {
+			return null;
+		}
+		var index=0;
+		var childNodes = parentElement.childNodes;
+		
+		if ( typeof(childNodes) ==='undefined') {
+			return null;
+		}
+		var childNodeLength = childNodes.length;
+		for( index=0; index<childNodeLength; index++) {
+var id = childNodes[index].id;
+			if ( childNodes[index].id === childId ) {
+				return childNodes[index];
+			}
+			if ( childNodes[index].nodeType === 1 ) { // filter for element node
+				var result = getChildById(childNodes[index],childId);
+				if ( result != null && result.id === childId) {
+					return result;
+				} 
+			} 
+		}
+		return null;
+	}
+	function getChildByClassType(parentElement,classType) {
+		
+		var index=0;
+		var childNodes = parentElement.childNodes;
+		var childNodeLength = childNodes.length;
+		for( index=0; index<childNodeLength; index++) {
+			if ( childNodes[index].className === classType ) {
+				return childNodes[index];
+			}
+			if ( childNodes[index].nodeType === 1 ) { // filter for element node
+				var result = getChildByClassType(childNodes[index],classType);
+				if ( result != null && result.className === classType) {
+					return result;
+				} 
+			} 
+		}
+		return null;
+	}
+}();
+
 function isElementHidden (ele) {
     var visible = window.getComputedStyle(ele, null).getPropertyValue('display') === 'none';
 	return visible;
