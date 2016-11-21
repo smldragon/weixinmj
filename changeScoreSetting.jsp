@@ -1,9 +1,9 @@
 <%
 	String header;
 	if ( gameIdStr == null) {
-		header = "修改玩家的默认计分设置";
+		header = "设置玩家的默认计分方法";
 	} else {
-		header = "修改这局的计分设置";
+		header = "设置这局的计分方法";
 	}
 		
 	String setScoreConfigSetting = sg.getPlayerDefaultScoreSetting();
@@ -20,9 +20,9 @@
 </H3>
 	<!-- div>
 		<select name="scoreSetting" id="scoreSetting" class='weui-select' tabindex="1000">
-			<option value="FZ"  >福州</option>
-			<option value="NJ"  >南京</option>
-			<option value="SH"  >上海</option>
+			<option value="FZ"  >福州算法</option>
+			<option value="NJ"  >南京算法</option>
+			<option value="SH"  >上海算法</option>
 		</select>
 			
 		<button  class="weui-btn_mini weui-btn_plain-primary" onClick="scoreConfig.changeScoreConfig(this,'<%=gameIdStr%>')">提交</button>
@@ -31,7 +31,7 @@
 <div id="scoreSetting" class="weui-cells weui-cell_access">
     <a id="FZ" class="weui-cell" href="#" onClick="scoreConfig.changeScoreConfig(this,'<%=gameIdStr%>')">
         <div class="weui-cell__bd weui_cell_primary">
-            <p>福州</p>
+            <p>福州算法</p>
         </div>
         <!-- div class="weui_cell__ft">
             说明文字
@@ -42,7 +42,7 @@
     </a>
 	<a id="NJ" class="weui-cell" href="#" onClick="scoreConfig.changeScoreConfig(this,'<%=gameIdStr%>')">
         <div class="weui-cell__bd weui_cell_primary">
-            <p>南京</p>
+            <p>南京算法</p>
         </div>
 		 <div class="weui-cell__hd" >
 			<i class="weui-icon-success-no-circle" style="display:none" ></i>
@@ -50,7 +50,7 @@
     </a>
     <a id="SH" class="weui-cell" href="#" onClick="scoreConfig.changeScoreConfig(this,'<%=gameIdStr%>')">
         <div class="weui-cell__bd weui_cell_primary">
-            <p>上海</p>
+            <p>上海算法</p>
         </div>
 		 <div class="weui-cell__hd"  >
 			<i class="weui-icon-success-no-circle" style="display:none"></i>

@@ -326,32 +326,30 @@ var selectTagMethod = {
 		}
 	}
 }
-var selectCellMethod = function() {
 
-	var imgClassName;  //defined in startGame.jsp
+function CellSelection(parentElementName_,imgClassName_ ) {
+
 	var value = null;	
 	return {
 		
-		setValue: function(selectTagElementName,newValue) {
+		setValue: function(newValue) {
 			
 			if ( newValue === value) {
 				return;
 			}
-			var newValueElement = getChildById(selectTagElementName,newValue);
+			
+			var parentElement = document.getElementById(parentElementName_);
+			var newValueElement = getChildById(parentElement,newValue);
 			setChildImgDisplayProperty(newValueElement,'');
 			
-			var oldValueElement = getChildById(selectTagElementName,value);
+			var oldValueElement = getChildById(parentElement,value);
 			setChildImgDisplayProperty(oldValueElement,'none');
 			
 			value = newValue;
 		},
 		getValue: function() {
 			return value;
-		},
-		setImgClassName: function(imgClassName_) {
-			imgClassName = imgClassName_;
-		},
-		
+		}
 	}
 	function setChildImgDisplayProperty(parentEle,display) {
 
@@ -378,7 +376,6 @@ var selectCellMethod = function() {
 		}
 		var childNodeLength = childNodes.length;
 		for( index=0; index<childNodeLength; index++) {
-var id = childNodes[index].id;
 			if ( childNodes[index].id === childId ) {
 				return childNodes[index];
 			}
@@ -409,7 +406,7 @@ var id = childNodes[index].id;
 		}
 		return null;
 	}
-}();
+};
 
 function isElementHidden (ele) {
     var visible = window.getComputedStyle(ele, null).getPropertyValue('display') === 'none';

@@ -35,9 +35,8 @@ var scoreConfig = function () {
 			//the above two is for combobox option.
 			
 			var newConfig = invokingEle.id;  //for selection cell
-			
-			var scoreSettingOptions = document.getElementById("scoreSetting");
-			selectCellMethod.setValue(scoreSettingOptions,newConfig);
+
+			scoreConfigSelection.setValue(newConfig); //scoreConfigSelection is defined in changeScoreSetting.js
 			
 			var jsonString = {'gameId':gameId};
 			jsonString[globalVariables.WebSocketEventTypeHandler] = configSettingEvent;
