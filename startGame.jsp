@@ -44,7 +44,8 @@
 	gameAction.setStartGame(true);
 	score.setRefreshScoreAction('<%=WxMjActions.refreshScores%>');
 	score.setAddScoreAction('<%=WxMjActions.addScores%>');
-	scoreConfig.setScoreConfig('<%=view.getScoreSetting()%>');
+	scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
+	scoreConfig.setPlayerScoreConfig('<%=sg.getPlayerDefaultScoreSetting()%>');
 </script>
 <!doctype html>
 <html>

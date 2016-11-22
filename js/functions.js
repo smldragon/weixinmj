@@ -332,6 +332,11 @@ function CellSelection(parentElementName_,imgClassName_ ) {
 	var value = null;	
 	return {
 		
+		setValueByElementId: function(element) {
+			
+			var id = element.id;
+			this.setValue(id);
+		},
 		setValue: function(newValue) {
 			
 			if ( newValue === value) {

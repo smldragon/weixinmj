@@ -1,12 +1,14 @@
 var scoreConfig = function () {
 	
-	//scoreConfigSetting is defined in startGame.jsp
-	var scoreConfig; 
+	//gameScoreConfig and playerScoreConfig are defined in startGame.jsp
+	var gameScoreConfig;
+	var playerScoreConfig;
 	var positions = globalVariables.positions;
 	var positionTotal = globalVariables.positionTotal;
 	var positionNet = globalVariables.positionNet;
 	var configSettingEvent = globalVariables.webSocketScoreConfigSettingEvent;
 	var scoreConfigSettingHandler = globalVariables.scoreConfigSettingHandler;
+	var scoreConfigModifierTitleId; //defined in changeScoreSetting.jsp
 	
 	var scoreConfigSettingListener = {
 		
@@ -16,29 +18,46 @@ var scoreConfig = function () {
 		},
 		onSuccess: function(jsonData) {
 			var newConfig = jsonData[scoreConfigSettingHandler];
-			alert('设置修改成功, newConfig='+newConfig);
+			scoreHist.toggleScoreConfig();
+			alert('设置修改成功!');
 		}
 	};
 	
 	webSocketObj.addListener(scoreConfigSettingListener);
 	return {
 		netScoreFunc: function() {
-			//$("netScoreFunc_"+scoreConfig);
-			eval("netScoreFunc_"+scoreConfig)();
+			//$("netScoreFunc_"+gameScoreConfig);
+			eval("netScoreFunc_"+gameScoreConfig)();
 		},
-		setScoreConfig: function(scoreConfig_) {
-			scoreConfig = scoreConfig_;
+		setGameScoreConfig: function(gameScoreConfig_) {
+			gameScoreConfig = gameScoreConfig_;
 		},
-		changeScoreConfig: function(invokingEle,gameId) {
+		getGameScoreConfig: function() {
+			return gameScoreConfig;
+		},
+		setPlayerScoreConfig: function(playerScoreConfig_) {
+			playerScoreConfig = playerScoreConfig_;
+		},
+		getPlayerScoreConfig: function() {
+			return playerScoreConfig;
+		},
+		changeScoreConfig: function(gameId,playerOpenId) {
 			//var scoreSettingOptions = document.getElementById("scoreSetting");
 			//var newConfig = scoreSettingOptions.options[scoreSettingOptions.selectedIndex].value;
 			//the above two is for combobox option.
 			
-			var newConfig = invokingEle.id;  //for selection cell
+			var newConfig = scoreConfigSelection.getValue();  //scoreConfigSelection is defined in score.js
 
-			scoreConfigSelection.setValue(newConfig); //scoreConfigSelection is defined in changeScoreSetting.js
+			var titleElement = document.getElementById(scoreConfig.scoreConfigModifierTitleId);
 			
-			var jsonString = {'gameId':gameId};
+			var jsonString;
+			if ( titleElement.name === 'player') {
+				jsonString = {'openId':playerOpenId};
+				this.setPlayerScoreConfig(newConfig);
+			} else {
+				jsonString = {'gameId':gameId};
+				this.setGameScoreConfig(newConfig);
+			}
 			jsonString[globalVariables.WebSocketEventTypeHandler] = configSettingEvent;
 			jsonString[scoreConfigSettingHandler] = newConfig;
 			webSocketObj.sendData(JSON.stringify(jsonString));
@@ -74,6 +93,26 @@ var scoreConfig = function () {
 	}
 }();
 
+//CellSelection is defined in Functions.js, 
+//the css class "weui-icon-success-no-circle" is defined in weui.css. same value as used in changeScoreSetting.jsp <i> tag
+var scoreConfigSelection = new CellSelection("scoreSetting","weui-icon-success-no-circle"); 
+
+//scoreConfigSettingType = "game" or "player", this function is called by  showScoreConfigModifier via button action in ViewGame.jsp 	
+function setScoreConfig(scoreConfigSettingType,scoreConfigValue){
+	
+	var scoreConfigModifierTitle;
+	if ( scoreConfigSettingType === "player") {
+		scoreConfigModifierTitle = "设置玩家的默认计分方法";
+	} else {
+		scoreConfigModifierTitle = "设置这局的计分方法";
+	}
+	
+	var titleElement = document.getElementById(scoreConfig.scoreConfigModifierTitleId);	
+	titleElement.innerHTML = scoreConfigModifierTitle;
+	titleElement.name = scoreConfigSettingType;
+	
+	scoreConfigSelection.setValue(scoreConfigValue);		
+}
 var score = function () {
 	
 	var positions = globalVariables.positions;
