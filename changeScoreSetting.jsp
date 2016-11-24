@@ -53,10 +53,10 @@
 </div>
 <div class="weui-msg_ZhuXiao" style="height:24%; width:100%;">
     <div class="divbtn1"   >
-		<div  style="height:50%; width:100%;">
+		<div style="height:50%; width:50%; float:left;">
 			<a href="#" onClick="scoreConfig.changeScoreConfig('<%=gameIdStr%>','<%=sg.getOpenId()%>')" class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">保存设置</a>
 		</div>
-		<div  style="height:50%; width:100%;">
+		<div style="height:50%; width:50%; float:left;">
 			<a href="#" onClick="scoreHist.toggleScoreConfig()" class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">取消</a>
 		</div>
     </div>
