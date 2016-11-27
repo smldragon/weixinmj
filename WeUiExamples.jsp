@@ -5,8 +5,8 @@
 <head>
     
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>微信开发平台样本库</title>
-	<link rel="stylesheet" type="text/css" href="css/weui.css" />
+    <title>微信麻将--样本库</title>
+	<link rel="stylesheet" type="text/css" href="css/WeUi-1-1-0/weui.css" />
 </head>
 <body>
 	
@@ -33,10 +33,9 @@
     </a>
 </div>
 
-<script>
-		
-		showToastSuccessPrompt('成功保存<br>计分设置',3000);
-</script>
 
+<script>
+	showLoadingPrompt('正在保存');
+</script>
 </body>
 </html>

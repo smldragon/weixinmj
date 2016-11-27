@@ -19,7 +19,7 @@ var scoreConfig = function () {
 		onSuccess: function(jsonData) {
 			var newConfig = jsonData[scoreConfigSettingHandler];
 			scoreHist.toggleScoreConfig();
-			alert('设置修改成功!');
+			loadingPrompt.hide('设置修改成功');
 		}
 	};
 	
@@ -61,6 +61,7 @@ var scoreConfig = function () {
 			jsonString[globalVariables.WebSocketEventTypeHandler] = configSettingEvent;
 			jsonString[scoreConfigSettingHandler] = newConfig;
 			webSocketObj.sendData(JSON.stringify(jsonString));
+			loadingPrompt.show('保存设置...');
 		}
 	}
 	function netScoreFunc_FZ () {

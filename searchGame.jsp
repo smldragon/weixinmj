@@ -27,7 +27,7 @@
 	<head>
 		
 		<%@ include file="meta_style_inc.jsp" %>
-		<link rel="stylesheet" type="text/css" href="css/weui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/WeUI-1-1-0/weui.min.css">
 	    <link rel="stylesheet" type="text/css" href="css/wxmj.css">
 		<link rel="stylesheet" type="text/css" href="css/wxmj_layout.css">
 		<script src="js/searchGame.js"></script>
