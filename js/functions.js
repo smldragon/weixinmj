@@ -495,4 +495,16 @@ function isObjectVisible(obj) {
 	} else {
 		return true;
 	}
-}
+};
+function showToastSuccessPrompt(prompt,duration) {
+	$(document.documentElement).append('<div id="toast-success">'+
+		'<div class="weui-mask_transparent"></div>'+
+		'<div class="weui-toast">'+
+		'<i class="weui-icon_toast"></i>'+
+		'<div><i class="weui-icon_toast weui-icon-success-no-circle" ></i></div>'+
+		'<p class="weui-toast__content">'+prompt+'</p>'+
+		'</div></div>');
+				
+	$("#toast-success").fadeOut(duration,function() {$("#toast-success").remove()} );
+};
+

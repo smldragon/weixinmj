@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"  %>
+<%@ include file="GlobalVariables.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,6 @@
     <a class="weui-cell" href="#">
         <div class="weui-cell__bd weui_cell_primary">
             <p>cell standard</p>
-        </div>
-        <div class="weui_cell__ft">
-            说明文字
         </div>
 		 <div class="weui-cell__hd">
 			<i class="weui-icon-success-no-circle"></i>
@@ -34,5 +32,11 @@
         </div>
     </a>
 </div>
+
+<script>
+		
+		showToastSuccessPrompt('成功保存<br>计分设置',3000);
+</script>
+
 </body>
 </html>
