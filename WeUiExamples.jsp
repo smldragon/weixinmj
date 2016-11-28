@@ -34,8 +34,6 @@
 </div>
 
 
-<script>
-	showLoadingPrompt('正在保存');
-</script>
+<a href='javascript:alert("hello")'>href = popup</a>
 </body>
 </html>

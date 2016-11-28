@@ -44,8 +44,8 @@
 	gameAction.setStartGame(true);
 	score.setRefreshScoreAction('<%=WxMjActions.refreshScores%>');
 	score.setAddScoreAction('<%=WxMjActions.addScores%>');
-	scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
-	scoreConfig.setPlayerScoreConfig('<%=sg.getPlayerDefaultScoreSetting()%>');
+	//scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
+	//scoreConfig.setPlayerScoreConfig('<%=sg.getPlayerDefaultScoreSetting()%>');
 </script>
 <!doctype html>
 <html>
@@ -69,9 +69,6 @@
 		</div>
 		<div id='scoreSummaryDiv' >
 			<%@ include file="ViewGame.jsp" %>
-		</div>
-		<div id='scoreConfigSettingDiv' style='display:none' >
-			<%@ include file="changeScoreSetting.jsp" %>
 		</div>
 	</body>
 </html>

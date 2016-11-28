@@ -13,10 +13,6 @@ function startGameOnOpen(msg) {
 	//webSocketObj.bind(score.handleScoreWebSocketResponse); 
 	//webSocketObj.bind(gameAction.setPlayers); 
 }
-function showScoreConfigModifier(scoreConfigSettingType,scoreConfigValue) {
-	setScoreConfig(scoreConfigSettingType,scoreConfigValue);
-	scoreHist.toggleScoreConfig();
-}
 var scoreHist = function() {
 	
 	//the element is defined in startGame.jsp

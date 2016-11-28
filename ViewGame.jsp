@@ -127,12 +127,13 @@
 			<a href="#" onClick='score.addScore()'class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">保存</a>
 		</div>
 		
-		<div  style="height:50%; width:50%; float:left;">	
+		<!-- div  style="height:50%; width:50%; float:left;">	
 			<a href="#" onClick="showScoreConfigModifier('game',scoreConfig.getGameScoreConfig())" class="weui-btn weui-btn_plain-primary" style="height:80%; width:90%; font-size:100%; line-height:3.5;">本局计分方法</a>
 		</div>	
 		<div  style="height:50%; width:50%; float:left;">	
 			<a href="#" onClick="showScoreConfigModifier('player',scoreConfig.getPlayerScoreConfig())" class="weui-btn weui-btn_plain-primary" style="height:80%; width:90%; font-size:100%; line-height:3.5;">玩家计分方法</a>
-		</div>	
-    </div>
+		</div -->
+		<!-- div><a href='changeScoreSetting.jsp?<%=WeiXinConstants.OpenIdName+"="+openId%>'>修改计分设置</a>		
+		</div -->
 </div>
 	

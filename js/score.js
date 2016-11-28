@@ -18,8 +18,11 @@ var scoreConfig = function () {
 		},
 		onSuccess: function(jsonData) {
 			var newConfig = jsonData[scoreConfigSettingHandler];
-			scoreHist.toggleScoreConfig();
-			loadingPrompt.hide('设置修改成功');
+			/** when changeScoresetting.jsp is a div of startGame.jsp, use scoreHist.toggleSecoreConfig() -- 2016-11-27
+				scoreHist.toggleScoreConfig();
+			*/
+			//loadingPrompt.hide('设置修改成功');
+			history.back();
 		}
 	};
 	
