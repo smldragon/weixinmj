@@ -21,8 +21,8 @@ var scoreConfig = function () {
 			/** when changeScoresetting.jsp is a div of startGame.jsp, use scoreHist.toggleSecoreConfig() -- 2016-11-27
 				scoreHist.toggleScoreConfig();
 			*/
-			//loadingPrompt.hide('设置修改成功');
-			history.back();
+			loadingPrompt.hide('设置修改成功');
+			window.history.go(-2);
 		}
 	};
 	
