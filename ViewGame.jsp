@@ -119,13 +119,21 @@
 
 <div class="weui-msg_ZhuXiao" style="height:24%; width:100%;">
     <div class="divbtn1"   >
-		<div  style="height:50%; width:100%; ">
+		<div style="height:50%; width:50%; float:left;">
+			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:80%; width:90%;">得分纪录</a>
+		</div>	
+	
+		<div  style="height:50%; width:50%; float:left">
 			<a href="#" onClick='score.addScore()'class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">保存</a>
 		</div>
 		
-		<div style="height:50%; width:100%; ">
-			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">得分纪录</a>
+		<!-- div  style="height:50%; width:50%; float:left;">	
+			<a href="#" onClick="showScoreConfigModifier('game',scoreConfig.getGameScoreConfig())" class="weui-btn weui-btn_plain-primary" style="height:80%; width:90%; font-size:100%; line-height:3.5;">本局计分方法</a>
 		</div>	
-	
+		<div  style="height:50%; width:50%; float:left;">	
+			<a href="#" onClick="showScoreConfigModifier('player',scoreConfig.getPlayerScoreConfig())" class="weui-btn weui-btn_plain-primary" style="height:80%; width:90%; font-size:100%; line-height:3.5;">玩家计分方法</a>
+		</div -->
+		<!-- div><a href='changeScoreSetting.jsp?<%=WeiXinConstants.OpenIdName+"="+openId%>'>修改计分设置</a>		
+		</div -->
 </div>
 	
