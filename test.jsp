@@ -10,5 +10,6 @@
 	<body>
 <button class="weui_btn weui-btn_plain-primary">按钮00000</button><br>
 <button class="weui_btn weui-btn_plain-primary">按钮00000</button><br>
+<button class="weui-btn_mini weui-btn_plain-primary">警告16.11.30</button>
 	</body>
 </html>
