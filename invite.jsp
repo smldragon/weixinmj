@@ -20,7 +20,7 @@ System.out.println("+++++++++++++++Here is invite.jsp+++++++++++++++++++++++++")
 		<script src="js/startGame.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/weui.min.css">
 	    <link rel="stylesheet" type="text/css" href="css/wxmj.css">
-		<link rel="stylesheet" type="text/css" href="css/wxmj_layout.css">
+		
 		<link rel="stylesheet" type="text/css" href="css/startGameLayout.css">
 		<title><%=WxMjConstants.AppTitle%></title>
 		
