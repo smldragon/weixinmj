@@ -6,111 +6,131 @@
 			第&nbsp;1&nbsp;局
 		</h2>
 			
-		<div class="Position8"  >
+		<div class="PositionTouLie"  style="width:15%;">
 			位置
 		</div>
 				
-		<div class="Position8"  >
+		<div class="PositionTouLie"  style="width:20%;">
 			玩家
 		</div>
 				
-		<div class="Position8"  >
+		<div class="PositionTouLie"  style="width:20%;">
 			总分
 		</div>
-				
-		<div class="Position8"  >
+		
+		<div class="PositionTouLie"  style="width:20%;">
+			得分
+		</div>	
+		
+		<div class="PositionTouLie"  style="width:25%;">
 			记分
 		</div>
 				
 	</div>
 			
-	<div class="Position1">
+	<div class="PositionHang1">
 			
-		<div class="Position2">
+		<div class="PositionWeiZhiLie">
 			<%=posDisp[0]%><!--东-->
 		</div>
 
-		<div class="Position3">
+		<div class="PositionWanJiaLie">
 			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[0]%>')" >                 
 				<img class="Playerimg" id='<%=positions[0]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(0)%>' >
 				<div class="PlayerName" id='<%=positions[0]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(0)%></div>
 			</div>
 		</div>
 					
-		<div id='eastTotal' class="Position4">
+		<div id='eastTotal' class="PositionZongFenLie">
+			<%=positionTotal[0]%>
+		</div>
+		
+		<div id='eastTotal' class="PositionDeFenLie">
 			<%=positionTotal[0]%>
 		</div>
 				
-		<div class="Position6">
+		<div class="PositionJiFenLie">
 			<input class="inputJiFen" id='eastScore' type='text' />
 		</div>
 				
 	</div>
 			
-	<div class="Position1">
+	<div class="PositionHang1">
 			
-		<div class="Position2">
+		<div class="PositionWeiZhiLie">
 			<%=posDisp[1]%><!--南-->
 		</div>
 					
-		<div class="Position3">
+		<div class="PositionWanJiaLie">
 			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[1]%>')" >                 
 				<img class="Playerimg" id='<%=positions[1]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(1)%>' >
 				<div class="PlayerName" id='<%=positions[1]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(1)%></div>
 			</div>
 		</div>
 				
-		<div id='southTotal' class="Position4">
+		<div id='southTotal' class="PositionZongFenLie">
 			<%=positionTotal[1]%>
 		</div>
+		
+		<div id='eastTotal' class="PositionDeFenLie">
+			<%=positionTotal[0]%>
+		</div>
 				
-		<div class="Position6">
+		<div class="PositionJiFenLie">
 			<input class="inputJiFen" id='southScore' type='text' />
 		</div>
 				
 	</div>
 		
-	<div class="Position1">
+	<div class="PositionHang1">
 			
-		<div class="Position2">
+		<div class="PositionWeiZhiLie">
 			<%=posDisp[2]%><!--西-->
 		</div>
 				
-		<div class="Position3">
+		<div class="PositionWanJiaLie">
 			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[2]%>')" >                 
 				<img class="Playerimg" id='<%=positions[2]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(2)%>' >
 				<div class="PlayerName" id='<%=positions[2]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(2)%></div>
 			</div>
 		</div>
 				
-		<div id='westTotal' class="Position4">
+		<div id='westTotal' class="PositionZongFenLie">
 			<%=positionTotal[2]%>
 		</div>
-				
-		<div class="Position6">
+
+		<div id='eastTotal' class="PositionDeFenLie">
+			<%=positionTotal[0]%>
+		</div>
+		
+		<div class="PositionJiFenLie">
 			<input class="inputJiFen" id='westScore' type='text' />
 		</div>
 				
 	</div>
 			
-	<div class="Position1">
+	<div class="PositionHang1">
 			
-		<div class="Position2">
+		<div class="PositionWeiZhiLie">
 			<%=posDisp[3]%><!--北-->
 		</div>
 				
-		<div class="Position3">
+		<div class="PositionWanJiaLie">
 			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[3]%>')" >                 
 				<img class="Playerimg" id='<%=positions[3]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(3)%>' >
 				<div class="PlayerName" id='<%=positions[3]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(3)%></div>
 			</div>
 		</div>
 				
-		<div id='northTotal' class="Position4">
+		<div id='northTotal' class="PositionZongFenLie">
 			<%=positionTotal[3]%>
 		</div>
-				
-		<div class="Position6">
+
+		<div id='eastTotal' class="PositionDeFenLie">
+			<%=positionTotal[0]%>
+		</div>
+		
+		<div class="PositionJiFenLie">
 			<input class="inputJiFen" id='northScore' type='text'/>
 		</div>
 				

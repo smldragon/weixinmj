@@ -6,8 +6,8 @@
 {
   float: left;
   width: 12%;
-  background-color:#663366;
-  color: white;
+  background-color:white;
+  color: black;
   position: relative;
   align: center;
   text-align: center;
@@ -17,8 +17,8 @@
 {
   float: left;
   width: 21%;
-  background-color:#669999;
-  color: white;
+  background-color:white;
+  color: black;
   position: relative;
   align: center;
   text-align: center;
@@ -28,8 +28,8 @@
 {
   float: left;
   width: 21%;
-  background-color:#666666;
-  color: white;
+  background-color:white;
+  color: black;
   position: relative;
   align: center;
   text-align: center;
@@ -49,8 +49,18 @@ div.RowHeader{
 	border-bottom:1px solid #CCCCCC;
 	 
 	}	
+	
+div.PositionTouLie{
+	
 
-div.Position1{
+	height:40%;
+	float:left;
+	text-align:center;
+	line-height:150%; 
+}
+
+	
+div.PositionHang1{
 	background-color:white;
 	height:16%;
 	width:100%;
@@ -59,11 +69,11 @@ div.Position1{
 	 
 }
 
-div.Position2{
+div.PositionWeiZhiLie{
 	background-color:white;
 	 
 	height:100%; 
-	width:20%;
+	width:15%;
 	float:left;
 	
 	text-align:center;
@@ -87,12 +97,12 @@ div.Position2{
 	*/
 }
 
-div.Position3{
+div.PositionWanJiaLie{
 	position: relative;
 	left:0%;
 	top:15%;
 	
-	width:25%;
+	width:20%;
 	height:100%;
 	float:left;
 	text-align:center;
@@ -125,19 +135,19 @@ div.row2:after
 }
 
 img.Playerimg{
-	width:80%;
-	height:70%;
+	width:90%;
+	height:65%;
 	
 	
 }
 
 div.PlayerName{
-	width:80%;
+	width:90%;
 	height:20%;
 	
 	position: absolute;
-	left:10%;
-	top:50%;
+	left:5%;
+	top:45%;
 	
 	
 	text-align:center;
@@ -146,10 +156,10 @@ div.PlayerName{
 	background-color:rgba(153,204,255,0.5);
 }
 
-div.Position4{
+div.PositionZongFenLie{
 
 	height:100%;
-	width:30%;
+	width:20%;
 	float:left;
 	
 	text-align:center;
@@ -157,10 +167,19 @@ div.Position4{
 	font-size:150%;
 }	
 
+div.PositionDeFenLie{
+	height:100%;
+	width:20%;
+	float:left;
+	
+	text-align:center;
+	line-height:500%; 
+	font-size:150%;
+}
 
 
 
-div.Position6{
+div.PositionJiFenLie{
 	background-color:white;
 	height:100%;
 	width:25%;
@@ -191,14 +210,6 @@ div.Position5{
 	
 }
 
-div.Position8{
-	
-	width:25%;
-	height:40%;
-	float:left;
-	text-align:center;
-	line-height:150%; 
-}
 
 
 
