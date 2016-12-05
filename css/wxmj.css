@@ -27,7 +27,9 @@ th {
 
 tr {
 	width: 100%;
-	border: 1px solid black;
+	border: 1px solid #CCCCCC;
+	border-right: none;
+	border-left: none;
 	
 }
 
