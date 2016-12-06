@@ -1,0 +1,56 @@
+nav {
+  margin: 0;
+  padding: 0;
+ 
+}
+nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+nav ul {
+  float: left;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+}
+nav ul li {
+  margin: 0px;
+  display: inline-block;
+  float: left;
+}
+nav a {
+  display: block;
+  padding: 0 20px;
+  font-size: 20px;
+  line-height: 60px;
+  text-decoration: none;
+}
+nav ul li ul li:hover { background: #000000; }
+nav a:hover { background-color: #000000; }
+nav ul ul {
+  display: none;
+  position: absolute;
+  top: 60px;
+}
+nav ul li:hover > ul { display: inherit; }
+nav ul ul li {
+  width: 170px;
+  float: none;
+  display: list-item;
+  position: relative;
+}
+
+nav ul ul ul li {
+  position: relative;
+  top: -60px;
+  left: 170px;
+}
+.toggle, [id^=drop] {
+ display: none;
+}
+li > a:only-child:after { content: ''; }
+#threeLine {
+	
+}

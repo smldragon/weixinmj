@@ -63,12 +63,15 @@
 	</head>
 
 	<body>
+		
 		<div id='scoreHistDiv'  style='display:none'>
 			<!-- 下面这个div是得分历史，正常情形下隐藏不可见得，由javascript控制它得可见性-->
 			<%@ include file="ViewJiFeng.jsp" %>
 		</div>
 		<div id='scoreSummaryDiv' >
+			<%@ include file="threeLine.jsp" %>
 			<%@ include file="ViewGame.jsp" %>
 		</div>
+	
 	</body>
 </html>

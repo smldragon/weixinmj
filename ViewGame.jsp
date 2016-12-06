@@ -1,10 +1,6 @@
 <div id="scores" style="width:100%" >
 			
 	<div class="RowHeader">
-				
-		<h2 style="text-align:center; height:60%; width:100%;">
-			第&nbsp;1&nbsp;局
-		</h2>
 			
 		<div class="PositionTouLie"  style="width:15%;">
 			位置

@@ -10,30 +10,9 @@
 </head>
 <body>
 	
-<div class="weui-cells weui-cell_access">
-
-    <a class="weui-cell" href="#">
-        <div class="weui-cell__bd weui_cell_primary">
-            <p>cell standard</p>
-        </div>
-		 <div class="weui-cell__hd">
-			<i class="weui-icon-success-no-circle"></i>
-        </div>
-    </a>
-    <a class="weui-cell" href="#">
-        <div class="weui-cell__hd">
-            <img src="" alt="icon" style="width:20px;margin-right:5px;display:block">
-        </div>
-        <div class="weui-cell__bd weui_cell_primary">
-            <p>cell standard</p>
-        </div>
-        <div class="weui-cell__ft">
-            说明文字
-        </div>
-    </a>
+<div style="position: fixed; bottom: 0px; width: 100%;">
+ <p style="margin: 0 auto; width: 300px;">Blah blah</p>
 </div>
 
-
-<a href='javascript:alert("hello")'>href = popup</a>
 </body>
 </html>
