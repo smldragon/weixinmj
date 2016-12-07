@@ -47,7 +47,7 @@ div.table{
 	width:100%;
 }
 div.row {
-	display:table-row;
+/*	display:table-row;	*/
 	width:100%;
 	clear:both;
 }
@@ -64,10 +64,12 @@ div.column
 	float:none;
 	display: table-cell;
 	vertical-align: middle;
+	/*
 	border-bottom: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
+	*/
 	align: center;
 }
 

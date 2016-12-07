@@ -1,6 +1,6 @@
 <div id="scores" style="width:100%" >
 			
-	<div class="RowHeader">
+	<div class="RowHeaderB">
 			
 		<div class="PositionTouLie"  style="width:15%;">
 			位置
