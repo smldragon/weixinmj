@@ -37,15 +37,21 @@
 /*startGameLayout2.css*/
 /*记分主页面*/
 
-div.RowHeader{
+div.RowHeaderA{
 	background-color:white;
-	height:12%;
+	height:6%;
 	width:100%;
 	font-size:130%;
-	
 	border-bottom:1px solid #CCCCCC;
-	 
-	}	
+}	
+
+div.RowHeaderB{
+	background-color:white;
+	height:6%;
+	width:100%;
+	font-size:130%;
+	border-bottom:1px solid #CCCCCC;
+}	
 	
 div.PositionTouLie{
 	
@@ -108,8 +114,6 @@ div.PositionWanJiaLie{
 	
 	 
 }
-
-
 div.row2:after 
 {
 	position: relative;

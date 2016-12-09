@@ -16,7 +16,7 @@
 			</ul>
         </nav>
 		</div>
-		<div id="pageTitle" class="column" style="width: 80%; text-align: center">第&nbsp;1&nbsp;局</div>
+		<div id="pageTitle" class="column" style="width: 80%; text-align: center"><h3>第&nbsp;1&nbsp;局</h3></div>
 		<div class="column" style="width: 10%; text-align: right" ></div>
-	</div>
+	
 </div>

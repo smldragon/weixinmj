@@ -47,7 +47,7 @@ div.table{
 	width:100%;
 }
 div.row {
-	display:table-row;
+/*	display:table-row;	*/
 	width:100%;
 	clear:both;
 }
@@ -58,21 +58,21 @@ div.row:after
 	padding-bottom: 2px;
 }
 */
-div.column
-{
+div.column{
 /**  color: white; */
 	float:none;
 	display: table-cell;
 	vertical-align: middle;
+	/*
 	border-bottom: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
+	*/
 	align: center;
 }
 
-div.positionColumn
-{
+div.positionColumn{
   float: left;
   width: 24.7%;
   background-color:navy;
@@ -82,8 +82,7 @@ div.positionColumn
   text-align: center;
 }
 
-div.paddingColumn
-{
+div.paddingColumn{
   float: left;
   width: 0.3%;
   background-color:while;

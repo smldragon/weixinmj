@@ -1,6 +1,6 @@
 <div id="scores" style="width:100%" >
 			
-	<div class="RowHeader">
+	<div class="RowHeaderB">
 			
 		<div class="PositionTouLie"  style="width:15%;">
 			位置
@@ -132,7 +132,6 @@
 				
 	</div>
 </div>		
-
 <div class="weui-msg_ZhuXiao" style="height:24%; width:100%;">
     <div class="divbtn1"   >
 		<div  style="height:50%; width:100%; ">
