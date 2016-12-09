@@ -107,61 +107,21 @@ img.icon {
  
 /**wxmj_layout.css*/
 /**3线横菜单 */
-nav {
-  margin: 0;
-  padding: 0;
- 
-}
-nav:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-nav ul {
-  float: left;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  position: relative;
-}
-nav ul li {
-  margin: 0px;
-  display: inline-block;
-  float: left;
-}
-nav a {
-  display: block;
-/**  padding: 0 20px; */
-  font-size: 20px;
-/**  line-height: 60px; */
-  text-decoration: none;
-}
-nav ul li ul li:hover { background: #000000; }
-nav a:hover { background-color: #000000; }
-nav ul ul {
-  display: none;
-  position: absolute;
-  top: 60px;
-}
-nav ul li:hover > ul { display: inherit; }
-nav ul ul li {
-  width: 170px;
-  float: none;
-  display: list-item;
-  position: relative;
-}
-
-nav ul ul ul li {
-  position: relative;
-  top: -60px;
-  left: 170px;
-}
-.toggle, [id^=drop] {
- display: none;
-}
-li > a:only-child:after { content: ''; }
-#threeLine {
-	font-size:200%;
-	font-weight: 900;
-}
+/* JS disabled styles */
+.no-js nav li:hover ul { display:block; }
+  
+/* base nav styles */
+nav { display:block; margin:0 auto 0px; border:1px solid #222; position:relative; background-color:#6a6a6a; font:16px Tahoma, Sans-serif; }
+nav ul { padding:0; margin:0;}
+nav li { position:relative; float:left; list-style-type:none; width:100%}
+nav ul:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
+nav li a { display:block; padding:10px 0px; border-left:0px solid #999; border-bottom:1px solid #222; color:#00ff00; text-decoration:none; width:100%}
+nav li a:focus { outline:none; text-decoration:underline; }
+nav li:first-child a { border-left:none; }
+nav li.last a { border-right:none; }
+nav a span { display:block; float:right; margin-left:5px; }
+nav ul ul { display:none; width:100%; position:absolute; left:0; background:#6a6a6a; }
+nav ul ul li { float:none; }
+nav ul ul a { padding:5px 10px; border-left:none; border-right:none; font-size:14px; }
+nav ul ul a:hover { background-color:#555; }
 /**3线横菜单结束*/

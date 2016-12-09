@@ -4,7 +4,7 @@
 <!doctype html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="css/weui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/weui.min.css">
 	</head>
 
 	<body>

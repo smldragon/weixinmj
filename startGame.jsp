@@ -62,7 +62,7 @@
 		
 	</head>
 
-	<body>
+	<body class="no-js">
 		
 		<div id='scoreHistDiv'  style='display:none'>
 			<!-- 下面这个div是得分历史，正常情形下隐藏不可见得，由javascript控制它得可见性-->
