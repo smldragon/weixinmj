@@ -2,7 +2,6 @@ var scoreConfig = function () {
 	
 	//gameScoreConfig and playerScoreConfig are defined in startGame.jsp
 	var gameScoreConfig;
-	var playerScoreConfig;
 	var positions = globalVariables.positions;
 	var positionTotal = globalVariables.positionTotal;
 	var positionNet = globalVariables.positionNet;
@@ -18,11 +17,11 @@ var scoreConfig = function () {
 		},
 		onSuccess: function(jsonData) {
 			var newConfig = jsonData[scoreConfigSettingHandler];
-			/** when changeScoresetting.jsp is a div of startGame.jsp, use scoreHist.toggleSecoreConfig() -- 2016-11-27
-				scoreHist.toggleScoreConfig();
-			*/
+			//when changeScoresetting.jsp is a div of startGame.jsp, use scoreHist.toggleSecoreConfig() -- 2016-11-27
+			scoreHist.toggleScoreConfig();
+			
 			loadingPrompt.hide('设置修改成功');
-			window.history.go(-2);
+			//window.history.go(-2);
 		}
 	};
 	
@@ -38,29 +37,23 @@ var scoreConfig = function () {
 		getGameScoreConfig: function() {
 			return gameScoreConfig;
 		},
-		setPlayerScoreConfig: function(playerScoreConfig_) {
-			playerScoreConfig = playerScoreConfig_;
-		},
-		getPlayerScoreConfig: function() {
-			return playerScoreConfig;
-		},
 		changeScoreConfig: function(gameId,playerOpenId) {
-			//var scoreSettingOptions = document.getElementById("scoreSetting");
-			//var newConfig = scoreSettingOptions.options[scoreSettingOptions.selectedIndex].value;
-			//the above two is for combobox option.
+			//this version of score configuration setting use "As Default" method, it is different from last version
+			// where configuration is set to either player level or game level. "As Default" method set configuration
+			// to either game level or game+player level.
+			// see score.js 1.16 and ScoreSettingEmbeded.jsp 1.1 for old version.  XFZ@2016-12-11
 			
 			var newConfig = scoreConfigSelection.getValue();  //scoreConfigSelection is defined in score.js
 
-			var titleElement = document.getElementById(scoreConfig.scoreConfigModifierTitleId);
+			this.setGameScoreConfig(newConfig);
 			
-			var jsonString;
-			if ( titleElement.name === 'player') {
-				jsonString = {'openId':playerOpenId};
-				this.setPlayerScoreConfig(newConfig);
-			} else {
-				jsonString = {'gameId':gameId};
-				this.setGameScoreConfig(newConfig);
-			}
+			var configOption = document.getElementById(scoreConfig.scoreConfigModifierTitleId);
+			var configOptionValue = configOption.checked;
+			var jsonString = {'gameId':gameId};
+			if ( configOptionValue === true) {
+				jsonString['default'] = "true";
+			} 
+			jsonString['openId'] = playerOpenId;
 			jsonString[globalVariables.WebSocketEventTypeHandler] = configSettingEvent;
 			jsonString[scoreConfigSettingHandler] = newConfig;
 			webSocketObj.sendData(JSON.stringify(jsonString));
@@ -105,10 +98,12 @@ var scoreConfigSelection = new CellSelection("scoreSetting","weui-icon-success-n
 function setScoreConfig(scoreConfigSettingType,scoreConfigValue){
 	
 	var scoreConfigModifierTitle;
+	//scoreConfigSettingType is not set anymore. player or game level score config is selected on ScoreSettingEmbeded.jsp page
+	// and changeScoreConfig() method of this js file . -- XFZ@2016-12-11
 	if ( scoreConfigSettingType === "player") {
-		scoreConfigModifierTitle = "设置玩家的默认计分方法";
+		scoreConfigModifierTitle = "设置计分方法"; //"设置玩家的默认计分方法";
 	} else {
-		scoreConfigModifierTitle = "设置这局的计分方法";
+		scoreConfigModifierTitle = "设置计分方法"; //"设置这局的计分方法";
 	}
 	
 	var titleElement = document.getElementById(scoreConfig.scoreConfigModifierTitleId);	
