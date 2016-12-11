@@ -530,4 +530,7 @@ var loadingPrompt = function() {
 		}
 	}
 }();
-
+function showScoreConfigModifier(scoreConfigSettingType,scoreConfigValue) {
+	setScoreConfig(scoreConfigSettingType,scoreConfigValue);
+	scoreHist.toggleScoreConfig();
+}

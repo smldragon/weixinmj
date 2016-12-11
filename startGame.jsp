@@ -72,6 +72,8 @@
 			<%@ include file="threeLine.jsp" %>
 			<%@ include file="ViewGame.jsp" %>
 		</div>
-	
+		<div id='scoreConfigSettingDiv' style='display:none' >
+			<%@ include file="ScoreSettingEmbeded.jsp" %>
+		</div>
 	</body>
 </html>
