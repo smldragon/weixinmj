@@ -1,6 +1,6 @@
-<div class="table" style="width:100%">
-	<div class="row" style="width:100%">
-		<div class="column" style="width: 25%" >
+<div class="RowHeadertable" style="height:6%;width:100%">
+	  
+		<div class="column" style="height:100%;width:10%;float:left;" >
 			<nav id="topNav">
 				<ul>
 					<li>
@@ -13,7 +13,7 @@
 				</ul>
 			</nav>
 		</div>
-		<div id="pageTitle" class="column" style="width: 50%; text-align: center"><h3>第&nbsp;1&nbsp;局</h3></div>
-		<div class="column" style="width: 25%; text-align: right" ></div>
-	</div>
+		<div id="pageTitle" class="column" style="height:100%;width:80%;text-align:center;float:left;"><h3>第&nbsp;1&nbsp;局</h3></div>
+		<div class="column" style="height:100%;width:10%;text-align:right;float:left;" ></div>
+	 
 </div>

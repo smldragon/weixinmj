@@ -37,15 +37,15 @@
 /*startGameLayout2.css*/
 /*记分主页面*/
 
-div.RowHeaderA{
+div.RowHeadertable{
 	background-color:white;
 	height:6%;
 	width:100%;
 	font-size:130%;
-	border-bottom:1px solid #CCCCCC;
+	
 }	
 
-div.RowHeaderB{
+div.RowHeader{
 	background-color:white;
 	height:6%;
 	width:100%;

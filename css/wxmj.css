@@ -47,7 +47,7 @@ div.table{
 	width:100%;
 }
 div.row {
-	display:table-row;	
+/*	display:table-row; */	
 	width:100%;
 	clear:both;
 }
@@ -109,7 +109,7 @@ nav { display:block; margin:0 auto 0px; border:0px solid #222; position:relative
 nav ul { padding:0; margin:0;}
 nav li { position:relative; float:left; list-style-type:none; width:100%}
 nav ul:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
-nav li a { display:block; padding:10px 0px; border-left:0px solid #999; border-bottom:0px solid #222; color:#00ff00; text-decoration:none; width:100%}
+nav li a { display:block; padding:0px 0px; border-left:0px solid #999; border-bottom:0px solid #222; color:#1aad19; text-decoration:none; width:100%}
 nav li a:focus { outline:none; text-decoration:underline; }
 nav li:first-child a { border-left:none; }
 nav li.last a { border-right:none; }
