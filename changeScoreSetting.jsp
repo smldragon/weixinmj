@@ -3,7 +3,6 @@
 
 <%
 	//This file is able to modify score configaration for both player and game level, see scoreConfig -- XFZ@2016-11-27
-	final String scoreConfigModifierTitle = "scoreConfigModifierTitle";
 	
 	//WebUtils.debugHttpRequest(request);
 	String code = request.getParameter("code");
@@ -36,7 +35,6 @@
 <script>
 	//webSocketObj.setOpenId('<%=sg.getOpenId()%>'); has to be executed before <html>
 	webSocketObj.setOpenId('<%=sg.getOpenId()%>');
-	scoreConfig.scoreConfigModifierTitleId = "<%=scoreConfigModifierTitle%>";
 	scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
 	scoreConfig.setPlayerScoreConfig('<%=sg.getPlayerDefaultScoreSetting()%>');
 </script>
