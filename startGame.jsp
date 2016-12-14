@@ -50,6 +50,7 @@
 <!doctype html>
 <html>
 	<head>
+		<meta http-equiv="pragma" content="no-cache">
 		<%@ include file="meta_style_inc.jsp" %>
 		<script src="js/startGame.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/WeUI-1-1-0/weui.min.css">
