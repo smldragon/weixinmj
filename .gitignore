@@ -8,13 +8,14 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-CVS
 
 # Windows Installer files
 *.cab
 *.msi
 *.msm
 *.msp
+CVS
+.metadata
 
 # Windows shortcuts
 *.lnk
