@@ -1,7 +1,7 @@
 <div class="RowHeadertable" style="height:6%;width:100%">
 	  
 		<div class="column" style="height:100%;width:10%;float:left;" >
-			<nav id="topNav" style="height:100%;width:100%;">
+			<nav id="topNav" style="width:100%;">
 				<ul>
 					<li>
 						<a href="#" title="Nav" >&#9776;</a>
