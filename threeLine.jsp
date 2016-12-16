@@ -1,4 +1,4 @@
-<div class="RowHeadertable" style="height:6%;width:100%">
+ï»¿<div class="RowHeadertable" style="height:6%;width:100%">
 	  
 		<div class="column" style="height:100%;width:10%;float:left;" >
 			<nav id="topNav" style="width:100%;">
@@ -13,26 +13,8 @@
 				</ul>
 			</nav>
 		</div>
-		<div id="pageTitle" class="column" style="height:100%;width:80%;text-align:center;float:left;"><h3>ç¬?&nbsp;1&nbsp;å±?</h3></div>
+		<div id="pageTitle" class="column" style="height:100%;width:80%;text-align:center;float:left;"><h3>ç¬¬&nbsp;1&nbsp;å±€</h3></div>
 		<div class="column" style="height:100%;width:10%;text-align:right;float:left;" ></div>
 	 
 </div>
-<div class="RowHeadertable" style="height:6%;width:100%">
-	  
-		<div class="column" style="height:100%;width:10%;float:left;" >
-			<nav id="topNav">
-				<ul>
-					<li>
-						<a href="#" title="Nav" >&#9776;</a>
-						<ul>  
-							<li class="last"><a href="#" title="ScoreConfig" 
-								onClick="showScoreConfigModifier('game',scoreConfig.getGameScoreConfig())">è®¡åˆ†æ–¹æ³•</a></li>
-						</ul>                
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<div id="pageTitle" class="column" style="height:100%;width:80%;text-align:center;float:left;"><h3>ç¬?&nbsp;1&nbsp;å±?</h3></div>
-		<div class="column" style="height:100%;width:10%;text-align:right;float:left;" ></div>
-	 
-</div>
+
