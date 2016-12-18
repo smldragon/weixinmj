@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "utf-8";
 .hidden{
 	position: absolute;
@@ -128,4 +129,136 @@ nav ul ul { display:none; width:100%; position:absolute; left:0; background:#999
 nav ul ul li { float:none; }
 nav ul ul a { padding:5px 10px; border-left:none; border-right:none; font-size:14px; }
 nav ul ul a:hover { background-color:#555; }
+=======
+@charset "utf-8";
+.hidden{
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	visibility: hidden;
+}
+div.summary {
+    background-color: blue;
+    color: white;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid white;
+/**	display:block; */
+}
+th {
+	width: 100%;
+	border: 1px solid white;			
+}
+tr {
+	width: 100%;
+	border: 1px solid #CCCCCC;
+	border-right: none;
+	border-left: none;	
+}
+td{
+	width: 100%;
+	border: 1px solid white;
+}
+thead {
+/**	display: inline-block; */
+	width: 100%;
+}
+
+tbody {
+	width: 100%;
+/**	display: inline-block; */
+/**   overflow: auto; */
+}
+/**wxmj_layout.css*/
+div.table{
+	display:table;
+	width:100%;
+}
+div.row {
+/*	display:table-row; */	
+	width:100%;
+	clear:both;
+}
+div.row:after {
+    display: table;
+	padding-bottom: 2px;
+}
+div.column{
+/**  color: white; */
+	float:none;
+	display: table-cell;
+	vertical-align: middle;
+/**	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd; */
+	align: center;
+}
+
+div.positionColumn{
+  float: left;
+  width: 24.7%;
+  background-color:navy;
+  color: white;
+  position: relative;
+  display: table-cell;
+  text-align: center;
+}
+
+div.paddingColumn{
+  float: left;
+  width: 0.3%;
+  background-color:while;
+  color: white;
+  position: relative;
+  height: 20px;
+  align: center;
+  display: table-cell;
+  
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;  
+  height: 100%;
+}
+img.icon {
+	width: 100%;
+}
+ 
+/**wxmj_layout.css*/
+/**3线横菜单 */
+/* JS disabled styles */
+.no-js nav li:hover ul { display:block; }
+  
+/* base nav styles */
+nav { display:block; margin:0 auto 0px; border:0px solid #222; position:relative; background-color:#fff; font:16px Tahoma, Sans-serif; }
+nav ul { padding:0; margin:0;}
+nav li { position:relative; float:left; list-style-type:none; width:100%}
+nav ul:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
+nav li a { 
+	isplay:block; 
+	adding:0px 0px; 
+	border-left:0px solid #999;
+	border-bottom:0px solid #222; 
+	color:#1aad19;
+	text-decoration:none;
+	width:100%;
+	font-size:200%;
+	line-height:80%;
+ }
+nav li a:focus { outline:none; text-decoration:underline; }
+nav li:first-child a { border-left:none; }
+nav li.last a { border-right:none; }
+nav a span { display:block; float:right; margin-left:5px; }
+nav ul ul { display:none; width:410%; position:absolute; left:0; background:#999; }
+nav ul ul li { float:none; }
+nav ul ul a { padding:5px 10px; border-left:none; border-right:none; font-size:14px; }
+nav ul ul a:hover { background-color:#555; }
+>>>>>>> refs/remotes/origin/master
 /**3线横菜单结束*/
