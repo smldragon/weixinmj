@@ -2,8 +2,8 @@
 <%@ include file="import_inc.jsp" %>
 
 <%
-	final String titleColorStyle="background-color: red;";  //标题颜色
-	final String altBckColorStyle="background-color: yellow;"; //得分行的另一种颜色
+	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
+	final String altBckColorStyle="background-color:#F7F7F7;"; //得分行的另一种颜色
 %>
 	 
 <div>	 
