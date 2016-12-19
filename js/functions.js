@@ -1,5 +1,5 @@
 var webSocketObj = new function() {
-	//define a variable to function which is assigned in joinGame.js etc.... -- XFZ@2016-08-25
+	//define a variable to function which is assigned in startGame.js etc.... -- XFZ@2016-08-25
 	var callBackListeners = new Array();
 	var listenerIndex = 0;
 	var socket;
@@ -30,9 +30,6 @@ var webSocketObj = new function() {
 		
 				socket = new WebSocket("ws://"+mjServerHost+"/"+mjServletName+"?"+openIdName+"="+openId+"&name="+name, WeiXinMaJiangProtocol);
 				socket.onopen = function(msg) {
-					//	webSocketErrCnt = 0;
-					//	//run a function which is defined in joinGame.js, etc.-- XFZ@2016-08-25
-					//	$(socketOnOpenFunction);
 				};
 				socket.onmessage = callBack;
 			}
@@ -509,6 +506,28 @@ function showToastSuccessPrompt(prompt,duration) {
 };
 
 var loadingPrompt = function() {
+	
+	var loadingDivId = "loadingToast";
+	return {
+		show: function(prompt) {
+			$(document.documentElement).append(
+				'<div id= '+ loadingDivId +' >'+
+				'<div class="weui-mask_transparent"></div>'+
+				'<div class="weui-toast">'+
+				'<i class="weui-loading weui-icon_toast"></i>'+
+				'<p class="weui-toast__content">'+prompt+'</p>'+
+				'</div></div>'
+			);
+		},
+		hide: function(loadingSuccessPrompt) {
+			$("#"+loadingDivId).remove();
+			if ( typeof(loadingSuccessPrompt) != 'undefined' ) {
+				showToastSuccessPrompt(loadingSuccessPrompt,4000);
+			} 
+		}
+	}
+}();
+var layeredAlert = function() {
 	
 	var loadingDivId = "loadingToast";
 	return {

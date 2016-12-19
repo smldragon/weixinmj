@@ -30,7 +30,7 @@
 		</script>
 		
 		
-		<script src="js/joinGame.js"></script>
+		<script src="js/startGame.js"></script>
 		
 		<title><%=WxMjConstants.AppTitle%></title>
 		

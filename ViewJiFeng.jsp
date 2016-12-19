@@ -1,25 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"  %>
 <%@ include file="import_inc.jsp" %>
 
+<%
+	final String titleColorStyle="background-color: red;";  //标题颜色
+	final String altBckColorStyle="background-color: yellow;"; //得分行的另一种颜色
+%>
 	 
 <div>	 
 	<h3 style="text-align:center">得分历史</h3> 
 				 	  
 	<table id="scores" style="width:100%" >
-		<thead>
+		<thead style="<%=titleColorStyle%>">
 		
 			<tr>
-				<td class='ScoreRowHeader'>牌局</td>	
-				<td class='ScorePosition1'>
+				<td class='ScoreRowHeader' style="<%=titleColorStyle%>">牌局</td>	
+				<td class='ScorePosition1' style="<%=titleColorStyle%>">
 					<div id='<%=positions[0]+"PlayerName"%>'><%=view.getPlayerDesc(0)%></div>
 				</td> <!--玩家名0-->
-				<td class='ScorePosition2'>
+				<td class='ScorePosition2' style="<%=titleColorStyle%>">
 					<div id='<%=positions[1]+"PlayerName"%>'><%=view.getPlayerDesc(1)%></div>
 				</td> <!--玩家名1-->
-				<td class='ScorePosition1'>
+				<td class='ScorePosition1' style="<%=titleColorStyle%>">
 					<div id='<%=positions[2]+"PlayerName"%>'><%=view.getPlayerDesc(2)%></div>
 				</td> <!--玩家名2-->
-				<td class='ScorePosition2'>
+				<td class='ScorePosition2' style="<%=titleColorStyle%>">
 					<div id='<%=positions[3]+"PlayerName"%>'><%=view.getPlayerDesc(3)%></div>
 				</td> <!--玩家名3-->
 			</tr>
@@ -27,16 +31,23 @@
 					
 		<tbody>
 		<%
+			
 			int scoreLength = view.getScoreLength();
 			for(int rowIndex=0;rowIndex<scoreLength;rowIndex++) {
 				int [] scores = view.getScores(rowIndex);
+				String bckClrStyle;
+				if ( rowIndex %2 == 0) {
+					bckClrStyle = "";
+				} else {
+					bckClrStyle = altBckColorStyle;
+				}
 		%>
-				<tr id='<%=scores[0]%>' class='dataRow'>
-					<td class='ScoreRowHeader'><%=rowIndex+1%></td>
-					<td class='ScorePosition1'><%=scores[1]%></td>
-					<td class='ScorePosition2'><%=scores[2]%></td>
-					<td class='ScorePosition1'><%=scores[3]%></td>
-					<td class='ScorePosition2'><%=scores[4]%></td>
+				<tr id='<%=scores[0]%>' class='dataRow' style="<%=bckClrStyle%>" >
+					<td class='ScoreRowHeader' style="<%=bckClrStyle%>"><%=rowIndex+1%></td>
+					<td class='ScorePosition1' style="<%=bckClrStyle%>"><%=scores[1]%></td>
+					<td class='ScorePosition2' style="<%=bckClrStyle%>"><%=scores[2]%></td>
+					<td class='ScorePosition1' style="<%=bckClrStyle%>"><%=scores[3]%></td>
+					<td class='ScorePosition2' style="<%=bckClrStyle%>"><%=scores[4]%></td>
 				</tr>
 			
 		<%
