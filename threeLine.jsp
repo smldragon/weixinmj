@@ -14,6 +14,6 @@
 			</nav>
 		</div>
 		<div id="pageTitle" class="column" style="height:100%;width:80%;text-align:center;float:left;"><h3>第&nbsp;1&nbsp;局</h3></div>
-		<div class="column" style="height:100%;width:10%;text-align:right;float:left;" ></div>
-	 
+		<div class="column" style="height:100%;width:10%;text-align:right;float:left;" ></div> 
 </div>
+<!-- 结束 -->

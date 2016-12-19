@@ -527,28 +527,6 @@ var loadingPrompt = function() {
 		}
 	}
 }();
-var layeredAlert = function() {
-	
-	var loadingDivId = "loadingToast";
-	return {
-		show: function(prompt) {
-			$(document.documentElement).append(
-				'<div id= '+ loadingDivId +' >'+
-				'<div class="weui-mask_transparent"></div>'+
-				'<div class="weui-toast">'+
-				'<i class="weui-loading weui-icon_toast"></i>'+
-				'<p class="weui-toast__content">'+prompt+'</p>'+
-				'</div></div>'
-			);
-		},
-		hide: function(loadingSuccessPrompt) {
-			$("#"+loadingDivId).remove();
-			if ( typeof(loadingSuccessPrompt) != 'undefined' ) {
-				showToastSuccessPrompt(loadingSuccessPrompt,4000);
-			} 
-		}
-	}
-}();
 function showScoreConfigModifier(scoreConfigSettingType,scoreConfigValue) {
 	setScoreConfig(scoreConfigSettingType,scoreConfigValue);
 	scoreHist.toggleScoreConfig();
