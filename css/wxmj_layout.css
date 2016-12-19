@@ -1,0 +1,50 @@
+@charset "utf-8";
+ 
+div.row:after 
+{
+    display: table;
+	padding-bottom: 2px;
+}
+
+div.column
+{
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+div.positionColumn
+{
+  float: left;
+  width: 24.7%;
+  background-color:navy;
+  color: white;
+  position: relative;
+  align: center;
+  display: table-cell;
+  text-align: center;
+}
+
+div.paddingColumn
+{
+  float: left;
+  width: 0.3%;
+  background-color:while;
+  color: white;
+  position: relative;
+  height: 20px;
+  align: center;
+  display: table-cell;
+  
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;  
+  height: 100%;
+}
+img.icon {
+	width: 100%;
+}
+ 
