@@ -1,5 +1,5 @@
 var webSocketObj = new function() {
-	//define a variable to function which is assigned in startGame.js etc.... -- XFZ@2016-08-25
+	//define a variable to function which is assigned in joinGame.js etc.... -- XFZ@2016-08-25
 	var callBackListeners = new Array();
 	var listenerIndex = 0;
 	var socket;
@@ -30,6 +30,9 @@ var webSocketObj = new function() {
 		
 				socket = new WebSocket("ws://"+mjServerHost+"/"+mjServletName+"?"+openIdName+"="+openId+"&name="+name, WeiXinMaJiangProtocol);
 				socket.onopen = function(msg) {
+					//	webSocketErrCnt = 0;
+					//	//run a function which is defined in joinGame.js, etc.-- XFZ@2016-08-25
+					//	$(socketOnOpenFunction);
 				};
 				socket.onmessage = callBack;
 			}
