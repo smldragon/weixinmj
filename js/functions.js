@@ -181,7 +181,7 @@ var gameAction = function () {
 			populateGameInfo(jsonData);
 		},
 		onSuccess: function(jsonData) {
-				
+			gameAction.jsonData = jsonData;
 			//WebSocketEventActionModeHandler is defined  in GlobalVariables.jsp
 			var mode = jsonData[WebSocketEventActionModeHandler];
 			var gameIdFromServer = jsonData['GameId'];
@@ -201,32 +201,25 @@ var gameAction = function () {
 						
 				requestPosition = false;
 				populateGameInfo(jsonData);
-				//if ( mode === 'rejectByHost' ) {
-					alert('庄家拒绝加入请求');
-				//}
-						
+				//alert('庄家拒绝加入请求');
+				showMessage('庄家拒绝加入请求') ;
 			} else if ( mode === 'request') {
 				
 				requestPosition = false;				
 				var message = jsonData.nick+"请求加入"+jsonData.posDisp;
-				var r = showDialog(message);
-				var requestMode;
-				if (r == true ) {
-					requestMode = 'approve';
-				} else {
-					requestMode = 'reject';
-				}
-				
-				//server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25, 
-				var jsonString = {'action': 'joingame','mode':requestMode,'openId': jsonData.openId, 'gameId': jsonData.gameId,'position': jsonData.position};
-				jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
-				webSocketObj.sendData(JSON.stringify(jsonString));
+				dialog.title="";
+                dialog.message = message;
+                dialog.okButtonText = "同意";
+                dialog.cancelButtonText = "拒绝";
+                dialog.okFunction = "gameAction.postRequest('approve');";
+                dialog.cancelFunction = "gameAction.postRequest('reject');";
+                dialog.show();
 			}
 		}
 	}	
 	webSocketObj.addListener(setPlayer);
 	return {
-		
+		jsonData: '',
 		joinGameAtPos: function(gameId,pos) {
 			
 			requestPosition = true;
@@ -246,7 +239,13 @@ var gameAction = function () {
 		},
 		setStartGame: function(startGame_) {
 			startGame = startGame_;
-		}
+		},
+		postRequest: function( requestMode) {
+             //server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
+              var jsonString = {'action': 'joingame','mode':requestMode,'openId': this.jsonData.openId, 'gameId': this.jsonData.gameId,'position': this.jsonData.position};
+              jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
+              webSocketObj.sendData(JSON.stringify(jsonString));
+        }
 	};
 	function populateGameInfo(jsonData) {
 		
@@ -280,26 +279,14 @@ var configSetting = function () {
 	};
 	
 }();
-
-function showDialog(txt) {
-	var confirmation = confirm(txt);
-	return confirmation;
-}
-function showDialog_jquery(title, txt) {
-	var $dialogDiv = $('<div>');
-	$dialogDiv.html(txt);
-	$dialogDiv.dialog({
-        title: title,
-        modal: true,
-        close: function() {
-            $(this).dialog('destroy').remove();
-        },
-        buttons: [{
-            text: "Ok",
-            click: function() {
-                $(this).dialog("close");
-            }}]
-    })
+function showMessage(mesg) {
+	dialog.title="";
+    dialog.message = mesg;
+    dialog.okButtonText = "确定";
+    dialog.cancelButtonText = "";
+    dialog.okFunction = "";
+    dialog.cancelFunction = "";
+    dialog.show();
 }
 var selectTagMethod = {
 	
@@ -526,6 +513,48 @@ var loadingPrompt = function() {
 			} 
 		}
 	}
+}();
+var dialog = function() {
+	
+	var dialogDiv = "dialogDiv";
+	return {
+	    message: '',
+	    okButtonText : '确定',
+	    cancelButtonText : '取消',
+	    okFunction : '',
+	    cancelFunction:'' ,
+
+		show: function() {
+		    var divContent = '<div id='+dialogDiv+' class="weui_dialog_confirm">' +
+                '<div class="weui-mask"></div>'+
+                 '<div class="weui-dialog">'+
+                  '<div class="weui-dialog__hd"><strong class="weui-dialog__title">'+this.title+'</strong></div>'+
+                   '<div class="weui-dialog__bd">'+this.message+'</div>'+
+                    '<div class="weui-dialog__ft">';
+
+             if ( this.cancelButtonText != '' ) {
+                divContent = divContent + '<a href="#" class="weui-dialog__btn default" onClick=dialog.doCancelFunction()  >'+this.cancelButtonText+'</a>';
+             }
+             if ( this.okButtonText != '' ) {
+                divContent = divContent + '<a href="#" class="weui-dialog__btn default" onClick=dialog.doOkFunction()  >'+this.okButtonText+'</a>';
+             }
+
+            divContent = divContent +'</div>'+'</div>'+ '</div>';
+
+			$(document.documentElement).append(divContent);
+		},
+		doOkFunction: function () {
+            eval(this.okFunction);
+        	this.hide();
+        },
+        doCancelFunction:function () {
+            eval(this.cancelFunction);
+        	this.hide();
+        },
+        hide:   function () {
+            $("#"+dialogDiv).remove();
+         }
+	};
 }();
 function showScoreConfigModifier(scoreConfigSettingType,scoreConfigValue) {
 	setScoreConfig(scoreConfigSettingType,scoreConfigValue);
