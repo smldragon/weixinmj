@@ -282,7 +282,7 @@ var configSetting = function () {
 function showMessage(mesg) {
 	dialog.title="";
     dialog.message = mesg;
-    dialog.okButtonText = "确定";
+    dialog.okButtonText = "知道了";
     dialog.cancelButtonText = "";
     dialog.okFunction = "";
     dialog.cancelFunction = "";
