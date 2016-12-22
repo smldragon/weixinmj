@@ -11,7 +11,7 @@
 <body >
 <script>
 function test() {
-	
+	//软件不知道如何合并了。
 	dialog.title="this is test title";
 	dialog.message = "this is test message";
 	dialog.okButtonText = "OK";
