@@ -20,7 +20,7 @@ function test() {
 	dialog.cancelFunction = "alert('this is CANCEL button ')";
 
 	dialog.show();
-	
+	//增加一行（23）做冲突测试
 }
 
 window.onload=test();
