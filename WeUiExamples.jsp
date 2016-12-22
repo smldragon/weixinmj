@@ -11,7 +11,7 @@
 <body >
 <script>
 function test() {
-	
+	//12/23/11:31
 	dialog.title="this is test title";
 	dialog.message = "this is test message";
 	dialog.okButtonText = "OK";
