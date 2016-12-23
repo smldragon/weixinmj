@@ -117,8 +117,8 @@ nav li a {
 	color:#1aad19;
 	text-decoration:none;
 	width:100%;
-	font-size:200%;
-	line-height:80%;
+	font-size:150%;
+	line-height:120%;
  }
 nav li a:focus { outline:none; text-decoration:underline; }
 nav li:first-child a { border-left:none; }
