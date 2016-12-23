@@ -13,7 +13,7 @@ var scoreConfig = function () {
 		
 		getType: function(){ return configSettingEvent;},
 		onError: function(jsonData,err) {
-			alert(err);
+			showMessage(err);
 		},
 		onSuccess: function(jsonData) {
 			var newConfig = jsonData[scoreConfigSettingHandler];
@@ -127,7 +127,7 @@ var score = function () {
 			addScoreRowData(jsonData);
 		},
 		onError : function(jsonData,err) {
-			alert(err);
+			showMessage(err);
 		}
 	}
 	webSocketObj.addListener(handleScoreWebSocketResponse);
@@ -155,7 +155,7 @@ var score = function () {
 				async: true, 
 				dataType: 'json',
 				error:function(data,status,er) {
-					alert("error: "+data+" status: "+status+" er:"+er);
+					showMessage("error: "+data+" status: "+status+" er:"+er);
 				},
 				success: function(tableData, textStatus, jqXHR){
 					gameSerNo = 0;
@@ -216,7 +216,7 @@ var score = function () {
 				data: dataStr,
 				dataType: 'json',
 				error:function(data,status,er) {
-					alert("分数格式错误。请重新输入整数");
+					showMessage("分数格式错误。请重新输入整数");
 					clearAllScoreInputFields();
 				},
 				success: function(data, textStatus, jqXHR){
@@ -286,7 +286,7 @@ var score = function () {
 		}
 		
 		if ( nonNullCount == 0) {
-			alert('请输入至少一个分数');
+			showMessage('请输入至少一个分数');
 			return false;
 		} else {
 			return true;
@@ -295,7 +295,7 @@ var score = function () {
 	function validateScore(position) {
 		var score = getPositionScore(position);
 		if ( ! $.isNumeric(score) ) {
-			alert(getPositiondDisplay(position)+'的分数无效');
+			showMessage(getPositiondDisplay(position)+'的分数无效');
 			return false;
 		} else {
 			return true;

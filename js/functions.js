@@ -22,7 +22,7 @@ var webSocketObj = new function() {
 		},
 		initWebSocket: function(name) {
 			if ( typeof(openId) === 'undefined') {
-				alert('初始化错误，openId未被设置');
+				showMessage('初始化错误，openId未被设置');
 				return;
 			}
 			
@@ -44,7 +44,7 @@ var webSocketObj = new function() {
 				}
 			}
 			if ( socket.readyState === 0) {
-				alert('网络似乎有问题，请稍后再�?');
+				showMessage('网络似乎有问题，请稍后再试');
 				return;
 			} 
 	
@@ -105,7 +105,7 @@ function getAccessToken() {
 			error: function(xhr, error){
 				console.debug(xhr); 
 				console.debug(error);
-				alert('ERROR MESG\n'+error);
+				showMessage('ERROR MESG\n'+error);
 			}
 		});
 	}
@@ -120,11 +120,11 @@ function sendMessageToFriendCircle(message,link,imgUrl) {
 		imgUrl: imgUrl, // 分享图标
 		success: function () { 
 			// 用户确认分享后执行的回调函数
-			alert(message);
+			showMessage(message);
 		},
 		cancel: function () { 
 			// 用户取消分享后执行的回调函数
-			alert('分享朋友圈失�?');
+			showMessage('分享朋友圈失败');
 		}
 	});
 }
@@ -138,11 +138,11 @@ function initWxConfig() {
 	var jsSdkConfig_signature = globalVariables.jsSdkConfig_signature;
 	
 	wx.config({
-		debug: isDebug, // �?启调试模�?,调用的所有api的返回�?�会在客户端alert出来，若要查看传入的参数，可以在pc端打�?，参数信息会通过log打出，仅在pc端时才会打印�?
-		appId: appId, // 必填，公众号的唯�?标识
-		timestamp: jsSdkConfig_timeStamp, // 必填，生成签名的时间�?
-		nonceStr: jsSdkConfig_nonceStr, // 必填，生成签名的随机�?
-		signature: jsSdkConfig_signature,// 必填，签名，见附�?1
+		debug: isDebug, // �?启调试模�?,调用的所有api的返回�?�会在客户端alert出来，若要查看传入的参数，可以在pc端打�?，参数信息会通过log打出，仅在pc端时才会打印�?
+		appId: appId, // 必填，公众号的唯�?标识
+		timestamp: jsSdkConfig_timeStamp, // 必填，生成签名的时间�?
+		nonceStr: jsSdkConfig_nonceStr, // 必填，生成签名的随机�?
+		signature: jsSdkConfig_signature,// 必填，签名，见附�?1
 		jsApiList : [ 'checkJsApi', 'onMenuShareTimeline',
 								'onMenuShareAppMessage', 'onMenuShareQQ',
 								'onMenuShareWeibo', 'hideMenuItems',
@@ -160,8 +160,8 @@ function initWxConfig() {
 	});
 	wx.error(function(res){
 
-		alert('wx config err message '+res);
-		// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打�?config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名�??
+		showMessage('wx config err message '+res);
+		// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打�?config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名�??
 
 	});
 }
@@ -177,7 +177,7 @@ var gameAction = function () {
 		
 		getType: function(){ return webSocketGameEvent;},
 		onError: function(jsonData,err) {
-			alert(err);
+			showMessage(err);
 			populateGameInfo(jsonData);
 		},
 		onSuccess: function(jsonData) {
@@ -282,7 +282,7 @@ var configSetting = function () {
 function showMessage(mesg) {
 	dialog.title="";
     dialog.message = mesg;
-    dialog.okButtonText = "知道�?";
+    dialog.okButtonText = "知道了";
     dialog.cancelButtonText = "";
     dialog.okFunction = "";
     dialog.cancelFunction = "";
