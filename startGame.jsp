@@ -16,6 +16,8 @@
 		String openId = request.getParameter(WeiXinConstants.OpenIdName);
 		if ( openId != null) {
 			sg.setOpenId(openId);
+		} else {
+		    openId = sg.getOpenId();
 		}
 			
 		
@@ -29,6 +31,8 @@
 		int [] positionTotal = view.getPositionTotal();
 		
 		int gameId = view.getGameId();
+
+		boolean isHost = view.getHostOpenId().equals(openId);
 %>
 <%@ include file="GlobalVariables.jsp" %>
 <script>
@@ -40,8 +44,13 @@
 	globalVariables.positionTotal[3] = <%=positionTotal[3]%>;
 	score.setGameSerNo(<%=view.getScoreLength()%>);
 	score.setTGameId(<%=gameId%>);
-	gameAction.setGameId(<%=gameId%>);
+    gameAction.setIsHost(<%=isHost%>);
+	gameAction.setGameId('<%=gameId%>');
 	gameAction.setStartGame(true);
+	gameAction.setChangeGameAction('<%=WxMjConstants.ChangeGameAction%>');
+    gameAction.setExitGameMode('<%=WxMjConstants.ExitGameMode%>');
+    gameAction.setJoinGameMode('<%=WxMjConstants.JoinGameMode%>');
+    gameAction.setRequestGameMode('<%=WxMjConstants.RequestMode%>');
 	score.setRefreshScoreAction('<%=WxMjActions.refreshScores%>');
 	score.setAddScoreAction('<%=WxMjActions.addScores%>');
 	scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
