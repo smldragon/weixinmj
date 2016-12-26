@@ -20,8 +20,11 @@
 		WebSocketEventTypeHandler: '<%=StringConstants.WebSocketEventTypeHandler%>',
 		WebSocketEventActionModeHandler : '<%=StringConstants.WebSocketEventActionModeHandler%>',
 		ErrMsgHandler : '<%=StringConstants.ErrMsgHandler%>',
-		openIdName : '<%=WeiXinConstants.OpenIdName%>',
+		OpenIdName : '<%=WeiXinConstants.OpenIdName%>',
+		GameIdName : '<%=WxMjConstants.GameIdName%>',
 		WeiXinMaJiangProtocol : '<%=WxMjConstants.WeiXinMaJiangProtocol%>',
+		MessageModeHandler: '<%=StringConstants.MessageModeHandler%>',
+        MessageActionHandler: '<%=StringConstants.MessageActionHandler%>',
 		//define global js constants for later use
 		wxAccessTokenAction : '<%=WeiXinActions.WxAccessToken%>',
 		mjServerHost : '<%=WxMjConstants.WxMjHost%>',

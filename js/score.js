@@ -49,7 +49,8 @@ var scoreConfig = function () {
 			
 			var configOption = document.getElementById(scoreConfig.scoreConfigModifierTitleId);
 			var configOptionValue = configOption.checked;
-			var jsonString = {'gameId':gameId};
+			var jsonString = {};
+			jsonString[globalVariables.GameIdName] = gameId;
 			if ( configOptionValue === true) {
 				jsonString['default'] = "true";
 			} 
