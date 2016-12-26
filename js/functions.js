@@ -7,7 +7,7 @@ var webSocketObj = new function() {
 	var mjServletName = globalVariables.mjServletName;
 	var openId;
 	var WeiXinMaJiangProtocol = globalVariables.WeiXinMaJiangProtocol;
-	var openIdName = globalVariables.openIdName;
+	var openIdName = globalVariables.OpenIdName;
 	var WebSocketEventTypeHandler = globalVariables.WebSocketEventTypeHandler;
 	var ErrMsgHandler = globalVariables.ErrMsgHandler;
 			
@@ -38,8 +38,8 @@ var webSocketObj = new function() {
 	
 			if ( typeof(socket) === 'undefined' || socket === null || socket.readyStatus === 0) {
 				var tryCount = 0;
-				while ( (socket == null || socket.readyStatus == 0) && tryCount < 10) {
-					window.setTimeout( this.initWebSocket('trying to open '+tryCount+' times'), 5000);
+				while ( (socket == null || socket.readyStatus == 0) && tryCount < 50) {
+					window.setTimeout( this.initWebSocket('trying to open '+tryCount+' times'), 10);
 					tryCount = tryCount + 1;
 				}
 			}
@@ -166,7 +166,11 @@ function initWxConfig() {
 	});
 }
 var gameAction = function () {
-	
+    var isHost;
+	var changeGameAction;
+	var exitGameMode;
+	var joinGameMode;
+	var requestGameMode;
 	var webSocketGameEvent = globalVariables.webSocketGameEvent;
 	var WebSocketEventActionModeHandler = globalVariables.WebSocketEventActionModeHandler;
 	var gameId;
@@ -177,17 +181,19 @@ var gameAction = function () {
 		
 		getType: function(){ return webSocketGameEvent;},
 		onError: function(jsonData,err) {
-			showMessage(err);
-			populateGameInfo(jsonData);
+		    loadingPrompt.hide('');
+            populateGameInfo(jsonData);
+            showMessage(err);
 		},
 		onSuccess: function(jsonData) {
+		    loadingPrompt.hide('');
 			gameAction.jsonData = jsonData;
 			//WebSocketEventActionModeHandler is defined  in GlobalVariables.jsp
 			var mode = jsonData[WebSocketEventActionModeHandler];
 			var gameIdFromServer = jsonData['GameId'];
-			if ( mode === 'insert' || mode ==='update' ) {
+			if ( mode === 'insert' || mode ==='update' || mode ==='exitGame') {
 				
-				if (  requestPosition === false || startGame === true) {
+				if (  requestPosition === false || startGame === true ) {
 					populateGameInfo(jsonData);
 				} else  {
 					var href = '/weixinmj/startGame.jsp?gameId='+gameIdFromServer+'&'+'openId'+'='+webSocketObj.getOpenId();
@@ -228,21 +234,63 @@ var gameAction = function () {
 			$('#'+pos+'_'+gameId).attr('src', '/weixinmj/icon/progress.gif');
 			$('#'+pos+'_'+gameId).attr('class', 'icon');
 			
-			//server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25, 
-			var jsonString = {'action': 'joingame','mode':'request','gameId': gameId,'position': pos};
+			//server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
+			var jsonString = {};
+			jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
+			jsonString[globalVariables.MessageModeHandler] = gameAction.getRequestGameMode();
+			jsonString[globalVariables.GameIdName] = gameId;
+			jsonString['position'] = pos;
 			jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
-			jsonString[globalVariables.openIdName] = openId;
+			jsonString[globalVariables.OpenIdName] = openId;
 			webSocketObj.sendData(JSON.stringify(jsonString));
+		},
+		setIsHost: function(isHost_) {
+		    isHost = isHost_;
+		},
+		getIsHost: function() {
+		    return isHost;
 		},
 		setGameId: function(gameId_) {
 			gameId = gameId_;
 		},
+		getGameId: function() {
+		    return gameId;
+		},
 		setStartGame: function(startGame_) {
 			startGame = startGame_;
 		},
-		postRequest: function( requestMode) {
+		setChangeGameAction: function(action) {
+		    changeGameAction = action;
+		},
+		getChangeGameAction: function() {
+		    return changeGameAction;
+		},
+		setJoinGameMode: function(mode) {
+            joinGameMode = mode;
+        },
+        getJoinGameMode: function() {
+            return joinGameMode;
+        },
+        setExitGameMode: function(mode) {
+            exitGameMode = mode;
+         },
+         getExitGameMode: function() {
+             return exitGameMode;
+         },
+         setRequestGameMode: function(mode) {
+            requestGameMode = mode;
+         },
+         getRequestGameMode: function() {
+            return requestGameMode;
+         },
+		postRequest: function( mode) {
              //server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
-              var jsonString = {'action': 'joingame','mode':requestMode,'openId': this.jsonData.openId, 'gameId': this.jsonData.gameId,'position': this.jsonData.position};
+              var jsonString = {};
+              jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
+              jsonString[globalVariables.MessageModeHandler] = mode;
+              jsonString[globalVariables.OpenIdName] = this.jsonData.openId;
+              jsonString[globalVariables.GameIdName] = this.jsonData.gameId;
+              jsonString['position'] = this.jsonData.position;
               jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
               webSocketObj.sendData(JSON.stringify(jsonString));
         }
@@ -508,7 +556,7 @@ var loadingPrompt = function() {
 		},
 		hide: function(loadingSuccessPrompt) {
 			$("#"+loadingDivId).remove();
-			if ( typeof(loadingSuccessPrompt) != 'undefined' ) {
+			if ( typeof(loadingSuccessPrompt) != 'undefined' && loadingSuccessPrompt != '') {
 				showToastSuccessPrompt(loadingSuccessPrompt,4000);
 			} 
 		}
