@@ -114,18 +114,34 @@ nav li a {
 	adding:0px 0px; 
 	border-left:0px solid #999;
 	border-bottom:0px solid #222; 
-	color:#1aad19;
+	color:white;
 	text-decoration:none;
 	width:100%;
 	font-size:130%;
-	line-height:140%;
+	line-height:160%;
  }
 nav li a:focus { outline:none; text-decoration:underline; }
 nav li:first-child a { border-left:none; }
 nav li.last a { border-right:none; }
 nav a span { display:block; float:right; margin-left:5px; }
-nav ul ul { display:none; border: solid 1px #CCCCCC; width:250%; height: 140%; position:absolute; left:0; background:white; border-radius:5px 5px;}
-nav ul ul li { float:none; line-height: 250%;text-align: center;}
-nav ul ul a { padding:5px 10px; font-size:100%;/* line-height:150%; color: #0069d6;*/}
+nav ul ul { display:none;  width:200%; height: 140%; position:absolute; left:0; }
+nav ul ul li {
+	float:none; 
+	line-height: 250%;
+	text-align: center;
+	/*R*/border: solid 1px #CCCCCC; 
+	/*background:url(http://oksbt.eicp.net/weixinmj/icon/RowHeadertable.jpg) no-repeat 0px center; */
+	background:black /*white*/;
+	opacity:0.6; 
+	border-radius:0px 0px;
+	z-index:2;
+}
+nav ul ul a { padding:5px 10px; 
+	font-size:100%;
+	color:white;
+	font-size:100%;
+	font-weight:550;
+	/* line-height:150%; color: #0069d6;*/
+}
 nav ul ul a:hover { background-color:#555; }
 /**3线横菜单结束*/
