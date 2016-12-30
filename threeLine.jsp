@@ -8,7 +8,7 @@
 				<ul>
 					<li>
 						<a href="#" title="更多菜单" >
-							&#9776;
+							&nbsp;&nbsp;&#9776;
 						</a>
 						<ul>
 							<li class="last">
@@ -29,13 +29,13 @@
 			</nav>
 		</div>
 		
-		<div id="pageTitle" class="column" style="height:100%;width:60%;text-align:center;float:left;font-size:100%;color:white;line-height:180%;">
+		<div id="pageTitle" class="column" style="height:100%;width:60%;text-align:center;float:left;font-size:80%;color:white;line-height:230%;">
 			第&nbsp;1&nbsp;局
 		</div>
 		
-		<div class="column" style="height:100%;width:20%;text-align:right;float:left;font-size:100%;line-height:180%;" >
+		<div class="column" style="height:100%;width:20%;text-align:right;float:left;font-size:70%;line-height:260%;" >
 			<a href='#' title='退出本局' onClick="exitGame.requestExit()" style="color:white;" >
-				退出
+				退出&nbsp;
 			</a>
 		</div>
 </div>

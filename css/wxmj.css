@@ -118,7 +118,7 @@ nav li a {
 	text-decoration:none;
 	width:100%;
 	font-size:130%;
-	line-height:160%;
+	line-height:200%;
  }
 nav li a:focus { outline:none; text-decoration:underline; }
 nav li:first-child a { border-left:none; }
@@ -129,7 +129,7 @@ nav ul ul li {
 	float:none; 
 	line-height: 250%;
 	text-align: center;
-	/*R*/border: solid 1px #CCCCCC; 
+	/*R*/border: solid 1px #1f1f1f; 
 	/*background:url(http://oksbt.eicp.net/weixinmj/icon/RowHeadertable.jpg) no-repeat 0px center; */
 	background:black /*white*/;
 	opacity:0.6; 
