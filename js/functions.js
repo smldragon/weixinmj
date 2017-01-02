@@ -167,6 +167,7 @@ function initWxConfig() {
 }
 var gameAction = function () {
     var isHost;
+    var TempPlayerPrefix;
 	var changeGameAction;
 	var exitGameMode;
 	var joinGameMode;
@@ -226,10 +227,17 @@ var gameAction = function () {
 	webSocketObj.addListener(setPlayer);
 	return {
 		jsonData: '',
+		joinGameByMenualUser(menualUserName,pos) {
+		    this.joinGameAtPosByUserName(gameAction.getTempPlayerPrefix()+menualUserName,gameAction.getGameId(),pos);
+		},
 		joinGameAtPos: function(gameId,pos) {
+		    var openId = webSocketObj.getOpenId();
+		    this.joinGameAtPosByUserName(openId,gameId,pos);
+		},
+		joinGameAtPosByUserName: function(userName,gameId,pos) { //userToken can be manually entered abitrary name
 			
 			requestPosition = true;
-			var openId = webSocketObj.getOpenId();
+
 			$('#'+pos+'_'+gameId+'_PlayerName').html('等待同意');
 			$('#'+pos+'_'+gameId).attr('src', '/weixinmj/icon/progress.gif');
 			$('#'+pos+'_'+gameId).attr('class', 'icon');
@@ -241,7 +249,7 @@ var gameAction = function () {
 			jsonString[globalVariables.GameIdName] = gameId;
 			jsonString['position'] = pos;
 			jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
-			jsonString[globalVariables.OpenIdName] = openId;
+			jsonString[globalVariables.OpenIdName] = userName;
 			webSocketObj.sendData(JSON.stringify(jsonString));
 		},
 		setIsHost: function(isHost_) {
@@ -282,6 +290,12 @@ var gameAction = function () {
          },
          getRequestGameMode: function() {
             return requestGameMode;
+         },
+         getTempPlayerPrefix: function() {
+            return TempPlayerPrefix;
+         },
+         setTempPlayerPrefix: function(TempPlayerPrefix_) {
+            TempPlayerPrefix = TempPlayerPrefix_;
          },
 		postRequest: function( mode) {
              //server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,

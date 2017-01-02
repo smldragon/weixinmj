@@ -9,7 +9,7 @@
 		if  ( code != null) {
 			sg.setOpenIdAccessCode(code);
 		} 
-		String gameIdStr = request.getParameter("gameId");
+		String gameIdStr = request.getParameter(WxMjConstants.GameIdName);
 		if ( gameIdStr != null) {
 			sg.setTgameId(Integer.parseInt(gameIdStr));
 		} 
@@ -27,7 +27,6 @@
 			out.print("<!doctype html><html><body><h1><center>找不到指定的牌局</center></h1></body></html>");
 			return;
 		}
-		
 		int [] positionTotal = view.getPositionTotal();
 		
 		int gameId = view.getGameId();
@@ -47,6 +46,7 @@
     gameAction.setIsHost(<%=isHost%>);
 	gameAction.setGameId('<%=gameId%>');
 	gameAction.setStartGame(true);
+	gameAction.setTempPlayerPrefix('<%=WxMjConstants.TempPlayerPrefix%>');
 	gameAction.setChangeGameAction('<%=WxMjConstants.ChangeGameAction%>');
     gameAction.setExitGameMode('<%=WxMjConstants.ExitGameMode%>');
     gameAction.setJoinGameMode('<%=WxMjConstants.JoinGameMode%>');

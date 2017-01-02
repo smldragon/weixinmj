@@ -18,8 +18,8 @@
 							</li>
 							
 							<li class="last">
-								<a href="#" title="ScoreConfig"onClick="showScoreConfigModifier('game',scoreConfig.getGameScoreConfig())">
-									计分方法
+								<a href="#" title="ScoreConfig"onClick="gameAction.joinGameByMenualUser('小刘','south')">
+									测试
 								</a>
 							</li>	
 							
