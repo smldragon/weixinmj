@@ -177,6 +177,7 @@ var gameAction = function () {
 	var gameId;
 	var startGame = false;
 	var requestPosition = false;
+	var approveMode;
 	//a websocket call back function bound in startGame.js
 	var setPlayer = {
 		
@@ -228,24 +229,24 @@ var gameAction = function () {
 	return {
 		jsonData: '',
 		joinGameByMenualUser(menualUserName,pos) {
-		    this.joinGameAtPosByUserName(gameAction.getTempPlayerPrefix()+menualUserName,gameAction.getGameId(),pos);
+		    this.joinGameAtPosByUserName(gameAction.getTempPlayerPrefix()+menualUserName,gameAction.getGameId(),pos,'...',gameAction.getApproveMode());
 		},
 		joinGameAtPos: function(gameId,pos) {
 		    var openId = webSocketObj.getOpenId();
-		    this.joinGameAtPosByUserName(openId,gameId,pos);
+		    this.joinGameAtPosByUserName(openId,gameId,pos,'等待同意',gameAction.getRequestGameMode());
 		},
-		joinGameAtPosByUserName: function(userName,gameId,pos) { //userToken can be manually entered abitrary name
+		joinGameAtPosByUserName: function(userName,gameId,pos,waitPrompt,mode) { //userToken can be manually entered abitrary name
 			
 			requestPosition = true;
 
-			$('#'+pos+'_'+gameId+'_PlayerName').html('等待同意');
+			$('#'+pos+'_'+gameId+'_PlayerName').html(waitPrompt);
 			$('#'+pos+'_'+gameId).attr('src', '/weixinmj/icon/progress.gif');
 			$('#'+pos+'_'+gameId).attr('class', 'icon');
 			
 			//server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
 			var jsonString = {};
 			jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
-			jsonString[globalVariables.MessageModeHandler] = gameAction.getRequestGameMode();
+			jsonString[globalVariables.MessageModeHandler] = mode;
 			jsonString[globalVariables.GameIdName] = gameId;
 			jsonString['position'] = pos;
 			jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
@@ -272,6 +273,12 @@ var gameAction = function () {
 		},
 		getChangeGameAction: function() {
 		    return changeGameAction;
+		},
+		setApproveMode(approveMode_) {
+		    approveMode = approveMode_;
+		},
+		getApproveMode() {
+		    return approveMode;
 		},
 		setJoinGameMode: function(mode) {
             joinGameMode = mode;
