@@ -26,8 +26,8 @@
 			
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie">
-			<%=posDisp[0]%><!--东-->
+		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("east")'>
+			<%=posDisp[0]%> + <!--东-->
 		</div>
 
 		<div class="PositionWanJiaLie">
@@ -53,8 +53,8 @@
 			
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie">
-			<%=posDisp[1]%><!--南-->
+		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("south")'>
+			<%=posDisp[1]%> +<!--南-->
 		</div>
 					
 		<div class="PositionWanJiaLie">
@@ -80,8 +80,8 @@
 		
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie">
-			<%=posDisp[2]%><!--西-->
+		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("west")'>
+			<%=posDisp[2]%> + <!--西-->
 		</div>
 				
 		<div class="PositionWanJiaLie">
@@ -107,8 +107,8 @@
 			
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie">
-			<%=posDisp[3]%><!--北-->
+		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("north")'>
+			<%=posDisp[3]%> + <!--北-->
 		</div>
 				
 		<div class="PositionWanJiaLie">
@@ -140,18 +140,18 @@
 		
 		<div style="height:50%; width:100%; ">
 			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">得分纪录</a>
-		</div>	
-	
-		
-		
-		<!-- div  style="height:50%; width:50%; float:left;">	
-			<a href="#" onClick="showScoreConfigModifier('game',scoreConfig.getGameScoreConfig())" class="weui-btn weui-btn_plain-primary" style="height:80%; width:90%; font-size:100%; line-height:3.5;">本局计分方法</a>
-		</div>	
-		<div  style="height:50%; width:50%; float:left;">	
-			<a href="#" onClick="showScoreConfigModifier('player',scoreConfig.getPlayerScoreConfig())" class="weui-btn weui-btn_plain-primary" style="height:80%; width:90%; font-size:100%; line-height:3.5;">玩家计分方法</a>
-		</div -->
-		<!-- div><a href='changeScoreSetting.jsp?<%=WeiXinConstants.OpenIdName+"="+openId%>'>修改计分设置</a>		
-		</div -->
+		</div>
 	</div>
 </div>
-	
+<div id='tempPlayerEntryDiv' class="weui_dialog_confirm" style="display:none" >
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">请输入该位置玩家名称</strong></div>
+        <div class="weui-dialog__bd"><input type="text" id="name"></div>
+        <div class="weui-dialog__ft">
+            <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doCancelFunction()"  >取消</a>
+            <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doOkFunction()"  >确定</a>
+         </div>
+    </div>
+</div>
+

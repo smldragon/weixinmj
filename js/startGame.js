@@ -82,3 +82,26 @@ var scoreHist = function() {
 		}
 	};
 }();
+var enterTempPlayer = function() {
+	var tempPlayerEntryDiv = "tempPlayerEntryDiv";
+	return {
+	    pos: '',
+	    tempPlayerEntryDivObj: '',
+		showEntry: function(pos_) {
+		    this.pos = pos_;
+		    this.tempPlayerEntryDivObj = document.getElementById(tempPlayerEntryDiv);
+		    this.tempPlayerEntryDivObj.style.display='';
+		},
+		doOkFunction: function () {
+            alert("position="+ this.pos);
+        	this.hide();
+        },
+        doCancelFunction:function () {
+        	this.hide();
+        },
+        hide:   function () {
+           // $("#"+tempPlayerEntryDiv).remove();
+           this.tempPlayerEntryDivObj.style.display="none";
+        }
+	};
+}();
