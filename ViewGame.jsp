@@ -147,7 +147,7 @@
     <div class="weui-mask"></div>
     <div class="weui-dialog">
         <div class="weui-dialog__hd"><strong class="weui-dialog__title">请输入该位置玩家名称</strong></div>
-        <div class="weui-dialog__bd"><input type="text" id="name"></div>
+        <div class="weui-dialog__bd"><input type="text" id="TempPlayerName"></div>
         <div class="weui-dialog__ft">
             <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doCancelFunction()"  >取消</a>
             <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doOkFunction()"  >确定</a>

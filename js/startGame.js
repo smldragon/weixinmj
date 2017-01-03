@@ -93,7 +93,8 @@ var enterTempPlayer = function() {
 		    this.tempPlayerEntryDivObj.style.display='';
 		},
 		doOkFunction: function () {
-            alert("position="+ this.pos);
+		    var tempPlayerName = document.getElementById('TempPlayerName').value;
+            gameAction.joinGameByMenualUser(tempPlayerName,this.pos);
         	this.hide();
         },
         doCancelFunction:function () {
