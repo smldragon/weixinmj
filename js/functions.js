@@ -178,6 +178,7 @@ var gameAction = function () {
 	var startGame = false;
 	var requestPosition = false;
 	var approveMode;
+	var isPosting = false;
 	//a websocket call back function bound in startGame.js
 	var setPlayer = {
 		
@@ -188,6 +189,7 @@ var gameAction = function () {
             showMessage(err);
 		},
 		onSuccess: function(jsonData) {
+		    isPosting = false;
 		    loadingPrompt.hide('');
 			gameAction.jsonData = jsonData;
 			//WebSocketEventActionModeHandler is defined  in GlobalVariables.jsp
@@ -236,7 +238,12 @@ var gameAction = function () {
 		    this.joinGameAtPosByUserName(openId,gameId,pos,'等待同意',gameAction.getRequestGameMode());
 		},
 		joinGameAtPosByUserName: function(userName,gameId,pos,waitPrompt,mode) { //userToken can be manually entered abitrary name
-			
+			if ( isPosting === true) {
+			    showMessage('请等待上一次任务结束');
+			    return;
+			}
+
+			isPosting = true;
 			requestPosition = true;
 
 			$('#'+pos+'_'+gameId+'_PlayerName').html(waitPrompt);
