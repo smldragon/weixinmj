@@ -129,18 +129,17 @@ nav ul ul li {
 	float:none; 
 	line-height: 250%;
 	text-align: center;
-	/*R*/border: solid 1px #1f1f1f; 
-	/*background:url(http://oksbt.eicp.net/weixinmj/icon/RowHeadertable.jpg) no-repeat 0px center; */
-	background:black /*white*/;
-	opacity:0.6; 
+	/*border: solid 1px #1f1f1f; */ 
+	background:url(/weixinmj/icon/RowHeadertable01.jpg) repeat 0px center;
+	/*background:black white*/;
+	opacity:0.9; 
 	border-radius:0px 0px;
 	z-index:2;
 }
 nav ul ul a { padding:5px 10px; 
-	font-size:100%;
 	color:white;
-	font-size:100%;
-	font-weight:550;
+	font-size:90%;
+	font-weight:600;
 	/* line-height:150%; color: #0069d6;*/
 }
 nav ul ul a:hover { background-color:#555; }

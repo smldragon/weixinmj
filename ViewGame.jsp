@@ -146,11 +146,16 @@
 <div id='tempPlayerEntryDiv' class="weui_dialog_confirm" style="display:none" >
     <div class="weui-mask"></div>
     <div class="weui-dialog">
-        <div class="weui-dialog__hd"><strong class="weui-dialog__title">请输入该位置玩家名称</strong></div>
-        <div class="weui-dialog__bd"><input type="text" id="TempPlayerName"></div>
-        <div class="weui-dialog__ft">
-            <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doCancelFunction()"  >取消</a>
+        <div class="weui-dialog__hd">
+			<strong class="weui-dialog__title">
+				请输入该位置无微信号玩家的名称:
+			</strong></div>
+        <div class="weui-dialog__bd">
+			<input type="text"  type="text" placeholder="点击录入玩家姓名如:张三" size="22"  id="TempPlayerName" style="height:30px;" />
+		</div>
+        <div class="weui-dialog__ft" style="line-height:35px;">
             <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doOkFunction()"  >确定</a>
+			<a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doCancelFunction()"  >取消</a>
          </div>
     </div>
 </div>

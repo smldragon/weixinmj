@@ -1,6 +1,6 @@
 ﻿<div class="RowHeadertable" style="height:6%;width:100%; ">
 
-<div class="RowHeadertable" style="height:7%;width:100%; background:url(/weixinmj/icon/RowHeadertable.jpg) repeat 0px center;  position: absolute; left: 0%; top: -0.1%; ">
+<div class="RowHeadertable" style="height:7%;width:100%; background:url(/weixinmj/icon/RowHeadertable.jpg);background-repeat:repeat;  position: absolute; left: 0%; top: -0.1%; ">
 
 
 		<div class="column" style="height:100%;width:20%;float:left;" >
@@ -11,7 +11,7 @@
 							&nbsp;&nbsp;&#9776;
 						</a>
 						<ul>
-							<li class="last">
+							<li class="last" >
 								<a href="#" title="ScoreConfig"onClick="showScoreConfigModifier('game',scoreConfig.getGameScoreConfig())">
 									计分方法
 								</a>
@@ -29,7 +29,7 @@
 			</nav>
 		</div>
 		
-		<div id="pageTitle" class="column" style="height:100%;width:60%;text-align:center;float:left;font-size:80%;color:white;line-height:230%;">
+		<div id="pageTitle" class="column" style="height:100%;width:60%;text-align:center;float:left;font-size:80%;font-weight: 600;color:white;line-height:230%;">
 			第&nbsp;1&nbsp;局
 		</div>
 		
