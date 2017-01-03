@@ -1,3 +1,16 @@
+<%
+    String [] tempEntryActions = new String [posDisp.length];
+    if ( isHost ) {
+        for(int i=0;i< posDisp.length;i++) {
+            posDisp[i]=posDisp[i]+" +";
+            tempEntryActions[i] = "enterTempPlayer.showEntry(\""+positions[i]+"\")";
+        }
+    } else {
+        for(int i=0;i< tempEntryActions.length;i++) {
+            tempEntryActions[i] = "";
+        }
+    }
+%>
 <div id="scores" style="width:100%" >
 			
 	<div class="RowHeader">
@@ -26,8 +39,8 @@
 			
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("east")'>
-			<%=posDisp[0]%> + <!--东-->
+		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[0]%>'>
+			<%=posDisp[0]%><!--东-->
 		</div>
 
 		<div class="PositionWanJiaLie">
@@ -52,9 +65,9 @@
 	</div>
 			
 	<div class="PositionHang1">
-			
-		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("south")'>
-			<%=posDisp[1]%> +<!--南-->
+
+		<div class="PositionWeiZhiLie" onClick=onClick='<%=tempEntryActions[1]%>'>
+			<%=posDisp[1]%><!--南-->
 		</div>
 					
 		<div class="PositionWanJiaLie">
@@ -80,8 +93,8 @@
 		
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("west")'>
-			<%=posDisp[2]%> + <!--西-->
+		<div class="PositionWeiZhiLie" onClick=onClick='<%=tempEntryActions[2]%>'>
+			<%=posDisp[2]%><!--西-->
 		</div>
 				
 		<div class="PositionWanJiaLie">
@@ -107,8 +120,8 @@
 			
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie" onClick='enterTempPlayer.showEntry("north")'>
-			<%=posDisp[3]%> + <!--北-->
+		<div class="PositionWeiZhiLie" onClick=onClick='<%=tempEntryActions[3]%>'>
+			<%=posDisp[3]%><!--北-->
 		</div>
 				
 		<div class="PositionWanJiaLie">
@@ -148,10 +161,10 @@
     <div class="weui-dialog">
         <div class="weui-dialog__hd">
 			<strong class="weui-dialog__title">
-				请输入该位置无微信号玩家的名称:
+				请输入该位置玩家的名称:
 			</strong></div>
         <div class="weui-dialog__bd">
-			<input type="text"  type="text" placeholder="点击录入玩家姓名如:张三" size="22"  id="TempPlayerName" style="height:30px;" />
+			<input type="text"  type="text" placeholder="玩家姓名如:张三" size="22"  id="TempPlayerName" style="height:30px;" />
 		</div>
         <div class="weui-dialog__ft" style="line-height:35px;">
             <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doOkFunction()"  >确定</a>
