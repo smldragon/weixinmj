@@ -11,13 +11,13 @@
 							&nbsp;&nbsp;&#9776;
 						</a>
 						<ul>
-							<li class="last" >
+							<li class="last"  style="background:url(/weixinmj/icon/RowHeadertable01.jpg) repeat 0px center;">
 								<a href="#" title="ScoreConfig"onClick="showScoreConfigModifier('game',scoreConfig.getGameScoreConfig())">
 									计分方法
 								</a>
 							</li>
 							
-							<li class="last">
+							<li class="last" style="background:url(/weixinmj/icon/RowHeadertable02.jpg) repeat 0px center;">
 								<a href="#" title="ScoreConfig"onClick="">
 									测试
 								</a>
@@ -29,7 +29,7 @@
 			</nav>
 		</div>
 		
-		<div id="pageTitle" class="column" style="height:100%;width:60%;text-align:center;float:left;font-size:80%;font-weight: 600;color:white;line-height:230%;">
+		<div id="pageTitle" class="column" style="height:100%;width:60%;text-align:center;float:left;font-size:80%;font-weight: 600;color:white;line-height:120%;">
 		</div>
 		
 		<div class="column" style="height:100%;width:20%;text-align:right;float:left;font-size:70%;line-height:260%;" >

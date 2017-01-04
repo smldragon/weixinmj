@@ -124,14 +124,14 @@ nav li a:focus { outline:none; text-decoration:underline; }
 nav li:first-child a { border-left:none; }
 nav li.last a { border-right:none; }
 nav a span { display:block; float:right; margin-left:5px; }
-nav ul ul { display:none;  width:200%; height: 140%; position:absolute; left:0; }
+nav ul ul { display:none;  width:200%; height: 100%; position:absolute; left:0; top:95%;}
 nav ul ul li {
 	float:none; 
 	line-height: 250%;
 	text-align: center;
 	/*border: solid 1px #1f1f1f; */ 
-	background:url(/weixinmj/icon/RowHeadertable01.jpg) repeat 0px center;
-	/*background:black white*/;
+	/*background:url(/weixinmj/icon/RowHeadertable01.jpg) repeat 0px center;*/
+	background:black;
 	opacity:0.9; 
 	border-radius:0px 0px;
 	z-index:2;
