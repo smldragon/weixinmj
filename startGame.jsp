@@ -19,9 +19,7 @@
 		} else {
 		    openId = sg.getOpenId();
 		}
-			
-		
-		
+
 		ViewGame view = sg.getViewGame();
 		if ( view == null) {
 			out.print("<!doctype html><html><body><h1><center>找不到指定的牌局</center></h1></body></html>");
@@ -43,6 +41,9 @@
 	globalVariables.positionTotal[3] = <%=positionTotal[3]%>;
 	score.setGameSerNo(<%=view.getScoreLength()%>);
 	score.setTGameId(<%=gameId%>);
+	gameAction.hostNickName = "<%=view.getHostNickName()%>";
+	gameAction.startTime = "<%=view.getStartTime()%>";
+	gameAction.endTime = "<%=view.getEndTime()%>";
     gameAction.setIsHost(<%=isHost%>);
 	gameAction.setGameId('<%=gameId%>');
 	gameAction.setStartGame(true);

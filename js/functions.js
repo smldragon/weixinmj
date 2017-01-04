@@ -166,6 +166,9 @@ function initWxConfig() {
 	});
 }
 var gameAction = function () {
+    var hostNickName;
+    var startTime;
+    var endTime;
     var isHost;
     var TempPlayerPrefix;
 	var changeGameAction;

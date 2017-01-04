@@ -18,7 +18,7 @@
 							</li>
 							
 							<li class="last">
-								<a href="#" title="ScoreConfig"onClick="gameAction.joinGameByMenualUser('小刘','south')">
+								<a href="#" title="ScoreConfig"onClick="">
 									测试
 								</a>
 							</li>	
@@ -30,7 +30,6 @@
 		</div>
 		
 		<div id="pageTitle" class="column" style="height:100%;width:60%;text-align:center;float:left;font-size:80%;font-weight: 600;color:white;line-height:230%;">
-			第&nbsp;1&nbsp;局
 		</div>
 		
 		<div class="column" style="height:100%;width:20%;text-align:right;float:left;font-size:70%;line-height:260%;" >
