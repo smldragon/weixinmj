@@ -6,7 +6,7 @@ $(document).ready(function() {
 	sendMessageToFriendCircle('我已经开局了，欢迎加入','','');	
 	score.calculateNetScores();
 
-	var htmlText = "<font size=-2>庄家:"+gameAction.hostNickName+"<br/>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
+	var htmlText = "<font size=3>庄家:"+gameAction.hostNickName+"</font>"+"<br/><font size=2>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
     document.getElementById('pageTitle').innerHTML  = htmlText;
 });
 function startGameOnOpen(msg) {

@@ -192,15 +192,15 @@ div.PositionJiFenLie{
 	width:80%;
 	height:35%;
 	margin-left:10%;
-	margin-top:35%;
+	margin-top:30%;
 
 	border-color: #DDDDDD;
 	
 	border-style: solid;
-	border-top-width: 0px;
-	border-right-width: 0px;
+	border-top-width: 1px;
+	border-right-width: 1px;
 	border-bottom-width: 1px;
-	border-left-width: 0px;
+	border-left-width: 1px;
 }
 
 div.Position5{
