@@ -6,8 +6,10 @@ $(document).ready(function() {
 	sendMessageToFriendCircle('我已经开局了，欢迎加入','','');	
 	score.calculateNetScores();
 
-	var htmlText = "<font size=3>庄家:"+gameAction.hostNickName+"</font>"+"<br/><font size=2>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
-    document.getElementById('pageTitle').innerHTML  = htmlText;
+	var htmlText = "<font size=3>庄家:"+gameAction.hostNickName+"</font>";  //这行可以用CSS和STYLE
+    document.getElementById('pageTitle1').innerHTML  = htmlText;
+		var htmlText = "<font size=2>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
+    document.getElementById('pageTitle2').innerHTML  = htmlText;
 });
 function startGameOnOpen(msg) {
 	//$(socket).bind('message',handleScoreWebSocketResponse); 

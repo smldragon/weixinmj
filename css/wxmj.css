@@ -124,10 +124,10 @@ nav li a:focus { outline:none; text-decoration:underline; }
 nav li:first-child a { border-left:none; }
 nav li.last a { border-right:none; }
 nav a span { display:block; float:right; margin-left:5px; }
-nav ul ul { display:none;  width:200%; height: 200%; position:absolute; left:0; top:95%; z-index:2;}
+nav ul ul { display:none;  width:200%;/* height: 200%;*/ position:absolute; left:0; top:100%; z-index:2;}
 nav ul ul li {
 	float:none; 
-	line-height: 350%;
+	/*line-height: 350%;*/
 	text-align: center;
 	/*border: solid 1px #1f1f1f; */ 
 	/*background:url(/weixinmj/icon/RowHeadertable01.jpg) repeat 0px center;*/
