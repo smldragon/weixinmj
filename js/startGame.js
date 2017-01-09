@@ -24,6 +24,7 @@ var exitGame = function() {
             return type;
         },
         requestExit: function() {
+            webSocketObj.addListener(this);
             if ( gameAction.getIsHost() === true) {
                 dialog.title="";
                 dialog.message = "退出将会关闭这局<br><br>您确认要退出本局吗?";
@@ -47,6 +48,12 @@ var exitGame = function() {
 
            	webSocketObj.sendData(JSON.stringify(jsonString));
            	loadingPrompt.show('正在退出...');
+        },
+        onSuccess: function(jsonData) {
+             alert('remove listener at startGame.js line 51');
+        	 if ( gameAction.getIsHost() === true) {
+                    window.history.back();
+        	 }
         }
     }
 }();

@@ -28,11 +28,11 @@
 		</div>
 		
 		<div class="PositionTouLie"  style="width:20%;">
-			得分
+			净赢分
 		</div>	
 		
 		<div class="PositionTouLie"  style="width:25%;">
-			记分
+			得分
 		</div>
 				
 	</div>
