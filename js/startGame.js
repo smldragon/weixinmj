@@ -124,15 +124,18 @@ var addScoreDialog = function() {
         addScoreDialogDivObj: '',
         winPos: '',
         doOkFunction: function () {
-            var tempPlayerName = document.getElementById(addScoreDialogDivId).value;
-             gameAction.joinGameByMenualUser(tempPlayerName,this.pos);
-              this.hide();
+           alert('待完成：startGame.js, line 127, score.addScore()');
+           this.hide();
         },
         doCancelFunction:function () {
             this.hide();
          },
         winThreeOther: function() {
-            alert('In stargGame.js, addScoreDialog()');
+            var winnerScoreInput = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
+            var score = winnerScoreInput.value;
+            getElementInsideContainer(this.addScoreDialogDivId,'loser1input').value = score;
+            getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = score;
+            getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = score;
         },
         show: function(pos) {
             this.winPos = pos;
