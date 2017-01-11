@@ -110,10 +110,9 @@ div.PositionWanJiaLie{
 	float:left;
 	text-align:center;
 	line-height:450%; 
-	
-	
-	 
+    
 }
+
 div.row2:after 
 {
 	position: relative;
@@ -166,6 +165,7 @@ div.PositionZongFenLie{
 	text-align:center;
 	line-height:500%; 
 	font-size:150%;
+	
 }	
 
 div.PositionDeFenLie{
@@ -185,7 +185,12 @@ div.PositionJiFenLie{
 	height:100%;
 	width:25%;
 	float:left;
-	 
+	text-align: center;
+    line-height: 630%;
+    font-size: 120%; 
+	
+	color: black;
+	font-weight: 500;
 }
 
 .inputJiFen{

@@ -70,7 +70,7 @@
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("east")'>我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("east")' style="color: black;">我胡了</a>
 		</div>
 				
 	</div>
@@ -98,7 +98,7 @@
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("south")'>我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("south")' style="color: black;">我胡了</a>
 		</div>
 				
 	</div>
@@ -126,7 +126,7 @@
 		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("west")'>我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("west")' style="color: black;">我胡了</a>
 		</div>
 				
 	</div>
@@ -154,7 +154,7 @@
 		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
-			<a href='#' onClick='addScoreDialog.show("north")'>我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("north")' style="color: black;">我胡了</a>
 		</div>
 				
 	</div>
@@ -193,7 +193,7 @@
     <div class="weui-dialog">
     <!-- 以下是需要修改的布局 -->
         <div class="weui-dialog__hd" >
-            <span id='position'>
+            <span id='position' sytle:"font-size: 120%;">
                 <!-- 文字由startGame.js的addScoreDialog设置-->
                 东的得分
             </span>
