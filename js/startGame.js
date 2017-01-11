@@ -124,9 +124,8 @@ var addScoreDialog = function() {
         addScoreDialogDivObj: '',
         winPos: '',
         doOkFunction: function () {
-            var tempPlayerName = document.getElementById(addScoreDialogDivId).value;
-             gameAction.joinGameByMenualUser(tempPlayerName,this.pos);
-              this.hide();
+           alert('待完成：startGame.js, line 127, score.addScore()');
+           this.hide();
         },
         doCancelFunction:function () {
             this.hide();
