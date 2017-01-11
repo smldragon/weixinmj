@@ -198,7 +198,7 @@
                 东的得分
             </span>
 		    <span>
-			    <input type="text"  type="text" placeholder="100" size="4"  id="winnerScore" style="height:20px;" />
+			    <input type="number" min="0" placeholder="请输入分数, 如100"   id="winnerScore" style="height:20px;" />
 			 </span>
 		</div>
 		<div>
@@ -206,13 +206,13 @@
 		</div>
 		<div>
 		    <div>
-                <span id='loser1'> 这里的文字由startGame.js设置 </span><input id='loser1input' size=4 />
+                <span id='loser1'> 这里的文字由startGame.js设置 </span><input type="number" min="0" placeholder="请输入分数, 如100"  id='loser1input' />
             </div>
              <div>
-                 <span id='loser2'> 这里的文字由startGame.js设置 </span><input id='loser2input' size=4 />
+                 <span id='loser2'> 这里的文字由startGame.js设置 </span><input type="number" min="0" placeholder="请输入分数, 如100"  id='loser2input'  />
               </div>
               <div>
-                  <span id='loser3'> 这里的文字由startGame.js设置 </span><input id='loser3input' size=4 />
+                  <span id='loser3'> 这里的文字由startGame.js设置 </span><input type="number" min="0" placeholder="请输入分数, 如100"  id='loser3input'  />
               </div>
 		</div>
 	<!--结束修改部分 -->
