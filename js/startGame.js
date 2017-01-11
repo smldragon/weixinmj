@@ -124,7 +124,7 @@ var addScoreDialog = function() {
         addScoreDialogDivObj: '',
         winPos: '',
         doOkFunction: function () {
-           alert('待完成：startGame.js, line 127, score.addScore()');
+           score.addScore();
            this.hide();
         },
         doCancelFunction:function () {
@@ -137,16 +137,18 @@ var addScoreDialog = function() {
             getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = score;
             getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = score;
         },
-        show: function(pos) {
-            this.winPos = pos;
+        show: function(winnerPos) {
+            this.winPos = winnerPos;
             this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
             this.addScoreDialogDivObj.style.display='';
-            var positionDiv = getElementInsideContainer(this.addScoreDialogDivId,'position');
-            positionDiv.innerHTML = positionConvertor.convertToPlayerName(pos)+"的得分:";
+            var winnerDiv = getElementInsideContainer(this.addScoreDialogDivId,'position');
+            winnerDiv.innerHTML = positionConvertor.convertToPlayerName(winnerPos)+"的得分:";
             //set losers field properties
             var count=1;
             for(var i=0;i<4;i++) {
                 if ( globalVariables.positions[i]=== this.winPos) {
+                    var winnerInputField = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
+                    winnerInputField.name = globalVariables.positions[i]+'input';
                     continue;
                 }
                 var loserDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count);

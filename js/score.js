@@ -114,7 +114,7 @@ function setScoreConfig(scoreConfigSettingType,scoreConfigValue){
 	scoreConfigSelection.setValue(scoreConfigValue);		
 }
 var score = function () {
-	
+	var addScoreDialogDivId;
 	var positions = globalVariables.positions;
 	var positionTotal = globalVariables.positionTotal;	
 	var addScoreAction;
@@ -244,8 +244,8 @@ var score = function () {
 		 return jsonStr;
 	}
 	function getPositionScore(position) {
-		
-		var score = $('#'+position+'Score').val();
+	    <!-- names of score input fields inside addScoreDialog are set in startGame.js show method -->
+		var score = getElementInsideContainerByName(addScoreDialog.addScoreDialogDivId,position+'input').value;
 		if ( score ===''){
 			score = '0';
 		}
