@@ -329,18 +329,35 @@ var gameAction = function () {
 	function populateGameInfo(jsonData) {
 		
 		var gameIdFromServer = jsonData['GameId'];
-		$('#east_'+gameIdFromServer+'_PlayerName').text(jsonData.EastName);
-		$('#west_'+gameIdFromServer+'_PlayerName').text(jsonData.WestName);
-		$('#north_'+gameIdFromServer+'_PlayerName').text(jsonData.NorthName);
-		$('#south_'+gameIdFromServer+'_PlayerName').text(jsonData.SouthName);
+		for(var i=0;i<4;i++) {
+		    var pos = globalVariables.positions[i];
+		    $('#'+pos+'_'+gameIdFromServer+'_PlayerName').text(jsonData[capitalizeFirstLetter(pos)+'Name']);
+		    $('#'+pos+'_'+gameIdFromServer).attr("src", jsonData[capitalizeFirstLetter(pos)+'ImageUrl']);
+		    globalVariables.playerNames[i]=getPlayerName(pos,jsonData);
+		}
+		//$('#east_'+gameIdFromServer+'_PlayerName').text(jsonData.EastName);
+		//$('#west_'+gameIdFromServer+'_PlayerName').text(jsonData.WestName);
+		//$('#north_'+gameIdFromServer+'_PlayerName').text(jsonData.NorthName);
+		//$('#south_'+gameIdFromServer+'_PlayerName').text(jsonData.SouthName);
 						
-		$('#east_'+gameIdFromServer).attr("src", jsonData.EastImageUrl);
-		$('#west_'+gameIdFromServer).attr("src", jsonData.WestImageUrl);
-		$('#north_'+gameIdFromServer).attr("src", jsonData.NorthImageUrl);
-		$('#south_'+gameIdFromServer).attr("src", jsonData.SouthImageUrl); 				
+		//$('#east_'+gameIdFromServer).attr("src", jsonData.EastImageUrl);
+		//$('#west_'+gameIdFromServer).attr("src", jsonData.WestImageUrl);
+		//$('#north_'+gameIdFromServer).attr("src", jsonData.NorthImageUrl);
+		//$('#south_'+gameIdFromServer).attr("src", jsonData.SouthImageUrl);
+
+		//globalVariables.playerNames[0]=getPlayerName("east",jsonData);
+		//globalVariables.playerNames[1]=getPlayerName("south",jsonData);
+		//globalVariables.playerNames[2]=getPlayerName("west",jsonData);
+		//globalVariables.playerNames[3]=getPlayerName("north",jsonData);
 	}
-	
+	function getPlayerName(pos,jsonData) {
+	    var serverValue = jsonData[capitalizeFirstLetter(pos)+"Name"];
+	    return positionConvertor.getPlayerNameAtPos(pos,serverValue);
+	};
 }();
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 var configSetting = function () {
 	
@@ -639,3 +656,58 @@ function showScoreConfigModifier(scoreConfigSettingType,scoreConfigValue) {
 	setScoreConfig(scoreConfigSettingType,scoreConfigValue);
 	scoreHist.toggleScoreConfig();
 }
+function getElementInsideContainer(containerID, childID) {
+    var elm = {};
+    var elms = document.getElementById(containerID).getElementsByTagName("*");
+    for (var i = 0; i < elms.length; i++) {
+        if (elms[i].id === childID) {
+            elm = elms[i];
+            break;
+        }
+    }
+    return elm;
+}
+var positionConvertor = function () {
+    return {
+        blankPlayerName: '',
+        convertToPlayerNameStatus: false,
+        convertToDisplay(posName) {
+            for(var i=0;i<globalVariables.positions.length;i++) {
+                if ( globalVariables.positions[i] === posName) {
+                    return globalVariables.posDisp[i];
+                }
+            }
+            return {};
+        },
+        convertToName(posDisplay) {
+            for(var i=0;i< globalVariables.posDisp.length;i++) {
+                if ( globalVariables.posDisp[i] === posDisplay) {
+                    return globalVariables.positions[i];
+                 }
+              }
+              return {};
+        },
+        convertToPlayerName(posName) {
+            if ( this.convertToPlayerNameStatus === false) {
+                this.convertToPlayerNameStatus = true;
+                for(var i=0;i<globalVariables.playerNames.length;i++) {
+                    globalVariables.playerNames[i]= this.getPlayerNameAtPos(globalVariables.positions[i],globalVariables.playerNames[i]);
+                }
+            }
+
+             for(var i=0;i<globalVariables.positions.length;i++) {
+                if ( globalVariables.positions[i] === posName) {
+                    return globalVariables.playerNames[i];
+                 }
+             }
+             return {};
+        },
+        getPlayerNameAtPos: function(pos,serverValue) {
+            if ( serverValue === this.blankPlayerName) {
+                return this.convertToDisplay(pos);
+             } else {
+                 return serverValue;
+             }
+        }
+    }
+}();

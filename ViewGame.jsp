@@ -10,7 +10,17 @@
             tempEntryActions[i] = "";
         }
     }
+
+    final String addScoreDialogDivId = "addScoreDialogDivId";
 %>
+<script>
+
+    addScoreDialog.addScoreDialogDivId='<%=addScoreDialogDivId%>';
+    globalVariables.playerNames[0] = '<%=view.getPlayerDesc(0)%>';
+    globalVariables.playerNames[1] = '<%=view.getPlayerDesc(1)%>';
+    globalVariables.playerNames[2] = '<%=view.getPlayerDesc(2)%>';
+    globalVariables.playerNames[3] = '<%=view.getPlayerDesc(3)%>';
+</script>
 <div id="scores" style="width:100%" >
 			
 	<div class="RowHeader">
@@ -32,7 +42,7 @@
 		</div>	
 		
 		<div class="PositionTouLie"  style="width:25%;">
-			得分
+			去算分
 		</div>
 				
 	</div>
@@ -59,14 +69,15 @@
 		</div>
 				
 		<div class="PositionJiFenLie">
-			<input class="inputJiFen" id='eastScore' type='text' />
+			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
+			<a href='#' onClick='addScoreDialog.show("east")'>我胡了</a>
 		</div>
 				
 	</div>
 			
 	<div class="PositionHang1">
 
-		<div class="PositionWeiZhiLie" onClick=onClick='<%=tempEntryActions[1]%>'>
+		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[1]%>'>
 			<%=posDisp[1]%><!--南-->
 		</div>
 					
@@ -86,14 +97,15 @@
 		</div>
 				
 		<div class="PositionJiFenLie">
-			<input class="inputJiFen" id='southScore' type='text' />
+			<!-- input class="inputJiFen" id='southScore' type='text' / -->
+			<a href='#' onClick='addScoreDialog.show("south")'>我胡了</a>
 		</div>
 				
 	</div>
 		
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie" onClick=onClick='<%=tempEntryActions[2]%>'>
+		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[2]%>'>
 			<%=posDisp[2]%><!--西-->
 		</div>
 				
@@ -113,14 +125,15 @@
 		</div>
 		
 		<div class="PositionJiFenLie">
-			<input class="inputJiFen" id='westScore' type='text' />
+			<!-- input class="inputJiFen" id='westScore' type='text' / -->
+			<a href='#' onClick='addScoreDialog.show("west")'>我胡了</a>
 		</div>
 				
 	</div>
 			
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie" onClick=onClick='<%=tempEntryActions[3]%>'>
+		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[3]%>'>
 			<%=posDisp[3]%><!--北-->
 		</div>
 				
@@ -140,7 +153,8 @@
 		</div>
 		
 		<div class="PositionJiFenLie">
-			<input class="inputJiFen" id='northScore' type='text'/>
+			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
+			<a href='#' onClick='addScoreDialog.show("north")'>我胡了</a>
 		</div>
 				
 	</div>
@@ -156,6 +170,7 @@
 		</div>
 	</div>
 </div>
+<!-- 输入玩家名称的DIV -->
 <div id='tempPlayerEntryDiv' class="weui_dialog_confirm" style="display:none" >
     <div class="weui-mask"></div>
     <div class="weui-dialog">
@@ -169,6 +184,41 @@
         <div class="weui-dialog__ft" style="line-height:35px;">
             <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doOkFunction()"  >确定</a>
 			<a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doCancelFunction()"  >取消</a>
+         </div>
+    </div>
+</div>
+<!-- 输入分数的DIV -->
+<div id='<%=addScoreDialogDivId%>' class="weui_dialog_confirm" style="display:none" >
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+    <!-- 以下是需要修改的布局 -->
+        <div class="weui-dialog__hd" >
+            <span id='position'>
+                <!-- 文字由startGame.js的addScoreDialog设置-->
+                东的得分
+            </span>
+		    <span>
+			    <input type="text"  type="text" placeholder="100" size="4"  id="winnerScore" style="height:20px;" />
+			 </span>
+		</div>
+		<div>
+		    <button onClick='addScoreDialog.winThreeOther()'>赢三家</button>
+		</div>
+		<div>
+		    <div>
+                <span id='loser1'> 这里的文字由startGame.js设置 </span><input id='loser1input' size=4 />
+            </div>
+             <div>
+                 <span id='loser2'> 这里的文字由startGame.js设置 </span><input id='loser2input' size=4 />
+              </div>
+              <div>
+                  <span id='loser3'> 这里的文字由startGame.js设置 </span><input id='loser3input' size=4 />
+              </div>
+		</div>
+	<!--结束修改部分 -->
+        <div class="weui-dialog__ft" style="line-height:35px;">
+            <a href="#" class="weui-dialog__btn default" onClick="addScoreDialog.doOkFunction()"  >确定</a>
+			<a href="#" class="weui-dialog__btn default" onClick="addScoreDialog.doCancelFunction()"  >取消</a>
          </div>
     </div>
 </div>

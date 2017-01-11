@@ -112,8 +112,50 @@ var enterTempPlayer = function() {
         	this.hide();
         },
         hide:   function () {
-           // $("#"+tempPlayerEntryDiv).remove();
            this.tempPlayerEntryDivObj.style.display="none";
         }
 	};
+}();
+
+var addScoreDialog = function() {
+
+    return {
+        addScoreDialogDivId: '',
+        addScoreDialogDivObj: '',
+        winPos: '',
+        doOkFunction: function () {
+            var tempPlayerName = document.getElementById(addScoreDialogDivId).value;
+             gameAction.joinGameByMenualUser(tempPlayerName,this.pos);
+              this.hide();
+        },
+        doCancelFunction:function () {
+            this.hide();
+         },
+        winThreeOther: function() {
+            alert('In stargGame.js, addScoreDialog()');
+        },
+        show: function(pos) {
+            this.winPos = pos;
+            this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
+            this.addScoreDialogDivObj.style.display='';
+            var positionDiv = getElementInsideContainer(this.addScoreDialogDivId,'position');
+            positionDiv.innerHTML = positionConvertor.convertToPlayerName(pos)+"的得分:";
+            //set losers field properties
+            var count=1;
+            for(var i=0;i<4;i++) {
+                if ( globalVariables.positions[i]=== this.winPos) {
+                    continue;
+                }
+                var loserDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count);
+                var serverValue = globalVariables.playerNames[i];
+                loserDiv.innerHTML = positionConvertor.getPlayerNameAtPos(globalVariables.positions[i],serverValue)+'的输分';
+                var loserInputDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count+'input');
+                loserInputDiv.name = globalVariables.positions[i]+'input';
+                count = count+1;
+            }
+        },
+        hide: function() {
+            this.addScoreDialogDivObj.style.display="none";
+        }
+    };
 }();

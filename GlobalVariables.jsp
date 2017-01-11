@@ -39,7 +39,7 @@
 		positionTotal : new Array(), //得分
 		positionNet : new Array(), //赢分
 		posDisp : ['<%=posDisp[0]%>','<%=posDisp[1]%>','<%=posDisp[2]%>','<%=posDisp[3]%>'],           //{"东","南","西","北"}
-	
+	    playerNames: [], //set in functions.js, gameAction.populateGameInfo
 		webSocketScoreEvent : '<%=WxMjConstants.WebSocketScoreEvent%>',
 		webSocketGameEvent : '<%=WxMjConstants.WebSocketGameEvent%>',
 		webSocketScoreConfigSettingEvent: '<%=WxMjConstants.WebSocketScoreConfigSettingEvent%>',
@@ -50,6 +50,8 @@
 		jsSdkConfig_timeStamp : '<%=jsSdkConfig.timeStamp%>',
 		jsSdkConfig_nonceStr : '<%=jsSdkConfig.nonceStr%>',
 		jsSdkConfig_signature :	'<%=jsSdkConfig.signature()%>'
+
+
 	};
 	
 	if ( '<%=jsSdkConfig.isDebug%>' == 'false') {
