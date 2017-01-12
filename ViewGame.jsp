@@ -70,7 +70,7 @@
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("east")' style="color: black;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("east")' style="color: #1aad19;">我胡了</a>
 		</div>
 				
 	</div>
@@ -98,7 +98,7 @@
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("south")' style="color: black;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("south")' style="color:#1aad19;">我胡了</a>
 		</div>
 				
 	</div>
@@ -126,7 +126,7 @@
 		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("west")' style="color: black;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("west")' style="color:#1aad19;">我胡了</a>
 		</div>
 				
 	</div>
@@ -154,7 +154,7 @@
 		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
-			<a href='#' onClick='addScoreDialog.show("north")' style="color: black;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("north")' style="color:#1aad19;">我胡了</a>
 		</div>
 				
 	</div>
@@ -190,30 +190,51 @@
 <!-- 输入分数的DIV -->
 <div id='<%=addScoreDialogDivId%>' class="weui_dialog_confirm" style="display:none" >
     <div class="weui-mask"></div>
-    <div class="weui-dialog">
+    <div class="weui-dialog"  >
     <!-- 以下是需要修改的布局 -->
-        <div class="weui-dialog__hd" >
-            <span id='position' sytle:"font-size: 120%;">
-                <!-- 文字由startGame.js的addScoreDialog设置-->
-                东的得分
-            </span>
-		    <span>
-			    <input type="number" min="0" placeholder="请输入分数, 如100"   id="winnerScore" style="height:20px;" />
-			 </span>
-		</div>
-		<div>
-		    <button onClick='addScoreDialog.winThreeOther()'>赢三家</button>
-		</div>
-		<div>
-		    <div>
-                <span id='loser1'> 这里的文字由startGame.js设置 </span><input type="number" min="0" placeholder="请输入分数, 如100"  id='loser1input' />
-            </div>
-             <div>
-                 <span id='loser2'> 这里的文字由startGame.js设置 </span><input type="number" min="0" placeholder="请输入分数, 如100"  id='loser2input'  />
-              </div>
-              <div>
-                  <span id='loser3'> 这里的文字由startGame.js设置 </span><input type="number" min="0" placeholder="请输入分数, 如100"  id='loser3input'  />
-              </div>
+		<div style="height:250px;font-size:130%;line-height:190%;background:url(/weixinmj/icon/WoHuLe.jpg) repeat 0px center;" >
+			<div  style="height:18%;width:100%;padding-top:8%;">
+				<div id='position' style="float:left;width:50%;">
+					<!-- 文字由startGame.js的addScoreDialog设置-->
+					东的得分
+				</div>
+				<div style="float:left;height:100%;width:50%;">
+					<input type="number" min="0" placeholder="请输入分数, 如100"  id="winnerScore"  style="width:90%;height:75%;margin-left:-5%;"/>
+				 </div>
+			</div>
+			
+			<div style="height:18%;width:100%;">
+				<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button>
+			</div>
+			
+			<div>
+				<div style="height:18%;width:100%;">
+					<div id='loser1' style="float:left;width:50%;">
+						这里的文字由startGame.js设置
+					</div>
+					<div style="float:left;height:100%;width:50%;">
+						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser1input'  style="width:90%;height:75%;margin-left:-5%;"/>
+					</div>
+				</div>
+				
+				<div style="height:18%;width:100%;">
+					<div id='loser2' style="float:left;width:50%;"> 
+						这里的文字由startGame.js设置 
+					</div>
+					<div style="float:left;height:100%;width:50%;">
+						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser2input'  style="width:90%;height:75%;margin-left:-5%;"/>
+					</div>
+				  </div >
+				  
+				 <div style="height:18%;width:100%;">
+					<div id='loser3' style="float:left;width:50%;">
+						这里的文字由startGame.js设置
+					</div>
+					<div style="float:left;height:100%;width:50%;">
+						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser3input'  style="width:90%;height:75%;margin-left:-5%;"/>
+					</div>
+				</div>
+			</div>
 		</div>
 	<!--结束修改部分 -->
         <div class="weui-dialog__ft" style="line-height:35px;">

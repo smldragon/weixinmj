@@ -90,7 +90,7 @@ div.paddingColumn{
 }
 
 span {
-  display: inline-block;
+  /*display: inline-block;*/
   vertical-align: middle;
   line-height: normal;  
   height: 100%;
