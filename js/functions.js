@@ -667,6 +667,17 @@ function getElementInsideContainer(containerID, childID) {
     }
     return elm;
 }
+function getElementInsideContainerByName(containerID, childName) {
+    var elm = {};
+    var elms = document.getElementById(containerID).getElementsByTagName("*");
+    for (var i = 0; i < elms.length; i++) {
+        if (elms[i].name === childName) {
+            elm = elms[i];
+            break;
+        }
+    }
+    return elm;
+}
 var positionConvertor = function () {
     return {
         blankPlayerName: '',
