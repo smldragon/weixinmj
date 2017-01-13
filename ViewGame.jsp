@@ -159,14 +159,12 @@
 				
 	</div>
 </div>		
-<div class="weui-msg_ZhuXiao" style="height:24%; width:100%;">
+<div class="weui-msg_ZhuXiao" style="height:20%; width:100%;">
     <div class="divbtn1"   >
-		<div  style="height:50%; width:100%; ">
-			<a href="#" onClick='score.addScore()'class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">保存</a>
-		</div>
+
 		
-		<div style="height:50%; width:100%; ">
-			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:80%; width:95%;">得分纪录</a>
+		<div style="height:100%; width:100%; ">
+			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:40%; width:95%;margin-top:12%">得分纪录</a>
 		</div>
 	</div>
 </div>
@@ -192,9 +190,9 @@
     <div class="weui-mask"></div>
     <div class="weui-dialog"  >
     <!-- 以下是需要修改的布局 -->
-		<div style="height:250px;font-size:130%;line-height:190%;background:url(/weixinmj/icon/WoHuLe.jpg) repeat 0px center;" >
-			<div  style="height:18%;width:100%;padding-top:8%;">
-				<div id='position' style="float:left;width:50%;">
+		<div style="height:250px;font-size:130%;line-height:190%;<!--background:url(/weixinmj/icon/WoHuLe.jpg) repeat 0px center; -->" >
+			<div  style="height:18%;width:100%;padding-top:8%;"> 
+				<div id='position' style="float:left;width:50%;text-align:left;text-indent:3%;">
 					<!-- 文字由startGame.js的addScoreDialog设置-->
 					东的得分
 				</div>
@@ -204,12 +202,18 @@
 			</div>
 			
 			<div style="height:18%;width:100%;">
-				<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button>
+				<form action=""  style="width:100%;height:100%;font-weight:500">
+					<select name="" style="width:35%;height:65%;font-size:120%;">
+						<option value="赢三家" onClick='addScoreDialog.winThreeOther()'>赢三家</option>
+						<option value="赢两家">赢两家</option>
+					</select>
+				</form>
+				<!--<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button> -->
 			</div>
 			
 			<div>
 				<div style="height:18%;width:100%;">
-					<div id='loser1' style="float:left;width:50%;">
+					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:3%;">
 						这里的文字由startGame.js设置
 					</div>
 					<div style="float:left;height:100%;width:50%;">
@@ -218,7 +222,7 @@
 				</div>
 				
 				<div style="height:18%;width:100%;">
-					<div id='loser2' style="float:left;width:50%;"> 
+					<div id='loser2' style="float:left;width:50%;text-align:left;text-indent:3%;"> 
 						这里的文字由startGame.js设置 
 					</div>
 					<div style="float:left;height:100%;width:50%;">
@@ -227,7 +231,7 @@
 				  </div >
 				  
 				 <div style="height:18%;width:100%;">
-					<div id='loser3' style="float:left;width:50%;">
+					<div id='loser3' style="float:left;width:50%;text-align:left;text-indent:3%;">
 						这里的文字由startGame.js设置
 					</div>
 					<div style="float:left;height:100%;width:50%;">
