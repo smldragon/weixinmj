@@ -29,7 +29,8 @@ var scoreConfig = function () {
 	return {
 		netScoreFunc: function() {
 			//$("netScoreFunc_"+gameScoreConfig);
-			eval("netScoreFunc_"+gameScoreConfig)();
+			var scoreSetting = this.getGameScoreConfig();
+			eval("netScoreFunc_"+ scoreSetting)();
 		},
 		setGameScoreConfig: function(gameScoreConfig_) {
 			gameScoreConfig = gameScoreConfig_;
@@ -63,15 +64,17 @@ var scoreConfig = function () {
 	}
 	function netScoreFunc_FZ () {
 		var totalOf4 = 0;
-		$.each(positionTotal, function(index,value) {
-			totalOf4 = totalOf4 + parseInt(value);
-		});
+		for(var index = 0;index<4;index++) {
+			var pt = positionTotal[index];
+            totalOf4 = totalOf4 + parseInt(pt);
+		};
 		
 		//net score = (4*postionScore) - totalOf4
 		
 		for(index=0;index<4;index++) {
 			positionNet[index] = 4*positionTotal[index] - totalOf4;
-			$('#'+positions[index]+'TotalNet').text(positionNet[index]);
+			//$('#'+positions[index]+'TotalNet').text(positionNet[index]);
+			document.getElementById(positions[index]+'TotalNet').innerHTML = positionNet[index];
 		}
 		
 	}
@@ -159,7 +162,9 @@ var score = function () {
 		setAddScoreAction: function(addScoreAction_) {
 			addScoreAction = addScoreAction_;
 		},
-		calculateNetScores: function() {calculateNetScores_;},
+		calculateNetScores: function() {
+		    calculateNetScores_();
+		},
 		refreshScore: function() {
 			$.ajax({
 				url: mjServerUrl+refreshScoreAction+'&tgame_id='+tgame_id,
@@ -217,15 +222,12 @@ var score = function () {
 			if ( !checkScores() ) {
 				return;
 			}
-//			var dataStr = "{"+getPosScoreJsonStr(positions[0])+","+getPosScoreJsonStr(positions[1])+","+getPosScoreJsonStr(positions[2])+","+
-//			    getPosScoreJsonStr(positions[3])+",tgame_id:"+tgame_id+"}";
-
             addScoreEventOwner = true;
 		    var jsonObj = {};
 		    jsonObj[globalVariables.GameIdName] = tgame_id;
             jsonObj[globalVariables.OpenIdName] =  webSocketObj.getOpenId();
             jsonObj[globalVariables.WebSocketEventTypeHandler] = handleScoreWebSocketResponse.getType();
-            jsonObj["winnerPosition"] = addScoreDialog.winPos;
+            jsonObj["winnerPosition"] = addScoreDialog.getWinPos();
             jsonObj[globalVariables.MessageModeHandler ] = "AddScore";
             for(var i=0;i<4;i++) {
                 var pos = positions[i];
@@ -234,43 +236,23 @@ var score = function () {
             var jsonString = JSON.stringify(jsonObj)
             webSocketObj.sendData(jsonString);
             loadingPrompt.show('正在保存...');
-//			$.ajax({
-//
-//				url: globalVariables.mjServerUrl+addScoreAction,
-//				type: "POST",
-//				async: true,
-//				data: dataStr,
-//				dataType: 'json',
-//				error:function(data,status,er) {
-//					showMessage("分数格式错误。请重新输入整数");
-//					clearAllScoreInputFields();
-//				},
-//				success: function(data, textStatus, jqXHR){
-//
-//					clearAllScoreInputFields();
-//					//其他的UI更新是通过server call back由handleScoreWebSocketResponse实现 -- XFZ@2016-09-29
-//				}
-//			});
 		}
 	};
-	function addPositionScore(index,value) {
+	function addPositionScore(index,value,isWinner) {
 	 
 		 var position = positions[index];
 		 var total = positionTotal[index];
 		 var score = value[position];
 		 var sum  = parseInt(total) + parseInt(score);
-		 $('#'+position+'Total').text(sum);
+
+		 //$('#'+position+'Total').text(sum);
+		 document.getElementById(position+'Total').innerHTML=sum;
 		 return sum;
 	}
-//	function getPosScoreJsonStr(position) {
-//
-//		 var score = getPositionScore(position);
-//		 var jsonStr  = position+":"+getPositionScore(position);
-//		 return jsonStr;
-//	}
 	function getPositionScore(position) {
 	    <!-- names of score input fields inside addScoreDialog are set in startGame.js show method -->
 		var score = getElementInsideContainerByName(addScoreDialog.addScoreDialogDivId,position+'input').value;
+		var text = getElementInsideContainerByName(addScoreDialog.addScoreDialogDivId,position+'input').innerHTML;
 		if ( score ===''){
 			score = '0';
 		}
@@ -289,16 +271,15 @@ var score = function () {
 		getElementInsideContainer(addScoreDialog.addScoreDialogDivId,'loser3input').value = '';
 	}
 	function clearScoreTotalField(position) {
-		$('#'+position+'Total').html('0');
+		//$('#'+position+'Total').html('0');
+		document.getElementById(position+'Total').innerHTML='0';
 		
 	}
 	function clearScoreNetField(position) {
-		$('#'+position+'TotalNet').html('0');
-		
+		//$('#'+position+'TotalNet').html('0');
+		document.getElementById(position+"TotalNet").innerHTML='0';
 	}
 	function checkScores() {
-		
-		//check input format for each position
 		for (var index in positions) {
 		  if ( ! validateScore(positions[index])) { 
 			return false;
@@ -314,7 +295,7 @@ var score = function () {
 		}
 		
 		if ( nonNullCount == 0) {
-			showMessage('请输入至少一个分数');
+			showMessage('请输入赢方得分');
 			return false;
 		} else {
 			return true;
@@ -361,9 +342,5 @@ var score = function () {
 	}
 	
 }();
-
-
-
-//大大的 
 
 

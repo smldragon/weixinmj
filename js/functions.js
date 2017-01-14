@@ -387,6 +387,15 @@ function showTitledMessage(title,mesg) {
     dialog.cancelFunction = "";
     dialog.show();
 }
+function showTitledMessageWithCallback(title,mesg,callBack) {
+	dialog.title=title;
+    dialog.message = mesg;
+    dialog.okButtonText = "知道了";
+    dialog.cancelButtonText = "";
+    dialog.okFunction = callBack;
+    dialog.cancelFunction = "";
+    dialog.show();
+}
 var selectTagMethod = {
 	
 	setSelectedByValue: function(selectTagElementName,value) {

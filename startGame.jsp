@@ -72,7 +72,6 @@
 		
 		<title><%=WxMjConstants.AppTitle%></title>
 		
-		
 	</head>
 
 	<body class="no-js">

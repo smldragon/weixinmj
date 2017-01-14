@@ -64,8 +64,8 @@
 			<%=positionTotal[0]%>
 		</div>
 		
-		<div id='eastTotal' class="PositionDeFenLie">
-			<%=positionTotal[0]%>
+		<div id='eastTotalNet' class="PositionDeFenLie">
+
 		</div>
 				
 		<div class="PositionJiFenLie">
@@ -92,8 +92,8 @@
 			<%=positionTotal[1]%>
 		</div>
 		
-		<div id='eastTotal' class="PositionDeFenLie">
-			<%=positionTotal[0]%>
+		<div id='southTotalNet' class="PositionDeFenLie">
+
 		</div>
 				
 		<div class="PositionJiFenLie">
@@ -120,8 +120,8 @@
 			<%=positionTotal[2]%>
 		</div>
 
-		<div id='eastTotal' class="PositionDeFenLie">
-			<%=positionTotal[0]%>
+		<div id='westTotalNet' class="PositionDeFenLie">
+
 		</div>
 		
 		<div class="PositionJiFenLie">
@@ -148,8 +148,7 @@
 			<%=positionTotal[3]%>
 		</div>
 
-		<div id='eastTotal' class="PositionDeFenLie">
-			<%=positionTotal[0]%>
+		<div id='northTotalNet' class="PositionDeFenLie">
 		</div>
 		
 		<div class="PositionJiFenLie">

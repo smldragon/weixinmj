@@ -121,10 +121,14 @@ var enterTempPlayer = function() {
 
 var addScoreDialog = function() {
 
+    var winPlayer='';
+    var winPos = "";
     return {
         addScoreDialogDivId: '',
         addScoreDialogDivObj: '',
-        winPos: '',
+        getWinPos: function() {
+            return winPos;
+        },
         doOkFunction: function () {
            score.addScore();
            this.hide();
@@ -135,20 +139,26 @@ var addScoreDialog = function() {
         winThreeOther: function() {
             var winnerScoreInput = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
             var score = winnerScoreInput.value;
+            if ( score === '') {
+                this.hide();
+                showTitledMessageWithCallback("分数为空，或格式无效","请重新输入"+winPlayer+"的得分","addScoreDialog.show('"+winPos+"')");
+                return;
+            }
             getElementInsideContainer(this.addScoreDialogDivId,'loser1input').value = score;
             getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = score;
             getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = score;
         },
         show: function(winnerPos) {
-            this.winPos = winnerPos;
+            winPos = winnerPos;
             this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
             this.addScoreDialogDivObj.style.display='';
             var winnerDiv = getElementInsideContainer(this.addScoreDialogDivId,'position');
-            winnerDiv.innerHTML = positionConvertor.convertToPlayerName(winnerPos)+"的得分:";
+            winPlayer = positionConvertor.convertToPlayerName(winnerPos);
+            winnerDiv.innerHTML = winPlayer+"的得分:";
             //set losers field properties
             var count=1;
             for(var i=0;i<4;i++) {
-                if ( globalVariables.positions[i]=== this.winPos) {
+                if ( globalVariables.positions[i]=== winPos) {
                     var winnerInputField = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
                     winnerInputField.name = globalVariables.positions[i]+'input';
                     continue;
