@@ -375,8 +375,11 @@ var configSetting = function () {
 	};
 	
 }();
-function showMessage(mesg) {
-	dialog.title="";
+function showMessage(message) {
+    showTitledMessage("",message);
+}
+function showTitledMessage(title,mesg) {
+	dialog.title=title;
     dialog.message = mesg;
     dialog.okButtonText = "知道了";
     dialog.cancelButtonText = "";

@@ -121,14 +121,25 @@ var score = function () {
 	var refreshScoreAction;
 	var tgame_id;
 	var gameSerNo;
+	var addScoreEventOwner = false; //set true in addScore()
 	var handleScoreWebSocketResponse = {
 		
 		getType: function() {return globalVariables.webSocketScoreEvent;},
 		onSuccess: function(jsonData) {
 			addScoreRowData(jsonData);
+			if ( addScoreEventOwner === true ) {
+			    clearAllScoreInputFields();
+			    loadingPrompt.hide();
+			}
 		},
 		onError : function(jsonData,err) {
-			showMessage(err);
+			if ( addScoreEventOwner === true ) {
+			    loadingPrompt.hide();
+			    showTitledMessage("请重新输入整数",err);
+			    clearAllScoreInputFields();
+            } else {
+                showMessage(err);
+            }
 		}
 	}
 	webSocketObj.addListener(handleScoreWebSocketResponse);
@@ -206,26 +217,40 @@ var score = function () {
 			if ( !checkScores() ) {
 				return;
 			}
-	
-			var dataStr = "{"+getPosScoreJsonStr(positions[0])+","+getPosScoreJsonStr(positions[1])+","+getPosScoreJsonStr(positions[2])+","+getPosScoreJsonStr(positions[3])+",tgame_id:"+tgame_id+"}";
-		
-			$.ajax({
-		
-				url: globalVariables.mjServerUrl+addScoreAction,
-				type: "POST",
-				async: true, 
-				data: dataStr,
-				dataType: 'json',
-				error:function(data,status,er) {
-					showMessage("分数格式错误。请重新输入整数");
-					clearAllScoreInputFields();
-				},
-				success: function(data, textStatus, jqXHR){
-       
-					clearAllScoreInputFields();
-					//其他的UI更新是通过server call back由handleScoreWebSocketResponse实现 -- XFZ@2016-09-29
-				}
-			});
+//			var dataStr = "{"+getPosScoreJsonStr(positions[0])+","+getPosScoreJsonStr(positions[1])+","+getPosScoreJsonStr(positions[2])+","+
+//			    getPosScoreJsonStr(positions[3])+",tgame_id:"+tgame_id+"}";
+
+            addScoreEventOwner = true;
+		    var jsonObj = {};
+		    jsonObj[globalVariables.GameIdName] = tgame_id;
+            jsonObj[globalVariables.OpenIdName] =  webSocketObj.getOpenId();
+            jsonObj[globalVariables.WebSocketEventTypeHandler] = handleScoreWebSocketResponse.getType();
+            jsonObj["winnerPosition"] = addScoreDialog.winPos;
+            jsonObj[globalVariables.MessageModeHandler ] = "AddScore";
+            for(var i=0;i<4;i++) {
+                var pos = positions[i];
+                jsonObj[pos] = getPositionScore(pos);
+             }
+            var jsonString = JSON.stringify(jsonObj)
+            webSocketObj.sendData(jsonString);
+            loadingPrompt.show('正在保存...');
+//			$.ajax({
+//
+//				url: globalVariables.mjServerUrl+addScoreAction,
+//				type: "POST",
+//				async: true,
+//				data: dataStr,
+//				dataType: 'json',
+//				error:function(data,status,er) {
+//					showMessage("分数格式错误。请重新输入整数");
+//					clearAllScoreInputFields();
+//				},
+//				success: function(data, textStatus, jqXHR){
+//
+//					clearAllScoreInputFields();
+//					//其他的UI更新是通过server call back由handleScoreWebSocketResponse实现 -- XFZ@2016-09-29
+//				}
+//			});
 		}
 	};
 	function addPositionScore(index,value) {
@@ -237,12 +262,12 @@ var score = function () {
 		 $('#'+position+'Total').text(sum);
 		 return sum;
 	}
-	function getPosScoreJsonStr(position) {
-		 
-		 var score = getPositionScore(position);
-		 var jsonStr  = position+":"+getPositionScore(position);
-		 return jsonStr;
-	}
+//	function getPosScoreJsonStr(position) {
+//
+//		 var score = getPositionScore(position);
+//		 var jsonStr  = position+":"+getPositionScore(position);
+//		 return jsonStr;
+//	}
 	function getPositionScore(position) {
 	    <!-- names of score input fields inside addScoreDialog are set in startGame.js show method -->
 		var score = getElementInsideContainerByName(addScoreDialog.addScoreDialogDivId,position+'input').value;
@@ -258,8 +283,10 @@ var score = function () {
 		}
 	}
 	function clearScoreInputField(position) {
-		$('#'+position+'Score').val('');
-		
+		getElementInsideContainer(addScoreDialog.addScoreDialogDivId,'winnerScore').value = '';
+		getElementInsideContainer(addScoreDialog.addScoreDialogDivId,'loser1input').value = '';
+		getElementInsideContainer(addScoreDialog.addScoreDialogDivId,'loser2input').value = '';
+		getElementInsideContainer(addScoreDialog.addScoreDialogDivId,'loser3input').value = '';
 	}
 	function clearScoreTotalField(position) {
 		$('#'+position+'Total').html('0');

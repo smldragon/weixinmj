@@ -202,13 +202,7 @@
 			</div>
 			
 			<div style="height:18%;width:100%;">
-				<form action=""  style="width:100%;height:100%;font-weight:500">
-					<select name="" style="width:35%;height:65%;font-size:120%;">
-						<option value="赢三家" onClick='addScoreDialog.winThreeOther()'>赢三家</option>
-						<option value="赢两家">赢两家</option>
-					</select>
-				</form>
-				<!--<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button> -->
+				<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button>
 			</div>
 			
 			<div>

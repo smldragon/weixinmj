@@ -95,6 +95,7 @@ var scoreHist = function() {
 }();
 var enterTempPlayer = function() {
 	var tempPlayerEntryDiv = "tempPlayerEntryDiv";
+	var tempPlayerNameInputId = "TempPlayerName";
 	return {
 	    pos: '',
 	    tempPlayerEntryDivObj: '',
@@ -104,8 +105,9 @@ var enterTempPlayer = function() {
 		    this.tempPlayerEntryDivObj.style.display='';
 		},
 		doOkFunction: function () {
-		    var tempPlayerName = document.getElementById('TempPlayerName').value;
+		    var tempPlayerName = document.getElementById(tempPlayerNameInputId).value;
             gameAction.joinGameByMenualUser(tempPlayerName,this.pos);
+            document.getElementById(tempPlayerNameInputId).value = '';
         	this.hide();
         },
         doCancelFunction:function () {
