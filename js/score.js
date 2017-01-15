@@ -13,7 +13,8 @@ var scoreConfig = function () {
 		
 		getType: function(){ return configSettingEvent;},
 		onError: function(jsonData,err) {
-			showMessage(err);
+		    loadingPrompt.hide();
+			showTitledMessage("设置错误",err);
 		},
 		onSuccess: function(jsonData) {
 			var newConfig = jsonData[scoreConfigSettingHandler];
@@ -77,19 +78,11 @@ var scoreConfig = function () {
 		
 	}
 	function netScoreFunc_SH () {
-		var totalOf4 = 0;
-		$.each(positionTotal, function(index,value) {
-			totalOf4 = totalOf4 + parseInt(value);
-		});
-		
-		//net score = (4*postionScore) - totalOf4
-		
-		for(index=0;index<4;index++) {
-			positionNet[index] = 4*positionTotal[index] - totalOf4;
-			$('#'+positions[index]+'TotalNet').text(positionNet[index]);
-		}
-		
+		netScoreFunc_FZ();
 	}
+	function netScoreFunc_NJ () {
+	    netScoreFunc_FZ();
+    }
 }();
 
 //CellSelection is defined in Functions.js, 

@@ -12,7 +12,7 @@
 		String gameIdStr = request.getParameter(WxMjConstants.GameIdName);
 		if ( gameIdStr != null) {
 			sg.setTgameId(Integer.parseInt(gameIdStr));
-		} 
+		}
 		String openId = request.getParameter(WeiXinConstants.OpenIdName);
 		if ( openId != null) {
 			sg.setOpenId(openId);

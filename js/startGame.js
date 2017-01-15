@@ -145,7 +145,8 @@ var addScoreDialog = function() {
                 return;
             }
             var loserScore = score/3;
-            if ( loserScore * 3 != score) {
+            var indexOfDot = loserScore.toString().indexOf(".");
+            if ( indexOfDot >= 0 ) {
                  this.hide();
                  showTitledMessageWithCallback("错误！","赢分不能被3整除。");
                  return;
