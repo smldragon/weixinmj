@@ -46,7 +46,7 @@
 	</a>
 </div>
 <div>
-	<H4><center><input type="checkbox" id="<%=scoreConfigModifierTitle%>" value="default"> 设置为默认 <br></center></H4>
+	<H4><center><input type="checkbox" id="<%=scoreConfigModifierTitle%>" value="default" checked="checked"> 设置为默认 <br></center></H4>
 </div>
 <div class="weui-msg_ZhuXiao" style="height:24%; width:100%;">
 	<div class="divbtn1"   >

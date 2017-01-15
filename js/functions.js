@@ -182,6 +182,7 @@ var gameAction = function () {
 	var requestPosition = false;
 	var approveMode;
 	var isPosting = false;
+	var joinPos;
 	//a websocket call back function bound in startGame.js
 	var setPlayer = {
 		
@@ -236,9 +237,21 @@ var gameAction = function () {
 		joinGameByMenualUser(menualUserName,pos) {
 		    this.joinGameAtPosByUserName(gameAction.getTempPlayerPrefix()+menualUserName,gameAction.getGameId(),pos,'...',gameAction.getApproveMode());
 		},
-		joinGameAtPos: function(gameId,pos) {
+		joinGameAtPos: function(pos) {
+            joinPos = pos;
+		    if ( isHost ) {
+                enterTempPlayer.showEntry(pos);
+             } else {
+                var openId = webSocketObj.getOpenId();
+                var gameId = gameAction.getGameId();
+                this.joinGameAtPosByUserName(openId,gameId,pos,'等待同意',gameAction.getRequestGameMode());
+             }
+		},
+		joinGameByHost: function() {
 		    var openId = webSocketObj.getOpenId();
-		    this.joinGameAtPosByUserName(openId,gameId,pos,'等待同意',gameAction.getRequestGameMode());
+		    var gameId = gameAction.getGameId();
+		    gameAction.joinGameAtPosByUserName(openId,gameId,joinPos,'等待同意',gameAction.getRequestGameMode());
+		    enterTempPlayer.hide();
 		},
 		joinGameAtPosByUserName: function(userName,gameId,pos,waitPrompt,mode) { //userToken can be manually entered abitrary name
 			if ( isPosting === true) {
@@ -669,8 +682,12 @@ function showScoreConfigModifier(scoreConfigSettingType,scoreConfigValue) {
 	scoreHist.toggleScoreConfig();
 }
 function getElementInsideContainer(containerID, childID) {
+    var parent = document.getElementById(containerID);
+    return getElementFromParent(parent,childID);
+}
+function getElementFromParent(parent, childID) {
     var elm = {};
-    var elms = document.getElementById(containerID).getElementsByTagName("*");
+    var elms = parent.getElementsByTagName("*");
     for (var i = 0; i < elms.length; i++) {
         if (elms[i].id === childID) {
             elm = elms[i];

@@ -1,4 +1,5 @@
 <%
+    /**
     String [] tempEntryActions = new String [posDisp.length];
     if ( isHost ) {
         for(int i=0;i< posDisp.length;i++) {
@@ -10,7 +11,7 @@
             tempEntryActions[i] = "";
         }
     }
-
+    */
     final String addScoreDialogDivId = "addScoreDialogDivId";
 %>
 <script>
@@ -50,12 +51,12 @@
 			
 	<div class="PositionHang1">
 			
-		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[0]%>'>
+		<div class="PositionWeiZhiLie" >
 			<%=posDisp[0]%><!--东-->
 		</div>
 
 		<div class="PositionWanJiaLie">
-			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[0]%>')" >                 
+			<div class='row' onClick="gameAction.joinGameAtPos('<%=positions[0]%>')" >
 				<img class="Playerimg" id='<%=positions[0]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(0)%>' >
 				<div class="PlayerName" id='<%=positions[0]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(0)%></div>
 			</div>
@@ -72,17 +73,13 @@
 			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
 			<a href='#' onClick='addScoreDialog.show("east")' style="color: #1aad19;">我胡了</a>
 		</div>
-				
 	</div>
-			
 	<div class="PositionHang1">
-
-		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[1]%>'>
+		<div class="PositionWeiZhiLie" >
 			<%=posDisp[1]%><!--南-->
 		</div>
-					
 		<div class="PositionWanJiaLie">
-			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[1]%>')" >                 
+			<div class='row' onClick="gameAction.joinGameAtPos('<%=positions[1]%>')" >
 				<img class="Playerimg" id='<%=positions[1]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(1)%>' >
 				<div class="PlayerName" id='<%=positions[1]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(1)%></div>
 			</div>
@@ -91,77 +88,56 @@
 		<div id='southTotal' class="PositionZongFenLie">
 			<%=positionTotal[1]%>
 		</div>
-		
 		<!-- div id='southTotalNet' class="PositionDeFenLie">
-
 		</div -->
-				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
 			<a href='#' onClick='addScoreDialog.show("south")' style="color:#1aad19;">我胡了</a>
 		</div>
-				
 	</div>
-		
 	<div class="PositionHang1">
-			
-		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[2]%>'>
+		<div class="PositionWeiZhiLie">
 			<%=posDisp[2]%><!--西-->
 		</div>
-				
 		<div class="PositionWanJiaLie">
-			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[2]%>')" >                 
+			<div class='row' onClick="gameAction.joinGameAtPos('<%=positions[2]%>')" >
 				<img class="Playerimg" id='<%=positions[2]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(2)%>' >
 				<div class="PlayerName" id='<%=positions[2]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(2)%></div>
 			</div>
 		</div>
-				
 		<div id='westTotal' class="PositionZongFenLie">
 			<%=positionTotal[2]%>
 		</div>
-
 		<!-- div id='westTotalNet' class="PositionDeFenLie">
-
 		</div -->
-		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
 			<a href='#' onClick='addScoreDialog.show("west")' style="color:#1aad19;">我胡了</a>
 		</div>
-				
 	</div>
-			
 	<div class="PositionHang1">
-			
-		<div class="PositionWeiZhiLie" onClick='<%=tempEntryActions[3]%>'>
+		<div class="PositionWeiZhiLie" >
 			<%=posDisp[3]%><!--北-->
 		</div>
-				
 		<div class="PositionWanJiaLie">
-			<div class='row' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[3]%>')" >                 
+			<div class='row' onClick="gameAction.joinGameAtPos('<%=positions[3]%>')" >
 				<img class="Playerimg" id='<%=positions[3]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(3)%>' >
 				<div class="PlayerName" id='<%=positions[3]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(3)%></div>
 			</div>
 		</div>
-				
 		<div id='northTotal' class="PositionZongFenLie">
 			<%=positionTotal[3]%>
 		</div>
-
 		<!-- div id='northTotalNet' class="PositionDeFenLie">
 		</div -->
-		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
 			<a href='#' onClick='addScoreDialog.show("north")' style="color:#1aad19;">我胡了</a>
 		</div>
-				
 	</div>
 </div>		
 <div class="weui-msg_ZhuXiao" style="height:20%; width:100%;">
     <div class="divbtn1"   >
-
-		
 		<div style="height:100%; width:100%; ">
 			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:40%; width:95%;margin-top:12%">得分纪录</a>
 		</div>
@@ -178,6 +154,8 @@
         <div class="weui-dialog__bd">
 			<input type="text"  type="text" placeholder="玩家姓名如:张三" size="22"  id="TempPlayerName" style="height:30px;" />
 		</div>
+
+		<div> <a href="#"  id='changePosition' onclick='gameAction.joinGameByHost()'>或自己换位</a></div>
         <div class="weui-dialog__ft" style="line-height:35px;">
             <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doOkFunction()"  >确定</a>
 			<a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doCancelFunction()"  >取消</a>

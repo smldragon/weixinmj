@@ -115,6 +115,9 @@ var enterTempPlayer = function() {
         },
         hide:   function () {
            this.tempPlayerEntryDivObj.style.display="none";
+        },
+        getDivID() {
+            return tempPlayerEntryDiv;
         }
 	};
 }();
