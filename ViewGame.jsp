@@ -37,9 +37,10 @@
 			总分
 		</div>
 		
-		<div class="PositionTouLie"  style="width:20%;">
+		<!-- div class="PositionTouLie"  style="width:20%;">
+		    //by new score recording, positionTotal = positionNet -- 2017-01-14, see score.js line 72
 			净赢分
-		</div>	
+		</div -->
 		
 		<div class="PositionTouLie"  style="width:25%;">
 			去算分
@@ -63,10 +64,9 @@
 		<div id='eastTotal' class="PositionZongFenLie">
 			<%=positionTotal[0]%>
 		</div>
-		
-		<div id='eastTotalNet' class="PositionDeFenLie">
+		<!-- div id='eastTotalNet' class="PositionDeFenLie">
 
-		</div>
+		</div -->
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
@@ -92,9 +92,9 @@
 			<%=positionTotal[1]%>
 		</div>
 		
-		<div id='southTotalNet' class="PositionDeFenLie">
+		<!-- div id='southTotalNet' class="PositionDeFenLie">
 
-		</div>
+		</div -->
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
@@ -120,9 +120,9 @@
 			<%=positionTotal[2]%>
 		</div>
 
-		<div id='westTotalNet' class="PositionDeFenLie">
+		<!-- div id='westTotalNet' class="PositionDeFenLie">
 
-		</div>
+		</div -->
 		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
@@ -148,8 +148,8 @@
 			<%=positionTotal[3]%>
 		</div>
 
-		<div id='northTotalNet' class="PositionDeFenLie">
-		</div>
+		<!-- div id='northTotalNet' class="PositionDeFenLie">
+		</div -->
 		
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->

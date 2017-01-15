@@ -144,9 +144,15 @@ var addScoreDialog = function() {
                 showTitledMessageWithCallback("分数为空，或格式无效","请重新输入"+winPlayer+"的得分","addScoreDialog.show('"+winPos+"')");
                 return;
             }
-            getElementInsideContainer(this.addScoreDialogDivId,'loser1input').value = score;
-            getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = score;
-            getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = score;
+            var loserScore = score/3;
+            if ( loserScore * 3 != score) {
+                 this.hide();
+                 showTitledMessageWithCallback("错误！","赢分不能被3整除。");
+                 return;
+            }
+            getElementInsideContainer(this.addScoreDialogDivId,'loser1input').value = loserScore;
+            getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = loserScore;
+            getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = loserScore;
         },
         show: function(winnerPos) {
             winPos = winnerPos;

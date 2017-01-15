@@ -68,14 +68,12 @@ var scoreConfig = function () {
 			var pt = positionTotal[index];
             totalOf4 = totalOf4 + parseInt(pt);
 		};
-		
-		//net score = (4*postionScore) - totalOf4
-		
-		for(index=0;index<4;index++) {
-			positionNet[index] = 4*positionTotal[index] - totalOf4;
-			//$('#'+positions[index]+'TotalNet').text(positionNet[index]);
-			document.getElementById(positions[index]+'TotalNet').innerHTML = positionNet[index];
-		}
+
+		//by new score recording, positionTotal = positionNet -- 2017-01-14, see ViewGrame.jsp
+        //for(index=0;index<4;index++) {
+			//positionNet[index] = 4*positionTotal[index] - totalOf4;
+			//document.getElementById(positions[index]+'TotalNet').innerHTML = positionNet[index];
+		//}
 		
 	}
 	function netScoreFunc_SH () {
@@ -280,12 +278,6 @@ var score = function () {
 		document.getElementById(position+"TotalNet").innerHTML='0';
 	}
 	function checkScores() {
-		for (var index in positions) {
-		  if ( ! validateScore(positions[index])) { 
-			return false;
-		  }
-		}
-		
 		//check if all postion are 0
 		var nonNullCount=0;
 		for (var index in positions) {
@@ -297,17 +289,21 @@ var score = function () {
 		if ( nonNullCount == 0) {
 			showMessage('请输入赢方得分');
 			return false;
-		} else {
-			return true;
 		}
-	}
-	function validateScore(position) {
-		var score = getPositionScore(position);
-		if ( ! $.isNumeric(score) ) {
-			showMessage(getPositiondDisplay(position)+'的分数无效');
-			return false;
+		//检查输分总和是否等于赢分
+		var sumOfLoser=0;
+		for(var i=0;i<4;i++) {
+		    if ( positions[i]===addScoreDialog.getWinPos()){
+		        continue;
+		    }
+		    sumOfLoser = parseInt(sumOfLoser) + parseInt(getPositionScore(positions[i]));
+		}
+		var winnerScore = parseInt(getPositionScore(addScoreDialog.getWinPos()));
+		if ( sumOfLoser !== winnerScore) {
+		    showTitledMessage('错误！','输分总和不等于赢分。');
+		    return false;
 		} else {
-			return true;
+		    return true;
 		}
 	}
 	/**

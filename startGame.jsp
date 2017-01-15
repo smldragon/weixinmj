@@ -19,16 +19,13 @@
 		} else {
 		    openId = sg.getOpenId();
 		}
-
 		ViewGame view = sg.getViewGame();
 		if ( view == null) {
 			out.print("<!doctype html><html><body><h1><center>找不到指定的牌局</center></h1></body></html>");
 			return;
 		}
 		int [] positionTotal = view.getPositionTotal();
-		
 		int gameId = view.getGameId();
-
 		boolean isHost = view.getHostOpenId().equals(openId);
 %>
 <%@ include file="GlobalVariables.jsp" %>
