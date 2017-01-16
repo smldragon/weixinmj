@@ -166,7 +166,7 @@ var score = function () {
 		},
 		refreshScore: function() {
 			$.ajax({
-				url: mjServerUrl+refreshScoreAction+'&tgame_id='+tgame_id,
+				url: "http://"+globalVariables.mjServerHost+"/"+globalVariables.mjServletName+"?action="+refreshScoreAction+'&tgame_id='+tgame_id,
 				type: "GET",
 				async: true, 
 				dataType: 'json',
@@ -276,7 +276,8 @@ var score = function () {
 	}
 	function clearScoreNetField(position) {
 		//$('#'+position+'TotalNet').html('0');
-		document.getElementById(position+"TotalNet").innerHTML='0';
+		//TotalNet column is removed -- 2017-01-16
+		//document.getElementById(position+"TotalNet").innerHTML='0';
 	}
 	function checkScores() {
 		//check if all postion are 0

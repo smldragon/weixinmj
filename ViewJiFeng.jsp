@@ -59,6 +59,7 @@
 
 	<div class="weui-msg">
     <div class="weui-msg__opr-area">
+        <a href="#" onClick="score.refreshScore()" class="weui-btn weui-btn_primary">刷新</a>
         <a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_primary">返回</a>
     </div>
 </div>
