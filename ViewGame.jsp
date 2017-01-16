@@ -26,15 +26,15 @@
 			
 	<div class="RowHeader">
 			
-		<div class="PositionTouLie"  style="width:15%;">
+		<div class="PositionTouLie"  style="width:20%;">
 			位置
 		</div>
 				
-		<div class="PositionTouLie"  style="width:20%;">
+		<div class="PositionTouLie"  style="width:22%;">
 			玩家
 		</div>
 				
-		<div class="PositionTouLie"  style="width:20%;">
+		<div class="PositionTouLie"  style="width:28%;">
 			总分
 		</div>
 		
@@ -43,7 +43,7 @@
 			净赢分
 		</div -->
 		
-		<div class="PositionTouLie"  style="width:25%;">
+		<div class="PositionTouLie"  style="width:30%;">
 			去算分
 		</div>
 				
@@ -149,13 +149,18 @@
     <div class="weui-dialog">
         <div class="weui-dialog__hd">
 			<strong class="weui-dialog__title">
-				请输入该位置玩家的名称:
+				请输入该位置玩家名称:
 			</strong></div>
-        <div class="weui-dialog__bd">
+        <div class="weui-dialog__bd" style="padding-top:2%;padding-bottom:0%;" >
 			<input type="text"  type="text" placeholder="玩家姓名如:张三" size="22"  id="TempPlayerName" style="height:30px;" />
 		</div>
 
-		<div> <a href="#"  id='changePosition' onclick='gameAction.joinGameByHost()'>或自己换位</a></div>
+		<div  style="padding-top:0%;padding-bottom:3%;"> 
+			<a href="#"  id='changePosition' onclick='gameAction.joinGameByHost()' style="font-weight: 400;
+			font-size: 18px;">
+				或自己换位
+			</a>
+		</div>
         <div class="weui-dialog__ft" style="line-height:35px;">
             <a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doOkFunction()"  >确定</a>
 			<a href="#" class="weui-dialog__btn default" onClick="enterTempPlayer.doCancelFunction()"  >取消</a>
