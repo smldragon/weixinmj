@@ -6,7 +6,7 @@ $(document).ready(function() {
 	sendMessageToFriendCircle('我已经开局了，欢迎加入','','');	
 	score.calculateNetScores();
 
-	var htmlText = "<font size=3>庄家:"+gameAction.hostNickName+"</font>";  //这行可以用CSS和STYLE
+	var htmlText = "<font size=3>主办:"+gameAction.hostNickName+"</font>";  //这行可以用CSS和STYLE
     document.getElementById('pageTitle1').innerHTML  = htmlText;
 		var htmlText = "<font size=2>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
     document.getElementById('pageTitle2').innerHTML  = htmlText;
@@ -159,6 +159,10 @@ var addScoreDialog = function() {
             getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = loserScore;
         },
         show: function(winnerPos) {
+            if ( gameAction.getIsHost() != true) {
+                showMessage("你没有权限算分，只有主办才有权限");
+                return;
+            }
             winPos = winnerPos;
             this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
             this.addScoreDialogDivObj.style.display='';
