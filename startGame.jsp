@@ -27,6 +27,9 @@
 		int [] positionTotal = view.getPositionTotal();
 		int gameId = view.getGameId();
 		boolean isHost = view.getHostOpenId().equals(openId);
+
+		String [] scoreSettingCodes = ViewGame.getScoreSettingCodes();
+		String [] scoreSettingNames = ViewGame.getScoreSettingNames();
 %>
 <%@ include file="GlobalVariables.jsp" %>
 <script>
@@ -54,6 +57,14 @@
 	score.setRefreshScoreAction('<%=WxMjActions.refreshScores%>');
 	score.setAddScoreAction('<%=WxMjActions.addScores%>');
 	scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
+
+	scoreConfig.scoreSettingCodes = [];
+	scoreConfig.scoreSettingNames = [];
+	<% for (int i=0;i<scoreSettingCodes.length;i++) { %>
+	    var index = <%=i%>;
+	    scoreConfig.scoreSettingCodes[index]='<%=scoreSettingCodes[i]%>';
+    	scoreConfig.scoreSettingNames[index] ='<%=scoreSettingNames[i]%>';
+    <% } %>
 	//scoreConfig.setPlayerScoreConfig('<%=sg.getPlayerDefaultScoreSetting()%>');
 </script>
 <!doctype html>

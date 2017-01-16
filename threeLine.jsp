@@ -2,7 +2,7 @@
 
 <div class="RowHeadertable" style="height:8%;width:100%; background:url(/weixinmj/icon/RowHeadertable.jpg);background-repeat:repeat;  position: absolute; left: 0%; top: -0.1%; ">
 
-
+    <% if ( isHost ) { %>
 		<div class="column" style="height:100%;width:15%;float:left;" >
 			<nav id="topNav" style="width:100%;height:100%;">
 				<ul style="width:100%;height:100%;">
@@ -28,7 +28,7 @@
 				</ul>
 			</nav>
 		</div>
-		
+	<% } %>
 		<div id="pageTitle" class="column" style="height:100%;width:70%;text-align:center;float:left;font-size:100%;font-weight: 600;color:white;line-height:130%;">
 			<div id="pageTitle1" style="height:50%;width:100%;">
 			</div>

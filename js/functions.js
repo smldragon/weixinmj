@@ -262,10 +262,13 @@ var gameAction = function () {
 			isPosting = true;
 			requestPosition = true;
 
-			$('#'+pos+'_'+gameId+'_PlayerName').html(waitPrompt);
-			$('#'+pos+'_'+gameId).attr('src', '/weixinmj/icon/progress.gif');
-			$('#'+pos+'_'+gameId).attr('class', 'icon');
-			
+//			$('#'+pos+'_'+gameId+'_PlayerName').html(waitPrompt);
+//			$('#'+pos+'_'+gameId).attr('src', '/weixinmj/icon/progress.gif');
+//			$('#'+pos+'_'+gameId).attr('class', 'icon');
+            document.getElementById(pos+'_'+gameId+'_PlayerName').innerHTML = waitPrompt;
+            document.getElementById(pos+'_'+gameId).setAttribute("src","/weixinmj/icon/progress.gif");
+            document.getElementById(pos+'_'+gameId).setAttribute("class","icon");
+
 			//server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
 			var jsonString = {};
 			jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();

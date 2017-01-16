@@ -2,6 +2,8 @@ var scoreConfig = function () {
 	
 	//gameScoreConfig and playerScoreConfig are defined in startGame.jsp
 	var gameScoreConfig;
+	var scoreSettingCodes; //defined in startGame.jsp
+	var scoreSettingNames; //defined in startGame.jsp
 	var positions = globalVariables.positions;
 	var positionTotal = globalVariables.positionTotal;
 	var positionNet = globalVariables.positionNet;
@@ -18,11 +20,17 @@ var scoreConfig = function () {
 		},
 		onSuccess: function(jsonData) {
 			var newConfig = jsonData[scoreConfigSettingHandler];
-			//when changeScoresetting.jsp is a div of startGame.jsp, use scoreHist.toggleSecoreConfig() -- 2016-11-27
-			scoreHist.toggleScoreConfig();
-			
-			loadingPrompt.hide('设置修改成功');
-			//window.history.go(-2);
+			scoreConfig.setGameScoreConfig(newConfig);
+			if ( gameAction.getIsHost() === true ) {
+                //when changeScoresetting.jsp is a div of startGame.jsp, use scoreHist.toggleSecoreConfig() -- 2016-11-27
+                scoreHist.toggleScoreConfig();
+                loadingPrompt.hide('设置修改成功');
+                //window.history.go(-2);
+             } else {
+                var scoreIndex = scoreConfig.scoreSettingCodes.indexOf(newConfig,0);
+                var scoreSettingName = scoreConfig.scoreSettingNames[scoreIndex];
+                loadingPrompt.hide('计分方法已经改为'+scoreSettingName);
+             }
 		}
 	};
 	
@@ -46,8 +54,8 @@ var scoreConfig = function () {
 			// see score.js 1.16 and ScoreSettingEmbeded.jsp 1.1 for old version.  XFZ@2016-12-11
 			
 			var newConfig = scoreConfigSelection.getValue();  //scoreConfigSelection is defined in score.js
-
-			this.setGameScoreConfig(newConfig);
+            //moved to onSuccess() to execute
+			//this.setGameScoreConfig(newConfig);
 			
 			var configOption = document.getElementById(scoreConfig.scoreConfigModifierTitleId);
 			var configOptionValue = configOption.checked;

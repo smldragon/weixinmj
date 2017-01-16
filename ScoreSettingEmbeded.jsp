@@ -17,33 +17,20 @@
 </H3 -->
 	
 <div id="scoreSetting" class="weui-cells weui-cell_access">
-	<a id="FZ" class="weui-cell" href="#" onClick="scoreConfigSelection.setValueByElementId(this)">    
-		<div class="weui-cell__bd weui_cell_primary">
-			<p>福州算法</p>
-		</div>
-		<!-- div class="weui_cell__ft">
-			说明文字
-		</div -->
-		<div  class="weui-cell__hd"  >
-			<i class="weui-icon-success-no-circle" style="display:none"></i>
-		</div>
-	</a>
-	<a id="NJ" class="weui-cell" href="#" onClick="scoreConfigSelection.setValueByElementId(this)">
-		<div class="weui-cell__bd weui_cell_primary">
-			<p>南京算法</p>
-		</div>
-			<div class="weui-cell__hd" >
-			<i class="weui-icon-success-no-circle" style="display:none" ></i>
-		</div>
-	</a>
-	<a id="SH" class="weui-cell" href="#" onClick="scoreConfigSelection.setValueByElementId(this)">
-		<div class="weui-cell__bd weui_cell_primary">
-			<p>上海算法</p>
-		</div>
-			<div class="weui-cell__hd"  >
-			<i class="weui-icon-success-no-circle" style="display:none"></i>
-		</div>
-	</a>
+    <% for(int i=0;i<scoreSettingCodes.length;i++) { %>
+        <a id="<%=scoreSettingCodes[i]%>" class="weui-cell" href="#" onClick="scoreConfigSelection.setValueByElementId(this)">
+        	<div class="weui-cell__bd weui_cell_primary">
+        		<p><%=scoreSettingNames[i]%></p>
+        	</div>
+        	<!-- div class="weui_cell__ft">
+        		说明文字
+        	</div -->
+        	<div  class="weui-cell__hd"  >
+        		<i class="weui-icon-success-no-circle" style="display:none"></i>
+        	</div>
+        </a>
+
+    <% } %>
 </div>
 <div>
 	<H4><center><input type="checkbox" id="<%=scoreConfigModifierTitle%>" value="default" checked="checked"> 设置为默认 <br></center></H4>
