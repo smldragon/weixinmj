@@ -26,28 +26,32 @@ var webSocketObj = new function() {
 				return;
 			}
 			
-			if ( typeof(socket) === 'undefined' || socket === null) {
+			if ( typeof(socket) === 'undefined' || socket === null || socket.readyState !== 1) {
 		
 				socket = new WebSocket("ws://"+mjServerHost+"/"+mjServletName+"?"+openIdName+"="+openId+"&name="+name, WeiXinMaJiangProtocol);
 				socket.onopen = function(msg) {
-				};
+				    console.log('Socket Connection Has Been Established!');
+			    };
+			    socket.onclose = function(msg) {
+                	console.log('Socket Connection Has Been CLOSED!');
+                };
 				socket.onmessage = callBack;
 			}
 		},
-		sendData: function (data) {
+		sendData: function (prompt,data) {
 	
-			if ( typeof(socket) === 'undefined' || socket === null || socket.readyStatus === 0) {
-				var tryCount = 0;
-				while ( (socket == null || socket.readyStatus == 0) && tryCount < 50) {
-					window.setTimeout( this.initWebSocket('trying to open '+tryCount+' times'), 10);
-					tryCount = tryCount + 1;
-				}
+			if ( typeof(socket) === 'undefined' || socket === null || socket.readyState !== 1) {
+				this.initWebSocket('trying to re-connect ');
 			}
-			if ( socket.readyState === 0) {
+			if ( socket.readyState !== 1) {
+			    loadingPrompt.hide();
 				showMessage('网络似乎有问题，请稍后再试');
 				return;
 			} 
-	
+
+	        if ( prompt !== null && prompt !=="") {
+	            loadingPrompt.show(prompt);
+	        }
 			socket.send(data);
 		},
 		addListener: function(l) {
@@ -62,6 +66,7 @@ var webSocketObj = new function() {
 		
 		var err = jsonData[ErrMsgHandler];
 		var type = jsonData[WebSocketEventTypeHandler];
+		loadingPrompt.hide();
 		for (var index in callBackListeners) {
 			var listener = callBackListeners[index];
 			if ( type === listener.getType()) {
@@ -261,10 +266,6 @@ var gameAction = function () {
 
 			isPosting = true;
 			requestPosition = true;
-
-//			$('#'+pos+'_'+gameId+'_PlayerName').html(waitPrompt);
-//			$('#'+pos+'_'+gameId).attr('src', '/weixinmj/icon/progress.gif');
-//			$('#'+pos+'_'+gameId).attr('class', 'icon');
             document.getElementById(pos+'_'+gameId+'_PlayerName').innerHTML = waitPrompt;
             document.getElementById(pos+'_'+gameId).setAttribute("src","/weixinmj/icon/progress.gif");
             document.getElementById(pos+'_'+gameId).setAttribute("class","icon");
@@ -277,7 +278,7 @@ var gameAction = function () {
 			jsonString['position'] = pos;
 			jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
 			jsonString[globalVariables.OpenIdName] = userName;
-			webSocketObj.sendData(JSON.stringify(jsonString));
+			webSocketObj.sendData("",JSON.stringify(jsonString));
 		},
 		setIsHost: function(isHost_) {
 		    isHost = isHost_;
@@ -339,7 +340,7 @@ var gameAction = function () {
               jsonString[globalVariables.GameIdName] = this.jsonData.gameId;
               jsonString['position'] = this.jsonData.position;
               jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
-              webSocketObj.sendData(JSON.stringify(jsonString));
+              webSocketObj.sendData("",JSON.stringify(jsonString));
         }
 	};
 	function populateGameInfo(jsonData) {

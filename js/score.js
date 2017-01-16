@@ -67,8 +67,7 @@ var scoreConfig = function () {
 			jsonString['openId'] = playerOpenId;
 			jsonString[globalVariables.WebSocketEventTypeHandler] = configSettingEvent;
 			jsonString[scoreConfigSettingHandler] = newConfig;
-			webSocketObj.sendData(JSON.stringify(jsonString));
-			loadingPrompt.show('保存设置...');
+			webSocketObj.sendData('保存设置...',JSON.stringify(jsonString));
 		}
 	}
 	function netScoreFunc_FZ () {
@@ -120,7 +119,7 @@ var score = function () {
 	var positions = globalVariables.positions;
 	var positionTotal = globalVariables.positionTotal;	
 	var addScoreAction;
-	var refreshScoreAction;
+	var refreshScoreMode;
 	var tgame_id;
 	var gameSerNo;
 	var addScoreEventOwner = false; //set true in addScore()
@@ -128,11 +127,15 @@ var score = function () {
 		
 		getType: function() {return globalVariables.webSocketScoreEvent;},
 		onSuccess: function(jsonData) {
-			addScoreRowData(jsonData);
-			if ( addScoreEventOwner === true ) {
-			    clearAllScoreInputFields();
-			    loadingPrompt.hide();
-			}
+		    var mode = jsonData[globalVariables.MessageModeHandler];
+		    if ( refreshScoreMode === mode) {
+		        refreshScoreTable(jsonData);
+		    } else {
+                addScoreRowData(jsonData);
+                if ( addScoreEventOwner === true ) {
+                    clearAllScoreInputFields();
+                }
+            }
 		},
 		onError : function(jsonData,err) {
 			if ( addScoreEventOwner === true ) {
@@ -155,8 +158,8 @@ var score = function () {
 		getTGameId : function () {
 			return tgame_id;
 		},
-		setRefreshScoreAction : function(refreshScoreAction_) {
-			refreshScoreAction = refreshScoreAction_;
+		setRefreshScoreMode : function(refreshScoreMode_) {
+			refreshScoreMode = refreshScoreMode_;
 		},
 		setAddScoreAction: function(addScoreAction_) {
 			addScoreAction = addScoreAction_;
@@ -165,57 +168,13 @@ var score = function () {
 		    calculateNetScores_();
 		},
 		refreshScore: function() {
-			$.ajax({
-				url: "http://"+globalVariables.mjServerHost+"/"+globalVariables.mjServletName+"?action="+refreshScoreAction+'&tgame_id='+tgame_id,
-				type: "GET",
-				async: true, 
-				dataType: 'json',
-				error:function(data,status,er) {
-					showMessage("error: "+data+" status: "+status+" er:"+er);
-				},
-				success: function(tableData, textStatus, jqXHR){
-					gameSerNo = 0;
-					//clear input fields and total fields
-					for (var index in positions) {
-						//positionTotal is defined in startGame.jsp
-						//positions is defined in js_inc.jsp
-						positionTotal[index] = 0;
-						clearScoreInputField(positions[index]);	
-						clearScoreTotalField(positions[index]);	
-						clearScoreNetField(positions[index]);					
-					}
-					
-					//delete old table data
-					var rows = $('#scores').find("tr");
-					var rowCount = rows.length;
-					
-					
-					
-					$("#scores tr.dataRow").each(function() {
-						$(this).remove();
-					}); 
-					
-					$.each(tableData, function (index, value) {
-						
-						if ( index===0) {
-							/**
-							 * skip first row which is total row, total is moved to addScoreRowData() to be calculated. -- XFZ@2016-09-07
-							 */
-							//first row is total row
-							//$.each(positions, function (posIndex, pos)  {
-							//	positionTotal[posIndex] = value[positions[posIndex]];
-							//	$('#'+pos+'Total').text(positionTotal[posIndex] );
-								
-							//})
-							
-						} else {
-							addScoreRowData(value);
-						}	
-					});
-					
-					calculateNetScores_();
-				}
-			});
+            var jsonObj = {};
+            jsonObj[globalVariables.GameIdName] = tgame_id;
+            jsonObj[globalVariables.OpenIdName] =  webSocketObj.getOpenId();
+            jsonObj[globalVariables.WebSocketEventTypeHandler] = handleScoreWebSocketResponse.getType();
+            jsonObj[globalVariables.MessageModeHandler] = refreshScoreMode;
+            var jsonString = JSON.stringify(jsonObj)
+            webSocketObj.sendData('正在刷新...',jsonString);
 		},
 		addScore: function() {
 			if ( !checkScores() ) {
@@ -233,10 +192,54 @@ var score = function () {
                 jsonObj[pos] = getPositionScore(pos);
              }
             var jsonString = JSON.stringify(jsonObj)
-            webSocketObj.sendData(jsonString);
-            loadingPrompt.show('正在保存...');
+            webSocketObj.sendData('正在保存...',jsonString);
 		}
 	};
+	function refreshScoreTable(jsonData) {
+	    gameSerNo = 0;
+        //clear input fields and total fields
+        for (var index in positions) {
+            //positionTotal is defined in startGame.jsp
+            //positions is defined in js_inc.jsp
+            positionTotal[index] = 0;
+            clearScoreInputField(positions[index]);
+        	clearScoreTotalField(positions[index]);
+        	clearScoreNetField(positions[index]);
+        }
+
+        //delete old table data
+        var rows = document.getElementById('scores').getElementsByTagName("tr");
+        var rowCount = rows.length;
+
+        //don't remove first row which is header row
+        for(var i=rowCount-1;i>0;i--) {
+            rows[i].remove();
+        }
+
+//        					$.each(tableData, function (index, value) {
+//
+//        						if ( index===0) {
+//        							/**
+//        							 * skip first row which is total row, total is moved to addScoreRowData() to be calculated. -- XFZ@2016-09-07
+//        							 */
+//        							//first row is total row
+//        							//$.each(positions, function (posIndex, pos)  {
+//        							//	positionTotal[posIndex] = value[positions[posIndex]];
+//        							//	$('#'+pos+'Total').text(positionTotal[posIndex] );
+//
+//        							//})
+//
+//        						} else {
+//        							addScoreRowData(value);
+//        						}
+//        					});
+        var tableData = jsonData['TableDataHandler'];
+        //don't add first row which is total row
+        for(var i=1;i<tableData.length;i++) {
+            addScoreRowData(tableData[i]);
+        }
+        calculateNetScores_();
+	}
 	function addPositionScore(index,value,isWinner) {
 	 
 		 var position = positions[index];

@@ -46,8 +46,7 @@ var exitGame = function() {
              jsonString[globalVariables.MessageModeHandler ] = gameAction.getExitGameMode();
              jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
 
-           	webSocketObj.sendData(JSON.stringify(jsonString));
-           	loadingPrompt.show('正在退出...');
+           	webSocketObj.sendData('正在退出...',JSON.stringify(jsonString));
         },
         onSuccess: function(jsonData) {
              alert('remove listener at startGame.js line 51');

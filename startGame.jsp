@@ -54,7 +54,7 @@
     gameAction.setRequestGameMode('<%=WxMjConstants.RequestMode%>');
     gameAction.setApproveMode('<%=WxMjConstants.ApproveMode%>');
     positionConvertor.blankPlayerName = "<%=view.getBlankPlayerName()%>";
-	score.setRefreshScoreAction('<%=WxMjActions.refreshScores%>');
+	score.setRefreshScoreMode('<%=WxMjActions.refreshScores%>');
 	score.setAddScoreAction('<%=WxMjActions.addScores%>');
 	scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
 
