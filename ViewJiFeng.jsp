@@ -2,13 +2,16 @@
 <%@ include file="import_inc.jsp" %>
 
 <%
-    final String altBckColor = "#F7F7F7";
+    final String altBckColor = "#e8e8e8";
+    final String winnerClr = "#88ff88";
+    final String winnerClrStyle="style='background-color:"+winnerClr+"';";
 	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
 	final String altBckColorStyle="background-color:"+altBckColor+";"; //得分行的另一种颜色
 %>
 <script>
     score.setScoreTableRowAltBckClr('<%=altBckColor%>');
     score.setScoreTableRowBckClr('');
+    score.setWinnerClr('<%=winnerClr%>');
 </script>
 <div>
 	<div >
@@ -49,13 +52,37 @@
 				} else {
 					bckClrStyle = "style='"+altBckColorStyle+"'";
 				}
+				String bckClrStyle0;
+				String bckClrStyle1;
+				String bckClrStyle2;
+				String bckClrStyle3;
+				if ( scores[1] > 0) {
+				    bckClrStyle0 = winnerClrStyle;
+				} else {
+				    bckClrStyle0 = bckClrStyle;
+				}
+				if ( scores[2] > 0) {
+                    bckClrStyle1 = winnerClrStyle;
+                } else {
+                	bckClrStyle1 = bckClrStyle;
+                }
+                if ( scores[3] > 0) {
+                    bckClrStyle2 = winnerClrStyle;
+                } else {
+                    bckClrStyle2 = bckClrStyle;
+                }
+                if ( scores[4] > 0) {
+                    bckClrStyle3 = winnerClrStyle;
+                } else {
+                    bckClrStyle3 = bckClrStyle;
+                }
 		%>
 				<tr id='<%=scores[0]%>' class='dataRow' <%=bckClrStyle%> >
 					<td class='ScoreRowHeader' <%=bckClrStyle%>><%=rowIndex+1%></td>
-					<td class='ScorePosition1' <%=bckClrStyle%>><%=scores[1]%></td>
-					<td class='ScorePosition2' <%=bckClrStyle%>><%=scores[2]%></td>
-					<td class='ScorePosition1' <%=bckClrStyle%>><%=scores[3]%></td>
-					<td class='ScorePosition2' <%=bckClrStyle%>><%=scores[4]%></td>
+					<td class='ScorePosition1' <%=bckClrStyle0%>><%=scores[1]%></td>
+					<td class='ScorePosition2' <%=bckClrStyle1%>><%=scores[2]%></td>
+					<td class='ScorePosition1' <%=bckClrStyle2%>><%=scores[3]%></td>
+					<td class='ScorePosition2' <%=bckClrStyle3%>><%=scores[4]%></td>
 				</tr>
 			
 		<%

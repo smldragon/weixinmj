@@ -117,6 +117,7 @@ function setScoreConfig(scoreConfigSettingType,scoreConfigValue){
 var score = function () {
     var scoreTableRowBckClr="";
     var scoreTableRowAltBckClr="";
+    var winnerClr = "";
 	var addScoreDialogDivId;
 	var positions = globalVariables.positions;
 	var positionTotal = globalVariables.positionTotal;	
@@ -171,6 +172,9 @@ var score = function () {
 		},
 		setScoreTableRowBckClr: function(scoreTableRowBckClr_) {
             scoreTableRowBckClr = scoreTableRowBckClr_;
+        },
+        setWinnerClr: function(winnerClr_) {
+            winnerClr = winnerClr_;
         },
 		calculateNetScores: function() {
 		    calculateNetScores_();
@@ -325,18 +329,22 @@ var score = function () {
         cellEast.innerHTML = value[positions[0]];
         cellEast.className='ScorePosition1';
         cellEast.style.backgroundColor = bckClr;
+        styleScoreCell(cellEast,value[positions[0]]);
         var cellSouth = document.createElement('td');
         cellSouth.innerHTML = value[positions[1]];
         cellSouth.className='ScorePosition2';
         cellSouth.style.backgroundColor = bckClr;
+        styleScoreCell(cellSouth,value[positions[1]]);
         var cellWest = document.createElement('td');
         cellWest.innerHTML = value[positions[2]];
         cellWest.className='ScorePosition1';
         cellWest.style.backgroundColor = bckClr;
+        styleScoreCell(cellWest,value[positions[2]]);
         var cellNorth = document.createElement('td');
         cellNorth.innerHTML = value[positions[3]];
         cellNorth.className='ScorePosition2';
         cellNorth.style.backgroundColor = bckClr;
+        styleScoreCell(cellNorth,value[positions[3]]);
 		newRow.appendChild(tdRowHeader);
 		newRow.appendChild(cellEast);
 		newRow.appendChild(cellSouth);
@@ -353,6 +361,11 @@ var score = function () {
 			
 		//calculate net scores for each positiond
 		calculateNetScores_();
+	}
+	function styleScoreCell(cell,score) {
+	    if ( score > 0) {
+	        cell.style.backgroundColor = winnerClr;
+	    }
 	}
 	//计算净得分
 	function calculateNetScores_() {
