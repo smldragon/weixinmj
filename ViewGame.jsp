@@ -30,11 +30,11 @@
 			位置
 		</div>
 				
-		<div class="PositionTouLie"  style="width:22%;">
+		<div class="PositionTouLie"  style="width:20%;">
 			玩家
 		</div>
 				
-		<div class="PositionTouLie"  style="width:28%;">
+		<div class="PositionTouLie"  style="width:30%;">
 			总分
 		</div>
 		

@@ -7,8 +7,12 @@
 %>
 
 <div>
-	<h3 style="text-align:center">得分历史</h3>
-
+	<div >
+		<div >
+			<h3 style="text-align:center">得分历史</h3>
+		</div>
+		
+	</div>
 	<table id="scores" style="width:100%" >
 		<thead style="<%=titleColorStyle%>">
 
@@ -58,9 +62,15 @@
 	</table>
 
 	<div class="weui-msg">
-    <div class="weui-msg__opr-area">
-        <a href="#" onClick="score.refreshScore()" class="weui-btn weui-btn_primary">刷新</a>
-        <a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_primary">返回</a>
+    <div class="weui-msg__opr-area" >
+		<div style="height:10%;width:100%;">
+		<div style="float:left;height:100%;width:50%;">
+			<a href="#" onClick="score.refreshScore()" class="weui-btn weui-btn_plain-primary" style="height:70%;width:80%;line-height:35px">刷新</a>
+		</div >
+		<div style="float:left;height:100%;width:50%;">
+        <a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:70%;width:80%;line-height:35px">返回</a>
+		</div >
+		</div>
     </div>
 </div>
 </div>
