@@ -2,10 +2,14 @@
 <%@ include file="import_inc.jsp" %>
 
 <%
+    final String altBckColor = "#F7F7F7";
 	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
-	final String altBckColorStyle="background-color:#F7F7F7;"; //得分行的另一种颜色
+	final String altBckColorStyle="background-color:"+altBckColor+";"; //得分行的另一种颜色
 %>
-
+<script>
+    score.setScoreTableRowAltBckClr('<%=altBckColor%>');
+    score.setScoreTableRowBckClr('');
+</script>
 <div>
 	<div >
 		<div >
@@ -43,15 +47,15 @@
 				if ( rowIndex %2 == 0) {
 					bckClrStyle = "";
 				} else {
-					bckClrStyle = altBckColorStyle;
+					bckClrStyle = "style='"+altBckColorStyle+"'";
 				}
 		%>
-				<tr id='<%=scores[0]%>' class='dataRow' style="<%=bckClrStyle%>" >
-					<td class='ScoreRowHeader' style="<%=bckClrStyle%>"><%=rowIndex+1%></td>
-					<td class='ScorePosition1' style="<%=bckClrStyle%>"><%=scores[1]%></td>
-					<td class='ScorePosition2' style="<%=bckClrStyle%>"><%=scores[2]%></td>
-					<td class='ScorePosition1' style="<%=bckClrStyle%>"><%=scores[3]%></td>
-					<td class='ScorePosition2' style="<%=bckClrStyle%>"><%=scores[4]%></td>
+				<tr id='<%=scores[0]%>' class='dataRow' <%=bckClrStyle%> >
+					<td class='ScoreRowHeader' <%=bckClrStyle%>><%=rowIndex+1%></td>
+					<td class='ScorePosition1' <%=bckClrStyle%>><%=scores[1]%></td>
+					<td class='ScorePosition2' <%=bckClrStyle%>><%=scores[2]%></td>
+					<td class='ScorePosition1' <%=bckClrStyle%>><%=scores[3]%></td>
+					<td class='ScorePosition2' <%=bckClrStyle%>><%=scores[4]%></td>
 				</tr>
 			
 		<%

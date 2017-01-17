@@ -115,6 +115,8 @@ function setScoreConfig(scoreConfigSettingType,scoreConfigValue){
 	scoreConfigSelection.setValue(scoreConfigValue);		
 }
 var score = function () {
+    var scoreTableRowBckClr="";
+    var scoreTableRowAltBckClr="";
 	var addScoreDialogDivId;
 	var positions = globalVariables.positions;
 	var positionTotal = globalVariables.positionTotal;	
@@ -164,6 +166,12 @@ var score = function () {
 		setAddScoreAction: function(addScoreAction_) {
 			addScoreAction = addScoreAction_;
 		},
+		setScoreTableRowAltBckClr: function(scoreTableRowAltBckClr_) {
+		    scoreTableRowAltBckClr = scoreTableRowAltBckClr_;
+		},
+		setScoreTableRowBckClr: function(scoreTableRowBckClr_) {
+            scoreTableRowBckClr = scoreTableRowBckClr_;
+        },
 		calculateNetScores: function() {
 		    calculateNetScores_();
 		},
@@ -215,24 +223,6 @@ var score = function () {
         for(var i=rowCount-1;i>0;i--) {
             rows[i].remove();
         }
-
-//        					$.each(tableData, function (index, value) {
-//
-//        						if ( index===0) {
-//        							/**
-//        							 * skip first row which is total row, total is moved to addScoreRowData() to be calculated. -- XFZ@2016-09-07
-//        							 */
-//        							//first row is total row
-//        							//$.each(positions, function (posIndex, pos)  {
-//        							//	positionTotal[posIndex] = value[positions[posIndex]];
-//        							//	$('#'+pos+'Total').text(positionTotal[posIndex] );
-//
-//        							//})
-//
-//        						} else {
-//        							addScoreRowData(value);
-//        						}
-//        					});
         var tableData = jsonData['TableDataHandler'];
         //don't add first row which is total row
         for(var i=1;i<tableData.length;i++) {
@@ -317,17 +307,44 @@ var score = function () {
          * called by handleScoreWebSocketResponse
         */
 	function addScoreRowData(value) {
-			
+		var bckClr;
+		if ( gameSerNo%2 === 0) {
+		    bckClr = scoreTableRowBckClr;
+		} else {
+		    bckClr = scoreTableRowAltBckClr;
+		}
 		gameSerNo = gameSerNo +1;
-		var row = "<tr id='"+value['tscoreId']+"' class='dataRow'>"+
-			"<td class='ScoreRowHeader'>"+ gameSerNo +"</td>"+
-			"<td class='ScorePosition1' >"+ value[positions[0]] +"</td>"+
-			"<td class='ScorePosition2' >"+ value[positions[1]] +"</td>"+
-			"<td class='ScorePosition1'  >"+ value[positions[2]] +"</td>"+
-			"<td class='ScorePosition2' >"+ value[positions[3]] +"</td>"+
-			"</tr>";
-				
-		$('#scores tbody').append(row);
+		var newRow = document.createElement('tr');
+		newRow.id = value['tscore_id'];
+		newRow.className = 'dataRow';
+		var tdRowHeader = document.createElement('td');
+        tdRowHeader.className = 'ScoreRowHeader';
+        tdRowHeader.innerHTML = gameSerNo;
+        tdRowHeader.style.backgroundColor = bckClr;
+        var cellEast = document.createElement('td');
+        cellEast.innerHTML = value[positions[0]];
+        cellEast.className='ScorePosition1';
+        cellEast.style.backgroundColor = bckClr;
+        var cellSouth = document.createElement('td');
+        cellSouth.innerHTML = value[positions[1]];
+        cellSouth.className='ScorePosition2';
+        cellSouth.style.backgroundColor = bckClr;
+        var cellWest = document.createElement('td');
+        cellWest.innerHTML = value[positions[2]];
+        cellWest.className='ScorePosition1';
+        cellWest.style.backgroundColor = bckClr;
+        var cellNorth = document.createElement('td');
+        cellNorth.innerHTML = value[positions[3]];
+        cellNorth.className='ScorePosition2';
+        cellNorth.style.backgroundColor = bckClr;
+		newRow.appendChild(tdRowHeader);
+		newRow.appendChild(cellEast);
+		newRow.appendChild(cellSouth);
+		newRow.appendChild(cellWest);
+		newRow.appendChild(cellNorth);
+
+		var tbody = document.getElementById('scores').getElementsByTagName('tbody');
+		tbody[0].appendChild(newRow);
 			
 		//calculate total score for each position
 		for (var index in positions) {
