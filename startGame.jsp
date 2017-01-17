@@ -79,7 +79,7 @@
 		<link rel="stylesheet" type="text/css" href="css/startGameLayout.css">
 		
 		<title><%=WxMjConstants.AppTitle%></title>
-		
+
 	</head>
 
 	<body class="no-js">
