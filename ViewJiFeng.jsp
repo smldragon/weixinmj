@@ -6,7 +6,7 @@
     final String winnerClr = "#88ff88";
     final String winnerClrStyle="style='background-color:"+winnerClr+"';";
 	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
-	final String totalCellStyle="color: #ff0000; font-weight: bold;";  //标题颜色
+	final String totalCellStyle="color: #ff0000; font-weight: bold;";  //总分字体颜色
 	final String altBckColorStyle="background-color:"+altBckColor+";"; //得分行的另一种颜色
 %>
 <script>
@@ -17,7 +17,7 @@
 <div>
 	<div >
 		<div >
-			<h3 style="text-align:center">得分历史</h3>
+			<h3 style="text-align:center">每盘得分表</h3>
 		</div>
 		
 	</div>

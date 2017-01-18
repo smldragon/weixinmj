@@ -223,10 +223,11 @@ var score = function () {
         var rows = document.getElementById('scores').getElementsByTagName("tr");
         var rowCount = rows.length;
 
-        //don't remove first row which is header row
-        for(var i=rowCount-1;i>0;i--) {
+        //don't remove first row which is header row, don't remove second row, which is total row
+        for(var i=rowCount-1;i>1;i--) {
             rows[i].remove();
         }
+
         var tableData = jsonData['TableDataHandler'];
         //don't add first row which is total row
         for(var i=1;i<tableData.length;i++) {
@@ -356,7 +357,8 @@ var score = function () {
 			
 		//calculate total score for each position
 		for (var index in positions) {
-			positionTotal[index] = addPositionScore(index,value );	
+			positionTotal[index] = addPositionScore(index,value );
+			document.getElementById(positions[index]+"PlayerNameTotal").innerHTML = positionTotal[index];
 		}
 			
 		//calculate net scores for each positiond
