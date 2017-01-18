@@ -6,7 +6,7 @@
     final String winnerClr = "#88ff88";
     final String winnerClrStyle="style='background-color:"+winnerClr+"';";
 	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
-	final String totalCellStyle="color: #ff0000; font-weight: bold;";  //总分字体颜色
+	final String totalCellStyle="color:#A25E79; font-weight: bold;";  //总分字体颜色
 	final String altBckColorStyle="background-color:"+altBckColor+";"; //得分行的另一种颜色
 %>
 <script>
@@ -14,13 +14,27 @@
     score.setScoreTableRowBckClr('');
     score.setWinnerClr('<%=winnerClr%>');
 </script>
-<div>
-	<div >
-		<div >
-			<h3 style="text-align:center">每盘得分表</h3>
+<div style="height:100%;width:100%;">
+	<div style="height:8%;width:100%; background:url(/weixinmj/icon/RowHeadertable.jpg);background-repeat:repeat;  position: absolute; left: 0%; top: -0.1%; ">
+		<div  style="height:100%;width:15%;text-align:center;float:left;font-size:170%;line-height:200%;font-weight:900;">
+			<a href="#" title="返回" onClick="scoreHist.toggleScoreHist()" style="color:white;">
+				&#60;
+			</a>
+		</div>
+		
+		<div style="height:100%;width:70%;text-align:center;float:left;font-size:150%;line-height:250%;font-weight:600;color:white;color:white;">
+			每盘得分表
+		</div>
+		
+		<div  style="height:100%;width:15%;text-align:right;float:left;font-size:110%;line-height:320%;" >
+			<a href='#' title='刷新' onClick="score.refreshScore()" style="color:white;" >
+				刷新&nbsp;
+			</a>
 		</div>
 		
 	</div>
+	
+	<div style="height:92%;width:100%;position:relative;top:8%;">
 	<table id="scores" style="width:100%" >
 		<thead style="<%=titleColorStyle%>">
 
@@ -107,7 +121,8 @@
 		</tbody>
 			
 	</table>
-
+	</div>
+	<!--
 	<div class="weui-msg">
     <div class="weui-msg__opr-area" >
 		<div style="height:10%;width:100%;">
@@ -119,5 +134,7 @@
 		</div >
 		</div>
     </div>
-</div>
+	</div>
+	-->
+	
 </div>
