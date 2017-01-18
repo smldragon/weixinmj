@@ -6,6 +6,7 @@
     final String winnerClr = "#88ff88";
     final String winnerClrStyle="style='background-color:"+winnerClr+"';";
 	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
+	final String totalCellStyle="color: #ff0000; font-weight: bold;";  //标题颜色
 	final String altBckColorStyle="background-color:"+altBckColor+";"; //得分行的另一种颜色
 %>
 <script>
@@ -38,6 +39,21 @@
 					<div id='<%=positions[3]+"PlayerName"%>'><%=view.getPlayerDesc(3)%></div>
 				</td> <!--玩家名3-->
 			</tr>
+			<tr>
+            	<td class='ScoreRowHeader' style="<%=totalCellStyle%>">总分</td>
+            	<td class='ScorePosition1' style="<%=totalCellStyle%>">
+            		<div id='<%=positions[0]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[0]%></div>
+            	</td> <!--玩家0总分-->
+            	<td class='ScorePosition2' style="<%=totalCellStyle%>">
+            		<div id='<%=positions[1]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[1]%></div>
+            	</td> <!--玩家1总分-->
+            	<td class='ScorePosition1' style="<%=totalCellStyle%>">
+            		<div id='<%=positions[2]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[2]%></div>
+            	</td> <!--玩家2总分-->
+            	<td class='ScorePosition2' style="<%=totalCellStyle%>">
+            		<div id='<%=positions[3]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[3]%></div>
+            	</td> <!--玩家3总分-->
+            </tr>
 		</thead>
 
 		<tbody>
@@ -47,7 +63,7 @@
 			for(int rowIndex=0;rowIndex<scoreLength;rowIndex++) {
 				int [] scores = view.getScores(rowIndex);
 				String bckClrStyle;
-				if ( rowIndex %2 == 0) {
+				if ( rowIndex %2 == 1) {
 					bckClrStyle = "";
 				} else {
 					bckClrStyle = "style='"+altBckColorStyle+"'";
