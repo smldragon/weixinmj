@@ -24,8 +24,10 @@ th {
 tr {
 	width: 100%;
 	border: 1px solid #CCCCCC;
-	border-right: none;
-	border-left: none;	
+	/*border-right: none;
+	border-left: none;*/
+	padding-top:5px;
+	padding-bottom:5px;
 }
 td{
 	width: 100%;
