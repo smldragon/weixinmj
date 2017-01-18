@@ -139,7 +139,7 @@
 <div class="weui-msg_ZhuXiao" style="height:20%; width:100%;">
     <div class="divbtn1"   >
 		<div style="height:100%; width:100%; ">
-			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:40%; width:95%;margin-top:12%">得分纪录</a>
+			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:40%; width:95%;margin-top:12%">每盘得分表</a>
 		</div>
 	</div>
 </div>
