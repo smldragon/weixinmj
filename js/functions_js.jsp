@@ -1,6 +1,6 @@
 <%@ page language='java'  %>
 <%@ include file="/weixinmj/import_inc.jsp" %>
-
+//这个文件已经不用了 -- 2017-01-18
 function getAccessToken() {
 	var toFetchFromServer;
 	if ( typeof access_token_timestamp ==="undefined" ) {
