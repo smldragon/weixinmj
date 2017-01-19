@@ -24,14 +24,17 @@ th {
 tr {
 	width: 100%;
 	border: 1px solid #CCCCCC;
-	/*border-right: none;
-	border-left: none;*/
-	padding-top:5px;
-	padding-bottom:5px;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+	border-bottom: none; 	
+	padding-top:0px;
+	padding-bottom:0px;
 }
 td{
 	width: 100%;
-	border: 1px solid white;
+	border: 1px solid #ddd;
+	
 }
 thead {
 /**	display: inline-block; */

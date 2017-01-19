@@ -2,7 +2,7 @@
 <%@ include file="import_inc.jsp" %>
 
 <%
-    final String altBckColor = "#e8e8e8";
+    final String altBckColor = "#e8e8e8"; //双数行行背景颜色
     final String winnerClr = "#88ff88";
     final String winnerClrStyle="style='background-color:"+winnerClr+"';";
 	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
@@ -16,9 +16,9 @@
 </script>
 <div style="height:100%;width:100%;">
 	<div style="height:8%;width:100%; background:url(/weixinmj/icon/RowHeadertable.jpg);background-repeat:repeat;  position: absolute; left: 0%; top: -0.1%; ">
-		<div  style="height:100%;width:15%;text-align:center;float:left;font-size:170%;line-height:200%;font-weight:900;">
+		<div  style="height:100%;width:15%;text-align:center;float:left;font-size:110%;line-height:320%;font-weight:500;">
 			<a href="#" title="返回" onClick="scoreHist.toggleScoreHist()" style="color:white;">
-				&#60;
+				&#60;返回
 			</a>
 		</div>
 		
@@ -26,7 +26,7 @@
 			每盘得分表
 		</div>
 		
-		<div  style="height:100%;width:15%;text-align:right;float:left;font-size:110%;line-height:320%;" >
+		<div  style="height:100%;width:15%;text-align:right;float:left;font-size:110%;line-height:320%;font-weight:500;" >
 			<a href='#' title='刷新' onClick="score.refreshScore()" style="color:white;" >
 				刷新&nbsp;
 			</a>
@@ -53,7 +53,7 @@
 					<div id='<%=positions[3]+"PlayerName"%>'><%=view.getPlayerDesc(3)%></div>
 				</td> <!--玩家名3-->
 			</tr>
-			<tr>
+			<tr >
             	<td class='ScoreRowHeader' style="<%=totalCellStyle%>">总分</td>
             	<td class='ScorePosition1' style="<%=totalCellStyle%>">
             		<div id='<%=positions[0]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[0]%></div>
