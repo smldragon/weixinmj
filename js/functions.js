@@ -118,7 +118,7 @@ function consumeAccessToken(accessTokenConsumeFunction) {
 function restful(input) {
     var data;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", input.url, false);
+    xhr.open("POST", input.url, true);
     var dataStr;
     var contentType;
     if ( typeof input.data === 'undefined') {
