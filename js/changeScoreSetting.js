@@ -1,4 +1,5 @@
-$(document).ready(function() {
+//$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function(event) {
 	initWxConfig();
 	// webSocketObj is declared in Function.js -- XFZ@2016-08-25
 	//webSocketObj.setSocketOnOpenFunction(startGameOnOpen);

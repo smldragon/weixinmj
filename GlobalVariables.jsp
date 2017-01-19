@@ -33,6 +33,7 @@
 		mjJspPath : '<%="http://"+WxMjConstants.WxMjHost+"/"+WxMjConstants.WxMjRelativePath+"/"%>',
 		access_token_timestamp: '',
 		access_token_duration: '',
+		access_token: '',
 		isDebug: false,
 	
 		positions : ['<%=positions[0]%>','<%=positions[1]%>','<%=positions[2]%>','<%=positions[3]%>'], //{"east","south","west","north"}
@@ -63,7 +64,7 @@
  
 </script>
 
-<script src="js/jquery-3.0.0.min.js"></script>
+<!-- script src="js/jquery-3.0.0.min.js"></script -->
 <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 <script src="js/functions.js"></script>
 <script src="js/score.js"></script>

@@ -84,13 +84,13 @@ var webSocketObj = new function() {
 
 }();
 
-function getAccessToken() {
+function consumeAccessToken(accessTokenConsumeFunction) {
 	var toFetchFromServer;
-	if ( typeof access_token_timestamp ==="undefined" ) {
+	if ( typeof globalVariables.access_token_timestamp ==="undefined" ) {
 		toFetchFromServer = true;
 	} else {
 		var now = new Date().getTime();
-		if ( (now - access_token_timestamp )  > access_token_duration) {
+		if ( (now - globalVariables.access_token_timestamp )  > globalVariables.access_token_duration) {
 			toFetchFromServer = true;
 		}else {
 			toFetchFromServer = false;
@@ -98,25 +98,73 @@ function getAccessToken() {
 	}
 	
 	if ( toFetchFromServer) {
-		$.ajax({
-			url: mjServerUrl+wxAccessTokenAction, 
-			async: false, 
-			success: function(result){
-				var parsedData = JSON.parse(result);
-				access_token_timestamp =  parsedData.timestamp; //new Date().getTime();
-				access_token_duration = parsedData.expires_in*1000;
-				access_token = parsedData.access_token;
-			},
-			error: function(xhr, error){
-				console.debug(xhr); 
-				console.debug(error);
-				showMessage('ERROR MESG\n'+error);
-			}
-		});
+        restful( {
+            url: globalVariables.mjServerUrl+ globalVariables.wxAccessTokenAction,
+            success: function(result){
+                var parsedData = JSON.parse(result);
+                globalVariables.access_token_timestamp =  parsedData.timestamp; //new Date().getTime();
+                globalVariables.access_token_duration = parsedData.expires_in*1000;
+                globalVariables.access_token = parsedData.access_token;
+                accessTokenConsumeFunction(globalVariables.access_token);
+             },
+             error: function(xhr, error){
+                showTitledMessage('获取AccessToken错误',"错误码:"+error+"<br>xhr.statusText="+xhr.statusText);
+             }
+        });
+	} else {
+	    accessTokenConsumeFunction(globalVariables.access_token);
 	}
-	return access_token;
 }
+function restful(input) {
+    var data;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", input.url, false);
+    var dataStr;
+    var contentType;
+    if ( typeof input.data === 'undefined') {
+        dataStr = '';
+        contentType = "text/plain";
+    } else if ( typeof input.data === "string") {
+        dataStr = input.data;
+        contentType = "text/plain";
+    } else {
+        dataStr = JSON.stringify(input.data);
+        contentType = "application/json";
+    }
 
+    var charSet;
+    if ( typeof input.charSet === 'undefined') {
+        charSet = "utf-8";
+    } else {
+        charSet = input.charSet;
+    }
+
+    xhr.setRequestHeader('Content-Type', contentType+";"+charSet);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if ( xhr.status === 200 &&  typeof input.success !== 'undefined') {
+                if (!xhr.responseType || xhr.responseType === "text") {
+                    data = xhr.responseText;
+                } else if (xhr.responseType === "document") {
+                    data = xhr.responseXML;
+                } else {
+                   data = xhr.response;
+                }
+                input.success(data);
+            } else if ( typeof input.error !== 'undefined') {
+                input.error(xhr,xhr.status);
+            }
+        }
+    };
+    xhr.onerror = function() {
+        if ( typeof input.error !== 'undefined') {
+            input.error(xhr,xhr.status);
+        }else {
+            console.log(xhr);
+        }
+    };
+    xhr.send(dataStr);
+}
 function sendMessageToFriendCircle(message,link,imgUrl) {
 	
 	wx.onMenuShareTimeline({
@@ -352,20 +400,6 @@ var gameAction = function () {
 		    $('#'+pos+'_'+gameIdFromServer).attr("src", jsonData[capitalizeFirstLetter(pos)+'ImageUrl']);
 		    globalVariables.playerNames[i]=getPlayerName(pos,jsonData);
 		}
-		//$('#east_'+gameIdFromServer+'_PlayerName').text(jsonData.EastName);
-		//$('#west_'+gameIdFromServer+'_PlayerName').text(jsonData.WestName);
-		//$('#north_'+gameIdFromServer+'_PlayerName').text(jsonData.NorthName);
-		//$('#south_'+gameIdFromServer+'_PlayerName').text(jsonData.SouthName);
-						
-		//$('#east_'+gameIdFromServer).attr("src", jsonData.EastImageUrl);
-		//$('#west_'+gameIdFromServer).attr("src", jsonData.WestImageUrl);
-		//$('#north_'+gameIdFromServer).attr("src", jsonData.NorthImageUrl);
-		//$('#south_'+gameIdFromServer).attr("src", jsonData.SouthImageUrl);
-
-		//globalVariables.playerNames[0]=getPlayerName("east",jsonData);
-		//globalVariables.playerNames[1]=getPlayerName("south",jsonData);
-		//globalVariables.playerNames[2]=getPlayerName("west",jsonData);
-		//globalVariables.playerNames[3]=getPlayerName("north",jsonData);
 	}
 	function getPlayerName(pos,jsonData) {
 	    var serverValue = jsonData[capitalizeFirstLetter(pos)+"Name"];
@@ -606,15 +640,18 @@ function isObjectVisible(obj) {
 	}
 };
 function showToastSuccessPrompt(prompt,duration) {
-	$(document.documentElement).append('<div id="toast-success">'+
+    //var body = $(document.documentElement);
+    var body = document.body;
+	appendDiv(body,'<div id="toast-success">'+
 		'<div class="weui-mask_transparent"></div>'+
 		'<div class="weui-toast">'+
 		'<i class="weui-icon_toast"></i>'+
 		'<div><i class="weui-icon_toast weui-icon-success-no-circle" ></i></div>'+
 		'<p class="weui-toast__content">'+prompt+'</p>'+
 		'</div></div>');
-				
-	$("#toast-success").fadeOut(duration,function() {$("#toast-success").remove()} );
+	var toastSuccess = document.getElementById("toast-success");
+	toastSuccess.fadeOut(duration,function() {toastSuccess.remove()} );
+	//$("#toast-success").fadeOut(duration,function() {$("#toast-success").remove()} );
 };
 
 var loadingPrompt = function() {
@@ -622,7 +659,9 @@ var loadingPrompt = function() {
 	var loadingDivId = "loadingToast";
 	return {
 		show: function(prompt) {
-			$(document.documentElement).append(
+		    //var body = $(document.documentElement);
+            var body = document.body;
+			appendDiv(body,
 				'<div id= '+ loadingDivId +' >'+
 				'<div class="weui-mask_transparent"></div>'+
 				'<div class="weui-toast">'+
@@ -632,7 +671,8 @@ var loadingPrompt = function() {
 			);
 		},
 		hide: function(loadingSuccessPrompt) {
-			$("#"+loadingDivId).remove();
+		    var loadingDivVar = document.getElementById(loadingDivId);
+			loadingDivVar.remove();
 			if ( typeof(loadingSuccessPrompt) != 'undefined' && loadingSuccessPrompt != '') {
 				showToastSuccessPrompt(loadingSuccessPrompt,4000);
 			} 
@@ -665,8 +705,9 @@ var dialog = function() {
              }
 
             divContent = divContent +'</div>'+'</div>'+ '</div>';
-
-			$(document.documentElement).append(divContent);
+            //var body = $(document.documentElement);
+            var body = document.body;
+            appendDiv(body,divContent);
 		},
 		doOkFunction: function () {
             eval(this.okFunction);
@@ -677,10 +718,15 @@ var dialog = function() {
         	this.hide();
         },
         hide:   function () {
-            $("#"+dialogDiv).remove();
+           document.getElementById(dialogDiv).remove();
          }
 	};
 }();
+function appendDiv(parent,divHtml) {
+    var divContentObj = document.createElement('div');
+    divContentObj.innerHTML = divHtml;
+    parent.appendChild(divContentObj);
+}
 function showScoreConfigModifier(scoreConfigSettingType,scoreConfigValue) {
 	setScoreConfig(scoreConfigSettingType,scoreConfigValue);
 	scoreHist.toggleScoreConfig();

@@ -1,4 +1,5 @@
-$(document).ready(function() {
+//$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function(event) {
 	initWxConfig();
 	// socketOnOpenFunction is declared in Function.js to point to onOpen function -- XFZ@2016-08-25
 	socketOnOpenFunction = joinGame;
