@@ -2,11 +2,11 @@
 <%@ include file="import_inc.jsp" %>
 
 <%
-    final String altBckColor = "#e8e8e8"; //双数行行背景颜色
+    final String altBckColor = "#f2f2f2"; //双数行行背景颜色
     final String winnerClr = "#88ff88";
     final String winnerClrStyle="style='background-color:"+winnerClr+"';";
 	final String titleColorStyle="background-color:#EEEEEE;";  //标题颜色
-	final String totalCellStyle="color:#A25E79; font-weight: bold;";  //总分字体颜色
+	final String totalCellStyle="color:#E6421A; font-weight: bold;";  //总分字体颜色
 	final String altBckColorStyle="background-color:"+altBckColor+";"; //得分行的另一种颜色
 %>
 <script>
@@ -23,7 +23,7 @@
 		</div>
 		
 		<div style="height:100%;width:70%;text-align:center;float:left;font-size:150%;line-height:250%;font-weight:600;color:white;color:white;">
-			每盘得分表
+			得分表
 		</div>
 		
 		<div  style="height:100%;width:15%;text-align:right;float:left;font-size:110%;line-height:320%;font-weight:500;" >
@@ -53,18 +53,18 @@
 					<div id='<%=positions[3]+"PlayerName"%>'><%=view.getPlayerDesc(3)%></div>
 				</td> <!--玩家名3-->
 			</tr>
-			<tr >
-            	<td class='ScoreRowHeader' style="<%=totalCellStyle%>">总分</td>
-            	<td class='ScorePosition1' style="<%=totalCellStyle%>">
+			<tr style="background-color:#f2f2f2 !important;">
+            	<td class='ScoreRowHeader' style="<%=totalCellStyle%>;background-color:#22DDB8;">总分</td>
+            	<td class='ScorePosition1' style="<%=totalCellStyle%>;background-color:#22DDB8;">
             		<div id='<%=positions[0]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[0]%></div>
             	</td> <!--玩家0总分-->
-            	<td class='ScorePosition2' style="<%=totalCellStyle%>">
+            	<td class='ScorePosition2' style="<%=totalCellStyle%>;background-color:#22DDB8;">
             		<div id='<%=positions[1]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[1]%></div>
             	</td> <!--玩家1总分-->
-            	<td class='ScorePosition1' style="<%=totalCellStyle%>">
+            	<td class='ScorePosition1' style="<%=totalCellStyle%>;background-color:#22DDB8;">
             		<div id='<%=positions[2]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[2]%></div>
             	</td> <!--玩家2总分-->
-            	<td class='ScorePosition2' style="<%=totalCellStyle%>">
+            	<td class='ScorePosition2' style="<%=totalCellStyle%>;background-color:#22DDB8;">
             		<div id='<%=positions[3]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[3]%></div>
             	</td> <!--玩家3总分-->
             </tr>
