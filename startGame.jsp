@@ -35,41 +35,6 @@
 		String [] scoreSettingNames = ViewGame.getScoreSettingNames();
 %>
 <%@ include file="GlobalVariables.jsp" %>
-<script>
-	//webSocketObj.setOpenId('<%=sg.getOpenId()%>'); has to be executed before <html>
-	webSocketObj.setOpenId('<%=sg.getOpenId()%>');
-	globalVariables.positionTotal[0] = <%=positionTotal[0]%>;
-	globalVariables.positionTotal[1] = <%=positionTotal[1]%>;
-	globalVariables.positionTotal[2] = <%=positionTotal[2]%>;
-	globalVariables.positionTotal[3] = <%=positionTotal[3]%>;
-	score.setGameSerNo(<%=view.getScoreLength()%>);
-	score.setTGameId(<%=gameId%>);
-	gameAction.hostNickName = "<%=view.getHostNickName()%>";
-	gameAction.startTime = "<%=view.getStartTime()%>";
-	gameAction.endTime = "<%=view.getEndTime()%>";
-    gameAction.setIsHost(<%=isHost%>);
-	gameAction.setGameId('<%=gameId%>');
-	gameAction.setStartGame(true);
-	gameAction.setTempPlayerPrefix('<%=WxMjConstants.TempPlayerPrefix%>');
-	gameAction.setChangeGameAction('<%=WxMjConstants.ChangeGameAction%>');
-    gameAction.setExitGameMode('<%=WxMjConstants.ExitGameMode%>');
-    gameAction.setJoinGameMode('<%=WxMjConstants.JoinGameMode%>');
-    gameAction.setRequestGameMode('<%=WxMjConstants.RequestMode%>');
-    gameAction.setApproveMode('<%=WxMjConstants.ApproveMode%>');
-    positionConvertor.blankPlayerName = "<%=view.getBlankPlayerName()%>";
-	score.setRefreshScoreMode('<%=WxMjActions.refreshScores%>');
-	score.setAddScoreAction('<%=WxMjActions.addScores%>');
-	scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
-
-	scoreConfig.scoreSettingCodes = [];
-	scoreConfig.scoreSettingNames = [];
-	<% for (int i=0;i<scoreSettingCodes.length;i++) { %>
-	    var index = <%=i%>;
-	    scoreConfig.scoreSettingCodes[index]='<%=scoreSettingCodes[i]%>';
-    	scoreConfig.scoreSettingNames[index] ='<%=scoreSettingNames[i]%>';
-    <% } %>
-	//scoreConfig.setPlayerScoreConfig('<%=sg.getPlayerDefaultScoreSetting()%>');
-</script>
 <!doctype html>
 <html>
 	<head>
@@ -78,11 +43,43 @@
 		<script src="js/startGame.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/WeUI-1-1-0/weui.min.css">
 	    <link rel="stylesheet" type="text/css" href="css/wxmj.css">
-		
 		<link rel="stylesheet" type="text/css" href="css/startGameLayout.css">
-		
 		<title><%=WxMjConstants.AppTitle%></title>
+        <script>
+            //webSocketObj.setOpenId('<%=sg.getOpenId()%>'); has to be executed before <html>
+            webSocketObj.setOpenId('<%=sg.getOpenId()%>');
+            globalVariables.positionTotal[0] = <%=positionTotal[0]%>;
+            globalVariables.positionTotal[1] = <%=positionTotal[1]%>;
+            globalVariables.positionTotal[2] = <%=positionTotal[2]%>;
+            globalVariables.positionTotal[3] = <%=positionTotal[3]%>;
+            score.setGameSerNo(<%=view.getScoreLength()%>);
+            score.setTGameId(<%=gameId%>);
+            gameAction.hostNickName = "<%=view.getHostNickName()%>";
+            gameAction.startTime = "<%=view.getStartTime()%>";
+            gameAction.endTime = "<%=view.getEndTime()%>";
+            gameAction.setIsHost(<%=isHost%>);
+            gameAction.setGameId('<%=gameId%>');
+            gameAction.setStartGame(true);
+            gameAction.setTempPlayerPrefix('<%=WxMjConstants.TempPlayerPrefix%>');
+            gameAction.setChangeGameAction('<%=WxMjConstants.ChangeGameAction%>');
+            gameAction.setExitGameMode('<%=WxMjConstants.ExitGameMode%>');
+            gameAction.setJoinGameMode('<%=WxMjConstants.JoinGameMode%>');
+            gameAction.setRequestGameMode('<%=WxMjConstants.RequestMode%>');
+            gameAction.setApproveMode('<%=WxMjConstants.ApproveMode%>');
+            positionConvertor.blankPlayerName = "<%=view.getBlankPlayerName()%>";
+            score.setRefreshScoreMode('<%=WxMjActions.refreshScores%>');
+            score.setAddScoreAction('<%=WxMjActions.addScores%>');
+            scoreConfig.setGameScoreConfig('<%=view.getScoreSetting()%>');
 
+            scoreConfig.scoreSettingCodes = [];
+            scoreConfig.scoreSettingNames = [];
+            <% for (int i=0;i<scoreSettingCodes.length;i++) { %>
+                var index = <%=i%>;
+                scoreConfig.scoreSettingCodes[index]='<%=scoreSettingCodes[i]%>';
+                scoreConfig.scoreSettingNames[index] ='<%=scoreSettingNames[i]%>';
+            <% } %>
+            //scoreConfig.setPlayerScoreConfig('<%=sg.getPlayerDefaultScoreSetting()%>');
+        </script>
 	</head>
 
 	<body class="no-js">

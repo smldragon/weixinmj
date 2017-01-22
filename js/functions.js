@@ -693,7 +693,7 @@ var loadingPrompt = function() {
 		hide: function(loadingSuccessPrompt) {
 		    var loadingDivVar = document.getElementById(loadingDivId);
 		    if ( loadingDivVar != null ) {
-			    document.body.removeChild(loadingDivVar);
+			    loadingDivVar.remove();
 			}
 			if ( typeof(loadingSuccessPrompt) != 'undefined' && loadingSuccessPrompt != '') {
 				showToastSuccessPrompt(loadingSuccessPrompt,4000);
