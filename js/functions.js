@@ -412,13 +412,16 @@ var gameAction = function () {
 	function populateGameInfo(jsonData) {
 		
 		var gameIdFromServer = jsonData[globalVariables.GameIdName];
+		var scoresDiv = document.getElementById("scores");
 		for(var i=0;i<4;i++) {
 		    var pos = globalVariables.positions[i];
-		    document.getElementById(pos+'_'+gameIdFromServer+'_PlayerName').innerHTML=jsonData[capitalizeFirstLetter(pos)+'Name'];
+		    var playerName = jsonData[capitalizeFirstLetter(pos)+'Name'];
+		    document.getElementById(pos+'_'+gameIdFromServer+'_PlayerName').innerHTML=playerName;
 		    document.getElementById(pos+'_'+gameIdFromServer).setAttribute("src", jsonData[capitalizeFirstLetter(pos)+'ImageUrl']);
-		    //$('#'+pos+'_'+gameIdFromServer+'_PlayerName').text(jsonData[capitalizeFirstLetter(pos)+'Name']);
-		    //$('#'+pos+'_'+gameIdFromServer).attr("src", jsonData[capitalizeFirstLetter(pos)+'ImageUrl']);
 		    globalVariables.playerNames[i]=getPlayerName(pos,jsonData);
+		    //修改得分表的位置行
+		    var playerDivInScoresTable = getElementFromParent(scoresDiv,pos+"PlayerName");
+		    playerDivInScoresTable.innerHTML = playerName;
 		}
 	}
 	function getPlayerName(pos,jsonData) {
