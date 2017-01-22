@@ -41,6 +41,7 @@
 		positionNet : new Array(), //赢分
 		posDisp : ['<%=posDisp[0]%>','<%=posDisp[1]%>','<%=posDisp[2]%>','<%=posDisp[3]%>'],           //{"东","南","西","北"}
 	    playerNames: [], //set in functions.js, gameAction.populateGameInfo
+	    BlankPlayerName : '<%=WxMjConstants.BlankPlayerName%>',
 		webSocketScoreEvent : '<%=WxMjConstants.WebSocketScoreEvent%>',
 		webSocketGameEvent : '<%=WxMjConstants.WebSocketGameEvent%>',
 		webSocketScoreConfigSettingEvent: '<%=WxMjConstants.WebSocketScoreConfigSettingEvent%>',

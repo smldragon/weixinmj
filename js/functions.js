@@ -45,7 +45,7 @@ var webSocketObj = new function() {
 			}
 			if ( socket.readyState !== 1) {
 			    loadingPrompt.hide();
-				showMessage('网络似乎有问题，请稍后再试');
+				dispatchError(null,null,'网络似乎有问题，请稍后再试');
 				return;
 			} 
 
@@ -62,25 +62,31 @@ var webSocketObj = new function() {
 	function callBack(msg) {
 			
 		var messageEvent = msg; //msg.originalEvent;
-		var jsonData = jQuery.parseJSON(messageEvent.data);
+		var jsonData = JSON.parse(messageEvent.data);
 		
 		var err = jsonData[ErrMsgHandler];
 		var type = jsonData[WebSocketEventTypeHandler];
 		loadingPrompt.hide();
-		for (var index in callBackListeners) {
-			var listener = callBackListeners[index];
-			if ( type === listener.getType()) {
-				if ( err === undefined) {
-					err = '';
-				}
-				if ( err != '') {
-					listener.onError(jsonData,err);
-				} else {
-					listener.onSuccess(jsonData);
-				}
-			}
-		}
+		dispatchError(type,jsonData,err);
 	};
+	function dispatchError(type,jsonData,err) {
+	    for (var index in callBackListeners) {
+    		var listener = callBackListeners[index];
+    		if ( type === null || type === listener.getType()) {
+    		    if ( err === null || typeof(err) === 'undefined' ) {
+    			    err = '';
+    			}
+    			if ( err !== '' && typeof listener.onError === 'function') {
+    				listener.onError(jsonData,err);
+    				if ( type === null) {
+    				    break; //for err and broadcast to all ( type===null), only need to process one time
+                    }
+    			} else if ( typeof listener.onSuccess === 'function' ) {
+    				listener.onSuccess(jsonData);
+    			}
+    		}
+    	}
+	}
 
 }();
 
@@ -241,9 +247,14 @@ var gameAction = function () {
 		
 		getType: function(){ return webSocketGameEvent;},
 		onError: function(jsonData,err) {
+		    isPosting = false;
 		    loadingPrompt.hide('');
-            populateGameInfo(jsonData);
-            showMessage(err);
+		    showMessage(err);
+		    if ( jsonData !== null ) {
+		        if ( jsonData["code"] !== "SeatOccupied"){
+                    populateGameInfo(jsonData);
+                 }
+             }
 		},
 		onSuccess: function(jsonData) {
 		    isPosting = false;
@@ -251,7 +262,7 @@ var gameAction = function () {
 			gameAction.jsonData = jsonData;
 			//WebSocketEventActionModeHandler is defined  in GlobalVariables.jsp
 			var mode = jsonData[WebSocketEventActionModeHandler];
-			var gameIdFromServer = jsonData['GameId'];
+			var gameIdFromServer = jsonData[globalVariables.GameIdName];
 			if ( mode === 'insert' || mode ==='update' || mode ==='exitGame') {
 				
 				if (  requestPosition === false || startGame === true ) {
@@ -286,7 +297,7 @@ var gameAction = function () {
 	}	
 	webSocketObj.addListener(setPlayer);
 	return {
-		jsonData: '',
+        jsonData: '',
 		joinGameByMenualUser(menualUserName,pos) {
 		    this.joinGameAtPosByUserName(gameAction.getTempPlayerPrefix()+menualUserName,gameAction.getGameId(),pos,'...',gameAction.getApproveMode());
 		},
@@ -296,6 +307,12 @@ var gameAction = function () {
                 enterTempPlayer.showEntry(pos);
              } else {
                 var openId = webSocketObj.getOpenId();
+                var posIndex = positionConvertor.getPositionIndex(pos);
+                if ( globalVariables.playerNames[posIndex] !== globalVariables.BlankPlayerName &&
+                           globalVariables.playerNames[posIndex] !== globalVariables.posDisp[posIndex] ) {
+                    showMessage("请选择一个空位置");
+                    return;
+                }
                 var gameId = gameAction.getGameId();
                 this.joinGameAtPosByUserName(openId,gameId,pos,'等待同意',gameAction.getRequestGameMode());
              }
@@ -319,14 +336,15 @@ var gameAction = function () {
             document.getElementById(pos+'_'+gameId).setAttribute("class","icon");
 
 			//server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
-			var jsonString = {};
-			jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
-			jsonString[globalVariables.MessageModeHandler] = mode;
-			jsonString[globalVariables.GameIdName] = gameId;
-			jsonString['position'] = pos;
-			jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
-			jsonString[globalVariables.OpenIdName] = userName;
-			webSocketObj.sendData("",JSON.stringify(jsonString));
+			var json = {};
+			json[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
+			json[globalVariables.MessageModeHandler] = mode;
+			json[globalVariables.GameIdName] = gameId;
+			json['position'] = pos;
+			json[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
+			json[globalVariables.OpenIdName] = userName;
+			var jsonString = JSON.stringify(json);
+			webSocketObj.sendData("",jsonString);
 		},
 		setIsHost: function(isHost_) {
 		    isHost = isHost_;
@@ -379,13 +397,13 @@ var gameAction = function () {
          setTempPlayerPrefix: function(TempPlayerPrefix_) {
             TempPlayerPrefix = TempPlayerPrefix_;
          },
-		postRequest: function( mode) {
+		postRequest: function(mode) {
              //server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
               var jsonString = {};
               jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
               jsonString[globalVariables.MessageModeHandler] = mode;
-              jsonString[globalVariables.OpenIdName] = this.jsonData.openId;
-              jsonString[globalVariables.GameIdName] = this.jsonData.gameId;
+              jsonString[globalVariables.OpenIdName] = this.jsonData[globalVariables.OpenIdName];
+              jsonString[globalVariables.GameIdName] = this.jsonData[globalVariables.GameIdName];
               jsonString['position'] = this.jsonData.position;
               jsonString[globalVariables.WebSocketEventTypeHandler] = webSocketGameEvent;
               webSocketObj.sendData("",JSON.stringify(jsonString));
@@ -393,11 +411,13 @@ var gameAction = function () {
 	};
 	function populateGameInfo(jsonData) {
 		
-		var gameIdFromServer = jsonData['GameId'];
+		var gameIdFromServer = jsonData[globalVariables.GameIdName];
 		for(var i=0;i<4;i++) {
 		    var pos = globalVariables.positions[i];
-		    $('#'+pos+'_'+gameIdFromServer+'_PlayerName').text(jsonData[capitalizeFirstLetter(pos)+'Name']);
-		    $('#'+pos+'_'+gameIdFromServer).attr("src", jsonData[capitalizeFirstLetter(pos)+'ImageUrl']);
+		    document.getElementById(pos+'_'+gameIdFromServer+'_PlayerName').innerHTML=jsonData[capitalizeFirstLetter(pos)+'Name'];
+		    document.getElementById(pos+'_'+gameIdFromServer).setAttribute("src", jsonData[capitalizeFirstLetter(pos)+'ImageUrl']);
+		    //$('#'+pos+'_'+gameIdFromServer+'_PlayerName').text(jsonData[capitalizeFirstLetter(pos)+'Name']);
+		    //$('#'+pos+'_'+gameIdFromServer).attr("src", jsonData[capitalizeFirstLetter(pos)+'ImageUrl']);
 		    globalVariables.playerNames[i]=getPlayerName(pos,jsonData);
 		}
 	}
@@ -672,7 +692,9 @@ var loadingPrompt = function() {
 		},
 		hide: function(loadingSuccessPrompt) {
 		    var loadingDivVar = document.getElementById(loadingDivId);
-			loadingDivVar.remove();
+		    if ( loadingDivVar != null ) {
+			    document.body.removeChild(loadingDivVar);
+			}
 			if ( typeof(loadingSuccessPrompt) != 'undefined' && loadingSuccessPrompt != '') {
 				showToastSuccessPrompt(loadingSuccessPrompt,4000);
 			} 
@@ -761,6 +783,14 @@ var positionConvertor = function () {
     return {
         blankPlayerName: '',
         convertToPlayerNameStatus: false,
+        getPositionIndex: function(pos) {
+             for(var i=0;i<globalVariables.positions.length;i++) {
+                if ( globalVariables.positions[i] === pos) {
+                    return i;
+                }
+             }
+             return -1;
+        },
         convertToDisplay(posName) {
             for(var i=0;i<globalVariables.positions.length;i++) {
                 if ( globalVariables.positions[i] === posName) {

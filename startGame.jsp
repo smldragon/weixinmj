@@ -10,6 +10,9 @@
 			sg.setOpenIdAccessCode(code);
 		} 
 		String gameIdStr = request.getParameter(WxMjConstants.GameIdName);
+		if ( gameIdStr == null) {
+		    gameIdStr = request.getParameter("gameId");
+		}
 		if ( gameIdStr != null) {
 			sg.setTgameId(Integer.parseInt(gameIdStr));
 		}

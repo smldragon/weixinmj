@@ -1,5 +1,5 @@
-//$(document).ready(function() {
-document.addEventListener("DOMContentLoaded", function(event) {
+$(document).ready(function() {
+	
 	$("#testButton").click(function(){
 		$.ajax({
 			url: "http://mjoosbt.ddns.net/wxmj?timestamp=1462116203&nonce=2111577250&signature=cc019d848cda9cd9ccd27d3b00c960728aca946f&echostr=580920519105167345&action=TestMj", 
