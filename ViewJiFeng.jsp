@@ -16,17 +16,17 @@
 </script>
 <div style="height:100%;width:100%;">
 	<div style="height:8%;width:100%; background:url(/weixinmj/icon/RowHeadertable.jpg);background-repeat:repeat;  position: absolute; left: 0%; top: -0.1%; ">
-		<div  style="height:100%;width:15%;text-align:center;float:left;font-size:110%;line-height:320%;font-weight:500;">
+		<div  style="height:100%;width:20%;text-align:center;float:left;font-size:120%;line-height:320%;font-weight:700;">
 			<a href="#" title="返回" onClick="scoreHist.toggleScoreHist()" style="color:white;">
-				&#60;返回
+				&#60; 返回
 			</a>
 		</div>
 		
-		<div style="height:100%;width:70%;text-align:center;float:left;font-size:150%;line-height:250%;font-weight:600;color:white;color:white;">
+		<div style="height:100%;width:60%;text-align:center;float:left;font-size:150%;line-height:250%;font-weight:600;color:white;color:white;">
 			得分表
 		</div>
 		
-		<div  style="height:100%;width:15%;text-align:right;float:left;font-size:110%;line-height:320%;font-weight:500;" >
+		<div  style="height:100%;width:20%;text-align:right;float:left;font-size:120%;line-height:320%;font-weight:700;" >
 			<a href='#' title='刷新' onClick="score.refreshScore()" style="color:white;" >
 				刷新&nbsp;
 			</a>
@@ -54,17 +54,17 @@
 				</td> <!--玩家名3-->
 			</tr>
 			<tr style="background-color:#f2f2f2 !important;">
-            	<td class='ScoreRowHeader' style="<%=totalCellStyle%>;background-color:#22DDB8;">总分</td>
-            	<td class='ScorePosition1' style="<%=totalCellStyle%>;background-color:#22DDB8;">
+            	<td class='ScoreRowHeader' style="<%=totalCellStyle%>;background-color:#61B34D;">总分</td>
+            	<td class='ScorePosition1' style="<%=totalCellStyle%>;background-color:#61B34D;">
             		<div id='<%=positions[0]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[0]%></div>
             	</td> <!--玩家0总分-->
-            	<td class='ScorePosition2' style="<%=totalCellStyle%>;background-color:#22DDB8;">
+            	<td class='ScorePosition2' style="<%=totalCellStyle%>;background-color:#61B34D;">
             		<div id='<%=positions[1]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[1]%></div>
             	</td> <!--玩家1总分-->
-            	<td class='ScorePosition1' style="<%=totalCellStyle%>;background-color:#22DDB8;">
+            	<td class='ScorePosition1' style="<%=totalCellStyle%>;background-color:#61B34D;">
             		<div id='<%=positions[2]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[2]%></div>
             	</td> <!--玩家2总分-->
-            	<td class='ScorePosition2' style="<%=totalCellStyle%>;background-color:#22DDB8;">
+            	<td class='ScorePosition2' style="<%=totalCellStyle%>;background-color:#61B34D;">
             		<div id='<%=positions[3]+"PlayerNameTotal"%>'><%=view.getPositionTotal()[3]%></div>
             	</td> <!--玩家3总分-->
             </tr>
