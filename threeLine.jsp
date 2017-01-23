@@ -7,7 +7,7 @@
 			<nav id="topNav" style="width:100%;height:100%;">
 				<ul style="width:100%;height:100%;">
 					<li style="width:100%;height:100%;">
-						<a href="#" title="更多菜单" >
+						<a href="#" title="更多菜单" style="line-height:250%;">
 							&nbsp;&nbsp;&#9776;
 						</a>
 						<ul class="last"  style="background:url(/weixinmj/icon/RowHeadertable.jpg) repeat 0px center;">
@@ -19,7 +19,7 @@
 							
 							<li class="last" >
 								<a href="#" title="ScoreConfig"onClick="">
-									测试
+									关于
 								</a>
 							</li>	
 							
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		
-		<div class="column" style="height:100%;width:15%;text-align:right;float:left;font-size:70%;line-height:370%;" >
+		<div class="column" style="height:100%;width:15%;text-align:right;float:left;font-size:70%;line-height:350%;font-weight:600;" >
 			<a href='#' title='退出本局' onClick="exitGame.requestExit()" style="color:white;" >
 				退出&nbsp;
 			</a>
