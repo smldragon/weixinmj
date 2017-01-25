@@ -13,3 +13,6 @@ function searchGameOnOpen(msg) {
 	//$(socket).bind('message',setPlayers); 
 	//webSocketObj.bind(gameAction.setPlayers);
 }
+function joinAtPosWithGameId(gameId,pos) {
+     window.location.href = 'startGame.jsp?'+globalVariables.OpenIdName+'='+webSocketObj.getOpenId()+'&'+globalVariables.GameIdName+'='+gameId+'&position='+pos;
+}
