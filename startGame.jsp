@@ -33,6 +33,11 @@
 
 		String [] scoreSettingCodes = ViewGame.getScoreSettingCodes();
 		String [] scoreSettingNames = ViewGame.getScoreSettingNames();
+
+		String initialRequestPos = request.getParameter("position");
+		if ( initialRequestPos == null) {
+		    initialRequestPos = "";
+		}
 %>
 <%@ include file="GlobalVariables.jsp" %>
 <!doctype html>
@@ -46,6 +51,7 @@
 		<link rel="stylesheet" type="text/css" href="css/startGameLayout.css">
 		<title><%=WxMjConstants.AppTitle%></title>
         <script>
+            var initialRequestPos = '<%=initialRequestPos%>';
             //webSocketObj.setOpenId('<%=sg.getOpenId()%>'); has to be executed before <html>
             webSocketObj.setOpenId('<%=sg.getOpenId()%>');
             globalVariables.positionTotal[0] = <%=positionTotal[0]%>;
