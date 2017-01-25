@@ -61,19 +61,19 @@
 		%>
 		
 				<div class='row' id='<%=i%>'  >
-					<div class='positionColumn' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[0]%>')" > 
+					<div class='positionColumn' onClick="joinAtPosWithGameId('<%=gameId%>','<%=positions[0]%>')" >
 						<img id='<%=positions[0]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(0)%>' >
 						<div id='<%=positions[0]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(0)%></div>
 					</div>
-					<div class='positionColumn' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[1]%>')" > 
+					<div class='positionColumn' onClick="joinAtPosWithGameId('<%=gameId%>','<%=positions[1]%>')" >
 						<img id='<%=positions[1]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(1)%>' >
 						<div id='<%=positions[1]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(1)%></div>
 					</div>
-					<div class='positionColumn' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[2]%>')" > 
+					<div class='positionColumn' onClick="joinAtPosWithGameId('<%=gameId%>','<%=positions[2]%>')" >
 						<img id='<%=positions[2]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(2)%>' >
 						<div id='<%=positions[2]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(2)%></div>
 					</div>
-					<div class='positionColumn' onClick="gameAction.joinGameAtPos('<%=gameId%>','<%=positions[3]%>')" > 
+					<div class='positionColumn' onClick="joinAtPosWithGameId('<%=gameId%>','<%=positions[3]%>')" >
 						<img id='<%=positions[3]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(3)%>' >
 						<div id='<%=positions[3]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(3)%></div>
 					</div>
