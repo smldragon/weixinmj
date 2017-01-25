@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById('pageTitle1').innerHTML  = htmlText;
 		var htmlText = "<font size=2>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
     document.getElementById('pageTitle2').innerHTML  = htmlText;
+
+    if ( initialRequestPos !== '') {
+        //initialRequestPos is defined in startGame.jsp <head> section
+        gameAction.joinGameAtPos(initialRequestPos);
+    }
 });
 function startGameOnOpen(msg) {
 	//$(socket).bind('message',handleScoreWebSocketResponse); 
