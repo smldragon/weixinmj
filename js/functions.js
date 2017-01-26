@@ -1,7 +1,7 @@
 var webSocketObj = new function() {
 	//define a variable to function which is assigned in startGame.js etc.... -- XFZ@2016-08-25
 	var callBackListeners = new Array();
-	var listenerIndex = 0;
+	var socketOpenListeners = new Array();
 	var socket;
 	var mjServerHost = globalVariables.mjServerHost;
 	var mjServletName = globalVariables.mjServletName;
@@ -31,6 +31,10 @@ var webSocketObj = new function() {
 				socket = new WebSocket("ws://"+mjServerHost+"/"+mjServletName+"?"+openIdName+"="+openId+"&name="+name, WeiXinMaJiangProtocol);
 				socket.onopen = function(msg) {
 				    console.log('Socket Connection Has Been Established!');
+				    for (var index in socketOpenListeners) {
+                        var listener = socketOpenListeners[index];
+                        listener.onOpen(msg);
+                    }
 			    };
 			    socket.onclose = function(msg) {
                 	console.log('Socket Connection Has Been CLOSED!');
@@ -39,7 +43,10 @@ var webSocketObj = new function() {
 			}
 		},
 		sendData: function (prompt,data) {
-	
+		//socket.readyStatus: CONNECTING(0) -- The connection is not yet open.
+        //                    OPEN(1)-- The connection is open and ready to communicate.
+        //                    CLOSING(2) --	The connection is in the process of closing.
+        //                   CLOSED(3) --	The connection is closed or couldn't be opened.
 			if ( typeof(socket) === 'undefined' || socket === null || socket.readyState !== 1) {
 				this.initWebSocket('trying to re-connect ');
 			}
@@ -55,9 +62,17 @@ var webSocketObj = new function() {
 			socket.send(data);
 		},
 		addListener: function(l) {
-			callBackListeners[listenerIndex] = l;
-			listenerIndex++;
-		}
+			callBackListeners[callBackListeners.length] = l;
+		},
+		addSocketOpenListener: function(l) {
+		    socketOpenListeners[socketOpenListeners.length] = l;
+		},
+		rmSocketOpenListener: function(l) {
+            var index = socketOpenListeners.indexOf(l);
+            if ( index > -1 ) {
+                socketOpenListeners.splice(index, 1);
+            }
+        }
 	};
 	function callBack(msg) {
 			

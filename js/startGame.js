@@ -1,8 +1,10 @@
 //$(document).ready(function() {
 document.addEventListener("DOMContentLoaded", function(event) {
 	initWxConfig();
-	// webSocketObj is declared in Function.js -- XFZ@2016-08-25
-	//webSocketObj.setSocketOnOpenFunction(startGameOnOpen);
+	//initialRequestPos is defined in startGame.jsp <head> section
+	 if ( initialRequestPos !== '') {
+        webSocketObj.addSocketOpenListener(initGameJoining);
+     }
 	webSocketObj.initWebSocket('startGame');
 	sendMessageToFriendCircle('我已经开局了，欢迎加入','','');	
 	score.calculateNetScores();
@@ -11,12 +13,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById('pageTitle1').innerHTML  = htmlText;
 		var htmlText = "<font size=2>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
     document.getElementById('pageTitle2').innerHTML  = htmlText;
-
-    if ( initialRequestPos !== '') {
-        //initialRequestPos is defined in startGame.jsp <head> section
-        gameAction.joinGameAtPos(initialRequestPos);
-    }
 });
+var initGameJoining = {
+    //initialRequestPos is defined in startGame.jsp <head> section
+    onOpen: function() {
+        gameAction.joinGameAtPos(initialRequestPos);
+        webSocketObj.rmSocketOpenListener(this);
+     }
+}
 function startGameOnOpen(msg) {
 	//$(socket).bind('message',handleScoreWebSocketResponse); 
 	//$(socket).bind('message',setPlayers); 
