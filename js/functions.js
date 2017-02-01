@@ -62,8 +62,19 @@ var webSocketObj = new function() {
 			socket.send(data);
 		},
 		addListener: function(l) {
-			callBackListeners[callBackListeners.length] = l;
+		    var index = callBackListeners.indexOf(l);
+            if ( index < 0 ) {
+ console.log('add listener, type='+l.getType());
+                callBackListeners[callBackListeners.length] = l;
+            }
 		},
+		rmListener: function(l) {
+        	 var index = callBackListeners.indexOf(l);
+             if ( index > -1 ) {
+  console.log('RM listener, type='+l.getType());
+                callBackListeners.splice(index, 1);
+             }
+        },
 		addSocketOpenListener: function(l) {
 		    socketOpenListeners[socketOpenListeners.length] = l;
 		},
@@ -241,6 +252,7 @@ function initWxConfig() {
 }
 var gameAction = function () {
     var hostNickName;
+    var beingKickedOffMesg;
     var startTime;
     var endTime;
     var isHost;
@@ -269,6 +281,9 @@ var gameAction = function () {
 		        if ( jsonData["code"] !== "SeatOccupied"){
                     populateGameInfo(jsonData);
                  }
+                if ( beingKickedOffMesg === err) {
+//                   webSocketObj.rmListener(gameAction.getPlayerListener());
+                 }
              }
 		},
 		onSuccess: function(jsonData) {
@@ -278,7 +293,7 @@ var gameAction = function () {
 			//WebSocketEventActionModeHandler is defined  in GlobalVariables.jsp
 			var mode = jsonData[WebSocketEventActionModeHandler];
 			var gameIdFromServer = jsonData[globalVariables.GameIdName];
-			if ( mode === 'insert' || mode ==='update' || mode ==='exitGame') {
+			if ( mode === 'insert' || mode ==='update') {
 				
 				if (  requestPosition === false || startGame === true ) {
 					populateGameInfo(jsonData);
@@ -313,6 +328,9 @@ var gameAction = function () {
 	webSocketObj.addListener(setPlayer);
 	return {
         jsonData: '',
+        getPlayerListener : function() {
+            return setPlayer;
+        },
 		joinGameByMenualUser(menualUserName,pos) {
 		    this.joinGameAtPosByUserName(gameAction.getTempPlayerPrefix()+menualUserName,gameAction.getGameId(),pos,'...',gameAction.getApproveMode());
 		},
@@ -343,7 +361,7 @@ var gameAction = function () {
 			    showMessage('请等待上一次任务结束');
 			    return;
 			}
-
+            webSocketObj.addListener(this.getPlayerListener());
 			isPosting = true;
 			requestPosition = true;
             document.getElementById(pos+'_'+gameId+'_PlayerName').innerHTML = waitPrompt;
@@ -412,6 +430,9 @@ var gameAction = function () {
          setTempPlayerPrefix: function(TempPlayerPrefix_) {
             TempPlayerPrefix = TempPlayerPrefix_;
          },
+         setBeingKickedOffMesg: function(beingKickedOffMesg_) {
+            beingKickedOffMesg = beingKickedOffMesg_;
+         },
 		postRequest: function(mode) {
              //server filters listener by type, WebSocketEventTypeHandler is defined in js_inc.jsp -- XFZ@2016-08-25,
               var jsonString = {};
@@ -425,7 +446,6 @@ var gameAction = function () {
         }
 	};
 	function populateGameInfo(jsonData) {
-		
 		var gameIdFromServer = jsonData[globalVariables.GameIdName];
 		var scoresDiv = document.getElementById("scores");
 		for(var i=0;i<4;i++) {

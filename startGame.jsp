@@ -60,6 +60,7 @@
             globalVariables.positionTotal[3] = <%=positionTotal[3]%>;
             score.setGameSerNo(<%=view.getScoreLength()%>);
             score.setTGameId(<%=gameId%>);
+            gameAction.setBeingKickedOffMesg("<%=WxMjConstants.BeingKickedOffMesg%>");
             gameAction.hostNickName = "<%=view.getHostNickName()%>";
             gameAction.startTime = "<%=view.getStartTime()%>";
             gameAction.endTime = "<%=view.getEndTime()%>";

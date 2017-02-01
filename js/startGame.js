@@ -59,7 +59,9 @@ var exitGame = function() {
            	webSocketObj.sendData('正在退出...',JSON.stringify(jsonString));
         },
         onSuccess: function(jsonData) {
-             alert('remove listener at startGame.js line 51');
+
+            webSocketObj.rmListener(gameAction.getPlayerListener());
+
         	 if ( gameAction.getIsHost() === true) {
                     window.history.back();
         	 }
@@ -112,6 +114,7 @@ var enterTempPlayer = function() {
 		    this.pos = pos_;
 		    this.tempPlayerEntryDivObj = document.getElementById(tempPlayerEntryDiv);
 		    this.tempPlayerEntryDivObj.style.display='';
+		    document.getElementById(tempPlayerNameInputId).focus();
 		},
 		doOkFunction: function () {
 		    var tempPlayerName = document.getElementById(tempPlayerNameInputId).value;
@@ -184,6 +187,7 @@ var addScoreDialog = function() {
                 if ( globalVariables.positions[i]=== winPos) {
                     var winnerInputField = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
                     winnerInputField.name = globalVariables.positions[i]+'input';
+                    winnerInputField.focus();
                     continue;
                 }
                 var loserDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count);
