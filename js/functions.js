@@ -282,6 +282,7 @@ var gameAction = function () {
                     populateGameInfo(jsonData);
                  }
                 if ( beingKickedOffMesg === err) {
+                    //don't remove listener, because this user is still on the game's observer list
 //                   webSocketObj.rmListener(gameAction.getPlayerListener());
                  }
              }
@@ -797,6 +798,9 @@ function getElementInsideContainer(containerID, childID) {
 }
 function getElementFromParent(parent, childID) {
     var elm = {};
+    if ( parent === null) {
+        return elm;
+    }
     var elms = parent.getElementsByTagName("*");
     for (var i = 0; i < elms.length; i++) {
         if (elms[i].id === childID) {
