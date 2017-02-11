@@ -22,6 +22,7 @@
 		ErrMsgHandler : '<%=StringConstants.ErrMsgHandler%>',
 		OpenIdName : '<%=WeiXinConstants.OpenIdName%>',
 		GameIdName : '<%=WxMjConstants.GameIdName%>',
+		GameActionExitGameMode:'<%=WxMjConstants.ExitGameMode%>',
 		WeiXinMaJiangProtocol : '<%=WxMjConstants.WeiXinMaJiangProtocol%>',
 		MessageModeHandler: '<%=StringConstants.MessageModeHandler%>',
         MessageActionHandler: '<%=StringConstants.MessageActionHandler%>',

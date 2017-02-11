@@ -269,6 +269,9 @@ var gameAction = function () {
 	var approveMode;
 	var isPosting = false;
 	var joinPos;
+	var postExitAction_toSearch = "postExitAction_toSearch";
+	var postExitAction_hide = "postExitAction_hide";
+	var postExitAction_update = "postExitAction_update";
 	//a websocket call back function bound in startGame.js
 	var setPlayer = {
 		
@@ -294,7 +297,9 @@ var gameAction = function () {
 			//WebSocketEventActionModeHandler is defined  in GlobalVariables.jsp
 			var mode = jsonData[WebSocketEventActionModeHandler];
 			var gameIdFromServer = jsonData[globalVariables.GameIdName];
-			if ( mode === 'insert' || mode ==='update') {
+			if ( mode === globalVariables.GameActionExitGameMode) {
+                processGameExit(jsonData);
+            } else if ( mode === 'insert' || mode ==='update') {
 				
 				if (  requestPosition === false || startGame === true ) {
 					populateGameInfo(jsonData);
@@ -459,6 +464,46 @@ var gameAction = function () {
 		    var playerDivInScoresTable = getElementFromParent(scoresDiv,pos+"PlayerName");
 		    playerDivInScoresTable.innerHTML = playerName;
 		}
+	}
+	function processGameExit(jsonData) {
+
+	    var postExitAction;
+	    var removedGameDiv;
+	    if ( isHost && jsonData["ExitRequestorOpenId"] === webSocketObj.getOpenId() ) {
+	       postExitAction = postExitAction_toSearch;
+	    }else {
+	        var removedGameId = jsonData[globalVariables.GameIdName];
+	        var elems = document.getElementsByName("GameId:"+removedGameId);
+	        if ( elems.constructor === NodeList && elems.length > 0 ) {
+	            removedGameDiv = elems[0];
+                if ( removedGameDiv.tagName === "DIV") {
+                    postExitAction = postExitAction_hide;
+                }else{
+                     //don't know what scenario it is
+                    postExitAction = postExitAction_hide;
+                }
+	        } else {
+	             //this scenario is non-host player is at start page, simply update position info
+	             if (jsonData["IsRequestedByHost"] === "true" ) {
+	                 postExitAction = postExitAction_toSearch;
+	             } else {
+	                postExitAction = postExitAction_update;
+	             }
+	        }
+
+	    }
+
+	    if ( postExitAction === postExitAction_toSearch ) {
+	        showExitMessageAndJumpToSearchPage();
+	    } else if (postExitAction === postExitAction_update) {
+	        populateGameInfo(jsonData);
+	    }else {
+	        removedGameDiv.style.display = 'none';
+	    }
+	}
+	function showExitMessageAndJumpToSearchPage() {
+	    var callBackFunction = 'location.href="searchGame.jsp?'+globalVariables.OpenIdName+'='+webSocketObj.getOpenId()+'"';
+	    showTitledMessageWithCallback('','本局已关闭',callBackFunction);
 	}
 	function getPlayerName(pos,jsonData) {
 	    var serverValue = jsonData[capitalizeFirstLetter(pos)+"Name"];

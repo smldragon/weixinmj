@@ -39,7 +39,7 @@
 	<body>
 		<%
 			if ( sg.size() == 0) {
-				out.print("<!doctype html><html><body><h1><center>暂无牌局</center></h1></body></html>");
+				out.print("<!doctype html><html><body><p align=center>好友的牌局</p><br><br><h1><center>暂无牌局</center></h1></body></html>");
 				return;
 			}
 		%>
@@ -59,8 +59,8 @@
 				int gameId = view.getGameId();
 			
 		%>
-		
-				<div class='row' id='<%=i%>'  >
+		        <!-- dont change value of name, it is used in functions.js processGameExit -->
+				<div class='row' id='<%=i%>'  name='GameId:<%=gameId%>'>
 					<div class='positionColumn' onClick="joinAtPosWithGameId('<%=gameId%>','<%=positions[0]%>')" >
 						<img id='<%=positions[0]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(0)%>' >
 						<div id='<%=positions[0]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(0)%></div>

@@ -34,7 +34,7 @@ var exitGame = function() {
             return type;
         },
         requestExit: function() {
-            webSocketObj.addListener(this);
+//            webSocketObj.addListener(this);
             if ( gameAction.getIsHost() === true) {
                 dialog.title="";
                 dialog.message = "退出将会关闭这局<br><br>您确认要退出本局吗?";
@@ -57,15 +57,16 @@ var exitGame = function() {
              jsonString[globalVariables.MessageActionHandler] = gameAction.getChangeGameAction();
 
            	webSocketObj.sendData('正在退出...',JSON.stringify(jsonString));
-        },
-        onSuccess: function(jsonData) {
-
-            webSocketObj.rmListener(gameAction.getPlayerListener());
-
-        	 if ( gameAction.getIsHost() === true) {
-                    window.history.back();
-        	 }
         }
+//        ,
+//        onSuccess: function(jsonData) {
+//
+//            webSocketObj.rmListener(gameAction.getPlayerListener());
+//
+//        	 if ( gameAction.getIsHost() === true) {
+//                    window.history.back();
+//        	 }
+//        }
     }
 }();
 var scoreHist = function() {
