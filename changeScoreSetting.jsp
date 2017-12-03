@@ -55,5 +55,4 @@
 
 	<%@ include file="ScoreSettingEmbeded.jsp" %>
 </body>
-<%@ include file="jspServiceFinished.jsp" %>
 </html>
