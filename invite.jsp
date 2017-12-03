@@ -31,4 +31,5 @@ System.out.println("+++++++++++++++Here is invite.jsp+++++++++++++++++++++++++")
 
 		<h1><center>敬请期待</center></html>
 	</body>
+	<%@ include file="jspServiceFinished.jsp" %>
 </html>

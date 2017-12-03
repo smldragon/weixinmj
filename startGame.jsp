@@ -103,4 +103,5 @@
 			<%@ include file="ScoreSettingEmbeded.jsp" %>
 		</div>
 	</body>
+	<%@ include file="jspServiceFinished.jsp" %>
 </html>

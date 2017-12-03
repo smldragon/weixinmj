@@ -44,4 +44,5 @@
 
 		<%@ include file="ViewGame.jsp" %>
 	</body>
+	<%@ include file="jspServiceFinished.jsp" %>
 </html>
