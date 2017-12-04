@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"  %>
 <%@ include file="import_inc.jsp" %>
-
+<%@ include file="jspServiceStart.jsp" %>
 <%
 //System.out.println("+++++++++++++++Here is startGame.jsp+++++++++++++++++++++++++");
 		//WebUtils.debugHttpRequest(request);
