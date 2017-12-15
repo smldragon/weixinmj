@@ -71,7 +71,8 @@
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("east")' style="color: #1aad19;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("east",0)' style="color: #1aad19;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("east",1)' style="color: #1aad19;">自摸</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -92,7 +93,8 @@
 		</div -->
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("south")' style="color:#1aad19;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("south",0)' style="color: #1aad19;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("south",1)' style="color: #1aad19;">自摸</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -112,7 +114,8 @@
 		</div -->
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("west")' style="color:#1aad19;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("west",0)' style="color: #1aad19;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("west",1)' style="color: #1aad19;">自摸</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -132,7 +135,8 @@
 		</div -->
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
-			<a href='#' onClick='addScoreDialog.show("north")' style="color:#1aad19;">我胡了</a>
+			<a href='#' onClick='addScoreDialog.show("north",0)' style="color: #1aad19;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("north",1)' style="color: #1aad19;">自摸</a>
 		</div>
 	</div>
 </div>		
