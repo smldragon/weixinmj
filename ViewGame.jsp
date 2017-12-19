@@ -71,8 +71,8 @@
 				
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("east",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">胡了</a>
-			<a href='#' onClick='addScoreDialog.show("east",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">自摸</a>
+			<a href='#' onClick='addScoreDialog.show("east",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("east",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -93,8 +93,8 @@
 		</div -->
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("south",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">胡了</a>
-			<a href='#' onClick='addScoreDialog.show("south",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">自摸</a>
+			<a href='#' onClick='addScoreDialog.show("south",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("south",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -114,8 +114,8 @@
 		</div -->
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
-			<a href='#' onClick='addScoreDialog.show("west",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">胡了</a>
-			<a href='#' onClick='addScoreDialog.show("west",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">自摸</a>
+			<a href='#' onClick='addScoreDialog.show("west",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("west",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -135,8 +135,8 @@
 		</div -->
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
-			<a href='#' onClick='addScoreDialog.show("north",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">胡了</a>
-			<a href='#' onClick='addScoreDialog.show("north",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:50%; margin-top:12%; font-size:90%;">自摸</a>
+			<a href='#' onClick='addScoreDialog.show("north",0)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">胡了</a>
+			<a href='#' onClick='addScoreDialog.show("north",1)' class="weui-btn weui-btn_plain-primary" style="height:30%; width:60%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>
 	</div>
 </div>		
