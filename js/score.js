@@ -1,3 +1,64 @@
+var netScoreFuncConfig =  {
+    netScoreFunc_FZ : {
+	    calculate: function() {
+	        var totalOf4 = 0;
+                for(var index = 0;index<4;index++) {
+            		var pt = globalVariables.positionTotal[index];
+                    totalOf4 = totalOf4 + parseInt(pt);
+            	};
+
+            //by new score recording, positionTotal = positionNet -- 2017-01-14, see ViewGrame.jsp
+            //for(index=0;index<4;index++) {
+            //positionNet[index] = 4*positionTotal[index] - totalOf4;
+            //document.getElementById(positions[index]+'TotalNet').innerHTML = positionNet[index];
+            //}
+	    },
+	    display: function(winnerPos, type) {
+            netScoreFunc_Default.display(winner,type);
+	    },
+	    getScoreMode: function() {
+	        return 0;
+	    }
+	},
+	netScoreFunc_SH  : {
+		calculate: function() {
+		    netScoreFuncConfig.netScoreFunc_Default.calculate();
+        },
+        display: function(winnerPos, type) {
+            netScoreFuncConfig.netScoreFunc_Default.display(winner,type);
+        },
+        getScoreMode: function() {
+            return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
+        }
+	},
+	netScoreFunc_NJ : {
+    	calculate: function() {
+            netScoreFuncConfig.netScoreFunc_Default.calculate();
+        },
+        display: function(winnerPos, type) {
+            netScoreFuncConfig.netScoreFunc_Default.display(winner,type);
+        },
+        getScoreMode: function() {
+            return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
+        }
+    },
+    netScoreFunc_Default : {
+        calculate: function() {
+            var totalOf4 = 0;
+            for(var index = 0;index<4;index++) {
+                var pt = globalVariables.positionTotal[index];
+                   totalOf4 = totalOf4 + parseInt(pt);
+            };
+    	},
+    	display: function(winnerPos, type) {
+console.log('-------- TO BE IMPLEMENTED................');
+        },
+        getScoreMode: function() {
+            return 1;
+        }
+    }
+};
+
 var scoreConfig = function () {
 	
 	//gameScoreConfig and playerScoreConfig are defined in startGame.jsp
@@ -33,13 +94,12 @@ var scoreConfig = function () {
              }
 		}
 	};
-	
+
 	webSocketObj.addListener(scoreConfigSettingListener);
 	return {
 		netScoreFunc: function() {
-			//$("netScoreFunc_"+gameScoreConfig);
 			var scoreSetting = this.getGameScoreConfig();
-			eval("netScoreFunc_"+ scoreSetting)();
+			eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".calculate")();
 		},
 		setGameScoreConfig: function(gameScoreConfig_) {
 			gameScoreConfig = gameScoreConfig_;
@@ -68,28 +128,12 @@ var scoreConfig = function () {
 			jsonString[globalVariables.WebSocketEventTypeHandler] = configSettingEvent;
 			jsonString[scoreConfigSettingHandler] = newConfig;
 			webSocketObj.sendData('保存设置...',JSON.stringify(jsonString));
-		}
-	}
-	function netScoreFunc_FZ () {
-		var totalOf4 = 0;
-		for(var index = 0;index<4;index++) {
-			var pt = positionTotal[index];
-            totalOf4 = totalOf4 + parseInt(pt);
-		};
 
-		//by new score recording, positionTotal = positionNet -- 2017-01-14, see ViewGrame.jsp
-        //for(index=0;index<4;index++) {
-			//positionNet[index] = 4*positionTotal[index] - totalOf4;
-			//document.getElementById(positions[index]+'TotalNet').innerHTML = positionNet[index];
-		//}
-		
-	}
-	function netScoreFunc_SH () {
-		netScoreFunc_FZ();
-	}
-	function netScoreFunc_NJ () {
-	    netScoreFunc_FZ();
-    }
+            this.setGameScoreConfig(newConfig);
+			scorePageSetting.init();
+		}
+	};
+
 }();
 
 //CellSelection is defined in Functions.js, 
@@ -375,5 +419,49 @@ var score = function () {
 	}
 	
 }();
-
-
+var scorePageSetting = function() {
+    function remove(id) {
+        var ele = document.getElementById(id);
+        if ( null != ele) {
+            ele.remove();
+        }
+    }
+    return {
+        init:function() {
+            var config_ = scoreConfig.getGameScoreConfig();
+            var scoreMode_ = eval("netScoreFuncConfig.netScoreFunc_"+ config_+".getScoreMode")();
+            if ( 0 == scoreMode_ ) {
+                //自摸和胡的算分模式是一样的，‘自摸’和‘胡了’两个按钮合并成‘自摸/胡了’一个按钮 -- XFZ@2017-12-17
+                document.getElementById('eastWin0').style.visibility = 'hidden';
+                document.getElementById('southWin0').style.visibility = 'hidden';
+                document.getElementById('westWin0').style.visibility = 'hidden';
+                document.getElementById('northWin0').style.visibility = 'hidden';
+                document.getElementById('eastWin0').innerHTML = '';
+                document.getElementById('southWin0').innerHTML = '';
+                document.getElementById('westWin0').innerHTML = '';
+                document.getElementById('northWin0').innerHTML = '';
+//                remove('eastWin0');
+//                remove('southWin0');
+//                remove('westWin0');
+//                remove('northWin0');
+                document.getElementById('eastWin1').innerHTML = '胡了/自摸';
+                document.getElementById('southWin1').innerHTML = '胡了/自摸';
+                document.getElementById('westWin1').innerHTML = '胡了/自摸';
+                document.getElementById('northWin1').innerHTML = '胡了/自摸';
+            } else {
+                 document.getElementById('eastWin0').style.visibility = 'visible';
+                 document.getElementById('southWin0').style.visibility = 'visible';
+                 document.getElementById('westWin0').style.visibility = 'visible';
+                 document.getElementById('northWin0').style.visibility = 'visible';
+                 document.getElementById('eastWin0').innerHTML = '胡了';
+                 document.getElementById('southWin0').innerHTML = '胡了';
+                 document.getElementById('westWin0').innerHTML = '胡了';
+                 document.getElementById('northWin0').innerHTML = '胡了';
+                 document.getElementById('eastWin1').innerHTML = '自摸';
+                 document.getElementById('southWin1').innerHTML = '自摸';
+                 document.getElementById('westWin1').innerHTML = '自摸';
+                 document.getElementById('northWin1').innerHTML = '自摸';
+            }
+        }
+    }
+}();

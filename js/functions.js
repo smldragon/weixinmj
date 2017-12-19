@@ -746,18 +746,26 @@ function isObjectVisible(obj) {
 function showToastSuccessPrompt(prompt,duration) {
     //var body = $(document.documentElement);
     var body = document.body;
-	appendDiv(body,'<div id="toast-success">'+
+    var toastId = "toast-success";
+	appendDiv(body,'<div id='+toastId+'>'+
 		'<div class="weui-mask_transparent"></div>'+
 		'<div class="weui-toast">'+
 		'<i class="weui-icon_toast"></i>'+
 		'<div><i class="weui-icon_toast weui-icon-success-no-circle" ></i></div>'+
 		'<p class="weui-toast__content">'+prompt+'</p>'+
 		'</div></div>');
-	var toastSuccess = document.getElementById("toast-success");
-	toastSuccess.fadeOut(duration,function() {toastSuccess.remove()} );
-	//$("#toast-success").fadeOut(duration,function() {$("#toast-success").remove()} );
+//	var toastSuccess = document.getElementById("toast-success");
+//	toastSuccess.fadeOut(duration,function() {toastSuccess.remove()} );
+	fadeOutEffect(toastId,duration);
+	//use pure js to implement fadeOut effect instead using JQuery as below -- XFZ@2017-12-18
+//	$("#toast-success").fadeOut(duration,function() {$("#toast-success").remove()} );
 };
-
+function fadeOutEffect(elementId,speed) {
+    var eleObj = document.getElementById(elementId);
+    var styleObj = eleObj.style;
+    styleObj.opacity = 1;
+    (function fade(){(styleObj.opacity-=.1)<0?eleObj.remove():setTimeout(fade,speed)})();
+}
 var loadingPrompt = function() {
 	
 	var loadingDivId = "loadingToast";
@@ -780,7 +788,7 @@ var loadingPrompt = function() {
 			    loadingDivVar.remove();
 			}
 			if ( typeof(loadingSuccessPrompt) != 'undefined' && loadingSuccessPrompt != '') {
-				showToastSuccessPrompt(loadingSuccessPrompt,4000);
+				showToastSuccessPrompt(loadingSuccessPrompt,220);
 			} 
 		}
 	}

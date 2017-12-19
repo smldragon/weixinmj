@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById('pageTitle1').innerHTML  = htmlText;
 		var htmlText = "<font size=2>开始时间:"+gameAction.startTime+"</font>";  //这行可以用CSS和STYLE
     document.getElementById('pageTitle2').innerHTML  = htmlText;
+
+    scorePageSetting.init();
 });
 var initGameJoining = {
     //initialRequestPos is defined in startGame.jsp <head> section
@@ -171,7 +173,8 @@ var addScoreDialog = function() {
             getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = loserScore;
             getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = loserScore;
         },
-        show: function(winnerPos) {
+        //type: 0 -- 胡了; 1 -- 自摸
+        show: function(winnerPos,type) {
             if ( gameAction.getIsHost() != true) {
                 showMessage("你没有权限算分，只有主办才有权限");
                 return;
