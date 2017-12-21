@@ -1,4 +1,5 @@
 var netScoreFuncConfig =  {
+    //configuration suffix is resolved in scoreConfig.netScoreFunction() and scoreConfig.onWinnerInput -- XFZ@2017-12-19
     netScoreFunc_FZ : {
 	    calculate: function() {
 	        var totalOf4 = 0;
@@ -13,8 +14,8 @@ var netScoreFuncConfig =  {
             //document.getElementById(positions[index]+'TotalNet').innerHTML = positionNet[index];
             //}
 	    },
-	    display: function(winnerPos, type) {
-            netScoreFunc_Default.display(winner,type);
+	    onWinnerInput: function(inputFieldId) {
+            netScoreFuncConfig.netScoreFunc_Default.onWinnerInput(inputFieldId);
 	    },
 	    getScoreMode: function() {
 	        return 0;
@@ -24,8 +25,8 @@ var netScoreFuncConfig =  {
 		calculate: function() {
 		    netScoreFuncConfig.netScoreFunc_Default.calculate();
         },
-        display: function(winnerPos, type) {
-            netScoreFuncConfig.netScoreFunc_Default.display(winner,type);
+        onWinnerInput: function(inputFieldId) {
+            netScoreFuncConfig.netScoreFunc_Default.onWinnerInput(inputFieldId);
         },
         getScoreMode: function() {
             return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
@@ -35,8 +36,8 @@ var netScoreFuncConfig =  {
     	calculate: function() {
             netScoreFuncConfig.netScoreFunc_Default.calculate();
         },
-        display: function(winnerPos, type) {
-            netScoreFuncConfig.netScoreFunc_Default.display(winner,type);
+        onWinnerInput: function(inputFieldId) {
+            netScoreFuncConfig.netScoreFunc_Default.onWinnerInput(inputFieldId);
         },
         getScoreMode: function() {
             return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
@@ -50,8 +51,11 @@ var netScoreFuncConfig =  {
                    totalOf4 = totalOf4 + parseInt(pt);
             };
     	},
-    	display: function(winnerPos, type) {
-console.log('-------- TO BE IMPLEMENTED................');
+    	onWinnerInput: function(inputFieldId) {
+    	    var score = document.getElementById(inputFieldId).value;
+    	    var scoreMode = addScoreDialog.getScoreMode();
+    	    var winPos = addScoreDialog.getWinPos();
+console.log('score='+score+", score mode="+scoreMode+", win pos="+winPos);
         },
         getScoreMode: function() {
             return 1;
@@ -100,6 +104,11 @@ var scoreConfig = function () {
 		netScoreFunc: function() {
 			var scoreSetting = this.getGameScoreConfig();
 			eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".calculate")();
+		},
+		//invoked in ViewGame.jsp onInput() scoreConfig.onWinnerInput()
+		onWinnerInput: function(inputFieldId) {
+		    var scoreSetting = this.getGameScoreConfig();
+        	eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".onWinnerInput")(inputFieldId);
 		},
 		setGameScoreConfig: function(gameScoreConfig_) {
 			gameScoreConfig = gameScoreConfig_;

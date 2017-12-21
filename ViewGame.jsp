@@ -183,15 +183,15 @@
 					东的得分
 				</div>
 				<div style="float:left;height:100%;width:50%;">
-					<input type="number" min="0" placeholder="请输入分数, 如100"  id="winnerScore"  style="width:90%;height:75%;margin-left:-5%;"/>
+					<input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="winnerScore"  style="width:90%;height:75%;margin-left:-5%;" oninput="scoreConfig.onWinnerInput('winnerScore')"/>
 				 </div>
 			</div>
 			
-			<div style="height:18%;width:100%;">
+			<!--- div style="height:18%;width:100%;">
 				<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button>
-			</div>
-			
-			<div>
+			</div --->
+
+			<div id='loserScores'style="display:none">
 				<div style="height:18%;width:100%;">
 					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:3%;">
 						这里的文字由startGame.js设置

@@ -141,11 +141,16 @@ var addScoreDialog = function() {
 
     var winPlayer='';
     var winPos = "";
+    var scoreMode;
     return {
         addScoreDialogDivId: '',
         addScoreDialogDivObj: '',
         getWinPos: function() {
             return winPos;
+        },
+        // 0: 胡了; 1:自摸
+        getScoreMode: function() {
+            return scoreMode;
         },
         doOkFunction: function () {
            score.addScore();
@@ -174,12 +179,13 @@ var addScoreDialog = function() {
             getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = loserScore;
         },
         //type: 0 -- 胡了; 1 -- 自摸
-        show: function(winnerPos,type) {
+        show: function(winnerPos,mode) {
             if ( gameAction.getIsHost() != true) {
                 showMessage("你没有权限算分，只有主办才有权限");
                 return;
             }
             winPos = winnerPos;
+            scoreMode = mode;
             this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
             this.addScoreDialogDivObj.style.display='';
             var winnerDiv = getElementInsideContainer(this.addScoreDialogDivId,'position');
