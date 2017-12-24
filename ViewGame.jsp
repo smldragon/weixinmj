@@ -191,7 +191,7 @@
 				<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button>
 			</div --->
 
-			<div id='loserScores'style="display:none">
+			<div id='loserScores'style="visibility:hidden">
 				<div style="height:18%;width:100%;">
 					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:3%;">
 						这里的文字由startGame.js设置
