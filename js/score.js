@@ -52,10 +52,19 @@ var netScoreFuncConfig =  {
             };
     	},
     	onWinnerInput: function(inputFieldId) {
-    	    var score = document.getElementById(inputFieldId).value;
+    	    var positions = globalVariables.positions;
+    	    var inputValue = document.getElementById(inputFieldId).value;
     	    var scoreMode = addScoreDialog.getScoreMode();
     	    var winPos = addScoreDialog.getWinPos();
-console.log('score='+score+", score mode="+scoreMode+", win pos="+winPos);
+//    	    document.getElementById('loserScores').style.visibility  = 'visible';
+            score.setScore(winPos,inputValue*3);
+            for(var i=0;i<4;i++) {
+                if ( positions[i]===winPos){
+                    continue;
+                }
+                score.setScore(positions[i],inputValue);
+            }
+
         },
         getScoreMode: function() {
             return 1;
@@ -168,6 +177,7 @@ function setScoreConfig(scoreConfigSettingType,scoreConfigValue){
 	scoreConfigSelection.setValue(scoreConfigValue);		
 }
 var score = function () {
+    var scoresMap = new Map();
     var scoreTableRowBckClr="";
     var scoreTableRowAltBckClr="";
     var winnerClr = "";
@@ -205,6 +215,15 @@ var score = function () {
 	}
 	webSocketObj.addListener(handleScoreWebSocketResponse);
 	return {
+	    setScore: function(pos,score) {
+	        scoresMap.set(pos,score);
+	    },
+	    getScore: function(pos) {
+	        return scoresMap.get(pos);
+	    },
+	    clearScoresMap: function() {
+	        scoresMap.clear();
+	    },
 		setGameSerNo: function(gameSerNo_) {
 			gameSerNo = gameSerNo_;
 		},
@@ -240,6 +259,7 @@ var score = function () {
             jsonObj[globalVariables.MessageModeHandler] = refreshScoreMode;
             var jsonString = JSON.stringify(jsonObj)
             webSocketObj.sendData('正在刷新...',jsonString);
+            clearScoresMap();
 		},
 		addScore: function() {
 			if ( !checkScores() ) {
@@ -271,7 +291,7 @@ var score = function () {
         	clearScoreTotalField(positions[index]);
         	clearScoreNetField(positions[index]);
         }
-
+        clearScoresMap();
         //delete old table data
         var rows = document.getElementById('scores').getElementsByTagName("tr");
         var rowCount = rows.length;
@@ -300,19 +320,20 @@ var score = function () {
 		 return sum;
 	}
 	function getPositionScore(position) {
-	    <!-- names of score input fields inside addScoreDialog are set in startGame.js show method -->
-		var score = getElementInsideContainerByName(addScoreDialog.addScoreDialogDivId,position+'input').value;
-		var text = getElementInsideContainerByName(addScoreDialog.addScoreDialogDivId,position+'input').innerHTML;
-		if ( score ===''){
-			score = '0';
-		}
-		return score;
+//	    <!-- names of score input fields inside addScoreDialog are set in startGame.js show method -->
+//		var score = getElementInsideContainerByName(addScoreDialog.addScoreDialogDivId,position+'input').value;
+//		if ( score ===''){
+//			score = '0';
+//		}
+//		return score;
+        return score.getScore(position);
 	}
 	function clearAllScoreInputFields() {
 		
 		for (var index in positions) {
 			clearScoreInputField(positions[index]);
 		}
+		score.clearScoresMap();
 	}
 	function clearScoreInputField(position) {
 		getElementInsideContainer(addScoreDialog.addScoreDialogDivId,'winnerScore').value = '';
@@ -351,7 +372,7 @@ var score = function () {
 		    }
 		    sumOfLoser = parseInt(sumOfLoser) + parseInt(getPositionScore(positions[i]));
 		}
-		var winnerScore = parseInt(getPositionScore(addScoreDialog.getWinPos()));
+		var winnerScore = getPositionScore(addScoreDialog.getWinPos());
 		if ( sumOfLoser !== winnerScore) {
 		    showTitledMessage('错误！','输分总和不等于赢分。');
 		    return false;
