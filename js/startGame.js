@@ -178,6 +178,35 @@ var addScoreDialog = function() {
             getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = loserScore;
             getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = loserScore;
         },
+        onGameScoreInput: function() {
+            var winnerPos = this.getWinPos();
+            var winnerScorePromptDiv = getElementInsideContainer(this.addScoreDialogDivId,'winnerScorePrompt');
+            var winnerScoreDiv = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
+            var loserScoresDiv = getElementInsideContainer(this.addScoreDialogDivId,'loserScores');
+            var scoreDialogButtonDiv = getElementInsideContainer(this.addScoreDialogDivId,'scoreDialogButton');
+            winPlayer = positionConvertor.convertToPlayerName(winnerPos);
+            winnerScorePromptDiv.innerHTML = winPlayer+"的得分:";
+            winnerScoreDiv.style.visibility = "visible";
+            loserScoresDiv.style.visibility = "visible";
+            scoreDialogButtonDiv.style.visibility = "visible";
+            //set losers field properties
+            var count=1;
+            for(var i=0;i<4;i++) {
+                  if ( globalVariables.positions[i]=== winPos) {
+                       var winnerInputField = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
+                       winnerInputField.name = globalVariables.positions[i]+'input';
+                       winnerInputField.focus();
+                       continue;
+                  }
+                  var loserDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count);
+                  var serverValue = globalVariables.playerNames[i];
+                  loserDiv.innerHTML = positionConvertor.getPlayerNameAtPos(globalVariables.positions[i],serverValue)+'的输分';
+                  var loserInputDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count+'input');
+                  loserInputDiv.name = globalVariables.positions[i]+'input';
+                  count = count+1;
+            }
+            scoreConfig.onGameScoreInput();
+        },
         //type: 0 -- 胡了; 1 -- 自摸
         show: function(winnerPos,mode) {
             if ( gameAction.getIsHost() != true) {
@@ -188,25 +217,6 @@ var addScoreDialog = function() {
             scoreMode = mode;
             this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
             this.addScoreDialogDivObj.style.display='';
-            var winnerDiv = getElementInsideContainer(this.addScoreDialogDivId,'position');
-            winPlayer = positionConvertor.convertToPlayerName(winnerPos);
-            winnerDiv.innerHTML = winPlayer+"的得分:";
-            //set losers field properties
-            var count=1;
-            for(var i=0;i<4;i++) {
-                if ( globalVariables.positions[i]=== winPos) {
-                    var winnerInputField = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
-                    winnerInputField.name = globalVariables.positions[i]+'input';
-                    winnerInputField.focus();
-                    continue;
-                }
-                var loserDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count);
-                var serverValue = globalVariables.playerNames[i];
-                loserDiv.innerHTML = positionConvertor.getPlayerNameAtPos(globalVariables.positions[i],serverValue)+'的输分';
-                var loserInputDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count+'input');
-                loserInputDiv.name = globalVariables.positions[i]+'input';
-                count = count+1;
-            }
         },
         hide: function() {
             this.addScoreDialogDivObj.style.display="none";
