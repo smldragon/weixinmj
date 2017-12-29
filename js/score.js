@@ -1,5 +1,5 @@
 var netScoreFuncConfig =  {
-    //configuration suffix is resolved in scoreConfig.netScoreFunction() and scoreConfig.onWinnerInput -- XFZ@2017-12-19
+    //configuration suffix is resolved in scoreConfig.netScoreFunction()  -- XFZ@2017-12-19
     netScoreFunc_FZ : {
 	    calculate: function() {
 	        var totalOf4 = 0;
@@ -7,15 +7,21 @@ var netScoreFuncConfig =  {
             		var pt = globalVariables.positionTotal[index];
                     totalOf4 = totalOf4 + parseInt(pt);
             	};
-
-            //by new score recording, positionTotal = positionNet -- 2017-01-14, see ViewGrame.jsp
-            //for(index=0;index<4;index++) {
-            //positionNet[index] = 4*positionTotal[index] - totalOf4;
-            //document.getElementById(positions[index]+'TotalNet').innerHTML = positionNet[index];
-            //}
 	    },
-	    onWinnerInput: function(inputFieldId) {
-            netScoreFuncConfig.netScoreFunc_Default.onWinnerInput(inputFieldId);
+	    onGameScoreInput: function() {
+              var positions = globalVariables.positions;
+              var inputValue = document.getElementById("gameScore").value;
+              var scoreMode = addScoreDialog.getScoreMode();
+              var winPos = addScoreDialog.getWinPos();
+            //document.getElementById('loserScores').style.visibility  = 'visible';
+              score.setScore(winPos,inputValue*3);
+              for(var i=0;i<4;i++) {
+              if ( positions[i]===winPos){
+                  continue;
+               }
+               score.setScore(positions[i],inputValue);
+         }
+
 	    },
 	    getScoreMode: function() {
 	        return 0;
@@ -25,8 +31,8 @@ var netScoreFuncConfig =  {
 		calculate: function() {
 		    netScoreFuncConfig.netScoreFunc_Default.calculate();
         },
-        onWinnerInput: function(inputFieldId) {
-            netScoreFuncConfig.netScoreFunc_Default.onWinnerInput(inputFieldId);
+        onGameScoreInput: function() {
+            netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
         },
         getScoreMode: function() {
             return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
@@ -36,8 +42,8 @@ var netScoreFuncConfig =  {
     	calculate: function() {
             netScoreFuncConfig.netScoreFunc_Default.calculate();
         },
-        onWinnerInput: function(inputFieldId) {
-            netScoreFuncConfig.netScoreFunc_Default.onWinnerInput(inputFieldId);
+        onGameScoreInput: function(inputFieldId) {
+            netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
         },
         getScoreMode: function() {
             return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
@@ -51,19 +57,7 @@ var netScoreFuncConfig =  {
                    totalOf4 = totalOf4 + parseInt(pt);
             };
     	},
-    	onWinnerInput: function(inputFieldId) {
-    	    var positions = globalVariables.positions;
-    	    var inputValue = document.getElementById(inputFieldId).value;
-    	    var scoreMode = addScoreDialog.getScoreMode();
-    	    var winPos = addScoreDialog.getWinPos();
-//    	    document.getElementById('loserScores').style.visibility  = 'visible';
-            score.setScore(winPos,inputValue*3);
-            for(var i=0;i<4;i++) {
-                if ( positions[i]===winPos){
-                    continue;
-                }
-                score.setScore(positions[i],inputValue);
-            }
+    	onGameScoreInput: function() {
 
         },
         getScoreMode: function() {
@@ -114,10 +108,10 @@ var scoreConfig = function () {
 			var scoreSetting = this.getGameScoreConfig();
 			eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".calculate")();
 		},
-		//invoked in ViewGame.jsp onInput() scoreConfig.onWinnerInput()
-		onWinnerInput: function(inputFieldId) {
+		//invoked in ViewGame.jsp onInput() addScoreDialog.onGameScoreInput() in startGame.js -- XFZ@2017-12-27
+		onGameScoreInput: function() {
 		    var scoreSetting = this.getGameScoreConfig();
-        	eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".onWinnerInput")(inputFieldId);
+        	eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".onGameScoreInput")();
 		},
 		setGameScoreConfig: function(gameScoreConfig_) {
 			gameScoreConfig = gameScoreConfig_;
@@ -217,6 +211,9 @@ var score = function () {
 	return {
 	    setScore: function(pos,score) {
 	        scoresMap.set(pos,score);
+	        var inputId = findInputId(pos);
+	        var inputElement = document.getElementById(inputId);
+	        inputElement.value = score;
 	    },
 	    getScore: function(pos) {
 	        return scoresMap.get(pos);
@@ -280,6 +277,20 @@ var score = function () {
             webSocketObj.sendData('正在保存...',jsonString);
 		}
 	};
+	function findInputId(pos) {
+	    if ( pos === addScoreDialog.getWinPos()) {
+	        return "winnerScoreField";
+	    } else {
+	        var playerPosition = positionConvertor.convertToPlayerName(pos);
+	        for(var i=1;i<4;i++) {
+	            var index = document.getElementById("loser"+i).innerHTML.indexOf(playerPosition,0);
+	            if ( 0 === index ) {
+	                return "loser"+i+"input";
+	            }
+	        }
+	        return "loser1input";
+	    }
+	}
 	function refreshScoreTable(jsonData) {
 	    gameSerNo = 0;
         //clear input fields and total fields
