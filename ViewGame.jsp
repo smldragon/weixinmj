@@ -186,16 +186,13 @@
             	</div>
 			</div>
 			<br>
-			<!--- div style="height:18%;width:100%;">
-				<button onClick='addScoreDialog.winThreeOther()' style="width:40%;height:60%;font-size:100%;">赢三家</button>
-			</div --->
 			<div id = 'winnerScore' style="visibility:hidden" >
                 <div id='winnerScorePrompt' style="float:left;width:50%;text-align:left;text-indent:3%;">
                     <!-- 文字由startGame.js的addScoreDialog.show()设置-->
                     东的得分
                 </div>
                 <div style="float:left;width:50%;">
-                    <input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="winnerScoreField"  />
+                    <input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="winnerScoreField" style="width:90%;margin-left:-5%;" />
                 </div>
             </div>
             <br>
@@ -204,8 +201,14 @@
 					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:3%;">
 						这里的文字由startGame.js设置
 					</div>
-					<div style="float:left;height:100%;width:50%;">
-						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser1input'  style="width:90%;height:75%;margin-left:-5%;"/>
+					 <%
+                        //输入框的宽度由score.js动态决定,不再由style="width:50%"决定
+                     %>
+					<div id='loser1inputDiv' style="float:left;height:100%;width:25%">
+                        <input type="number" min="0" placeholder="请输入分数, 如100"  id='loser1input'  style="height:75%;margin-left:-5%;"/>
+					</div>
+					<div id='loser1buttonDiv' style="float:left;width:25%">
+					    <button id='loser1button' onClick='netScoreFuncConfig.dianPao(1)' style="height:60%;font-size:100%;">包冲</button>
 					</div>
 				</div>
 				<br>
@@ -213,18 +216,24 @@
 					<div id='loser2' style="float:left;width:50%;text-align:left;text-indent:3%;"> 
 						这里的文字由startGame.js设置 
 					</div>
-					<div style="float:left;height:100%;width:50%;">
-						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser2input'  style="width:90%;height:75%;margin-left:-5%;"/>
+					<div id='loser2inputDiv' style="float:left;height:100%;width:25%">
+						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser2input'  style="height:75%;margin-left:-5%;"/>
 					</div>
+					<div id='loser2buttonDiv' style="float:left;width:25%">
+                        <button id='loser2button' onClick='netScoreFuncConfig.dianPao(2)' style="height:60%;font-size:100%;">包冲</button>
+                    </div>
 				 </div >
 				 <br>
 				 <div style="height:18%;width:100%;">
 					<div id='loser3' style="float:left;width:50%;text-align:left;text-indent:3%;">
 						这里的文字由startGame.js设置
 					</div>
-					<div style="float:left;height:100%;width:50%;">
-						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser3input'  style="width:90%;height:75%;margin-left:-5%;"/>
+					<div id='loser3inputDiv' style="float:left;height:100%;width:25%">
+						<input type="number" min="0" placeholder="请输入分数, 如100"  id='loser3input'  style="height:75%;margin-left:-5%;"/>
 					</div>
+					<div id='loser3buttonDiv' style="float:left;width:25%">
+                        <button id='loser3button' onClick='netScoreFuncConfig.dianPao(3)' style="height:60%;font-size:100%;">包冲</button>
+                    </div>
 				</div>
 				<br>
 			</div>

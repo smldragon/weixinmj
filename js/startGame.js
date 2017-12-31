@@ -159,25 +159,6 @@ var addScoreDialog = function() {
         doCancelFunction:function () {
             this.hide();
          },
-        winThreeOther: function() {
-            var winnerScoreInput = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
-            var score = winnerScoreInput.value;
-            if ( score === '') {
-                this.hide();
-                showTitledMessageWithCallback("分数为空，或格式无效","请重新输入"+winPlayer+"的得分","addScoreDialog.show('"+winPos+"')");
-                return;
-            }
-            var loserScore = score/3;
-            var indexOfDot = loserScore.toString().indexOf(".");
-            if ( indexOfDot >= 0 ) {
-                 this.hide();
-                 showTitledMessageWithCallback("错误！","赢分不能被3整除。");
-                 return;
-            }
-            getElementInsideContainer(this.addScoreDialogDivId,'loser1input').value = loserScore;
-            getElementInsideContainer(this.addScoreDialogDivId,'loser2input').value = loserScore;
-            getElementInsideContainer(this.addScoreDialogDivId,'loser3input').value = loserScore;
-        },
         onGameScoreInput: function() {
             var winnerPos = this.getWinPos();
             var winnerScorePromptDiv = getElementInsideContainer(this.addScoreDialogDivId,'winnerScorePrompt');
@@ -213,6 +194,9 @@ var addScoreDialog = function() {
                 showMessage("你没有权限算分，只有主办才有权限");
                 return;
             }
+            if ( mode != scoreMode) {
+                refresh();
+            }
             winPos = winnerPos;
             scoreMode = mode;
             this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
@@ -222,4 +206,16 @@ var addScoreDialog = function() {
             this.addScoreDialogDivObj.style.display="none";
         }
     };
+    function refresh() {
+        document.getElementById("winnerScore").style.visibility="hidden";
+        document.getElementById("loserScores").style.visibility="hidden";
+        document.getElementById("scoreDialogButton").style.visibility="hidden";
+        document.getElementById("loser1buttonDiv").style.visibility="hidden";
+        document.getElementById("loser2buttonDiv").style.visibility="hidden";
+        document.getElementById("loser3buttonDiv").style.visibility="hidden";
+        document.getElementById("gameScore").value='';
+        document.getElementById("loser1input").value='';
+        document.getElementById("loser2input").value='';
+        document.getElementById("loser3input").value='';
+    }
 }();

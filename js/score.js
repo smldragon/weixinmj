@@ -1,70 +1,121 @@
-var netScoreFuncConfig =  {
-    //configuration suffix is resolved in scoreConfig.netScoreFunction()  -- XFZ@2017-12-19
-    netScoreFunc_FZ : {
-	    calculate: function() {
-	        var totalOf4 = 0;
-                for(var index = 0;index<4;index++) {
-            		var pt = globalVariables.positionTotal[index];
-                    totalOf4 = totalOf4 + parseInt(pt);
-            	};
-	    },
-	    onGameScoreInput: function() {
-              var positions = globalVariables.positions;
-              var inputValue = document.getElementById("gameScore").value;
-              var scoreMode = addScoreDialog.getScoreMode();
-              var winPos = addScoreDialog.getWinPos();
-            //document.getElementById('loserScores').style.visibility  = 'visible';
-              score.setScore(winPos,inputValue*3);
-              for(var i=0;i<4;i++) {
-              if ( positions[i]===winPos){
-                  continue;
-               }
-               score.setScore(positions[i],inputValue);
-         }
-
-	    },
-	    getScoreMode: function() {
-	        return 0;
-	    }
-	},
-	netScoreFunc_SH  : {
-		calculate: function() {
-		    netScoreFuncConfig.netScoreFunc_Default.calculate();
-        },
-        onGameScoreInput: function() {
-            netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
-        },
-        getScoreMode: function() {
-            return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
-        }
-	},
-	netScoreFunc_NJ : {
-    	calculate: function() {
-            netScoreFuncConfig.netScoreFunc_Default.calculate();
-        },
-        onGameScoreInput: function(inputFieldId) {
-            netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
-        },
-        getScoreMode: function() {
-            return netScoreFuncConfig.netScoreFunc_Default.getScoreMode();
-        }
-    },
-    netScoreFunc_Default : {
-        calculate: function() {
-            var totalOf4 = 0;
-            for(var index = 0;index<4;index++) {
-                var pt = globalVariables.positionTotal[index];
-                   totalOf4 = totalOf4 + parseInt(pt);
-            };
-    	},
-    	onGameScoreInput: function() {
-
-        },
-        getScoreMode: function() {
-            return 1;
+var netScoreFuncConfig = function() {
+    function win3Others() {
+        var positions = globalVariables.positions;
+        var inputValue = document.getElementById("gameScore").value;
+        var winnerPos = addScoreDialog.getWinPos();
+        //document.getElementById('loserScores').style.visibility  = 'visible';
+        score.setScore(winnerPos,inputValue*3);
+        for(var i=0;i<4;i++) {
+            if ( positions[i]===winnerPos){
+                continue;
+            }
+            score.setScore(positions[i],inputValue);
         }
     }
-};
+    return {
+        //configuration suffix is resolved in scoreConfig.netScoreFunction()  -- XFZ@2017-12-19
+        netScoreFunc_FZ : {
+            calculate: function() {
+                var totalOf4 = 0;
+                    for(var index = 0;index<4;index++) {
+                        var pt = globalVariables.positionTotal[index];
+                        totalOf4 = totalOf4 + parseInt(pt);
+                    };
+            },
+            onGameScoreInput: function() {
+                 win3Others();
+                 for(var i=1;i<4;i++) {
+                    document.getElementById("loser"+i+"buttonDiv").style.visibility = 'hidden';
+                    document.getElementById("loser"+i+"input").style.width = "80%";
+                 }
+            },
+            getScoreMethod: function() {
+                return 0;
+            }
+        },
+        netScoreFunc_SH  : {
+            calculate: function() {
+                netScoreFuncConfig.netScoreFunc_Default.calculate();
+            },
+            onGameScoreInput: function() {
+                netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
+            },
+            getScoreMethod: function() {
+                return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
+            }
+        },
+        netScoreFunc_NJ : {
+            calculate: function() {
+                netScoreFuncConfig.netScoreFunc_Default.calculate();
+            },
+            onGameScoreInput: function(inputFieldId) {
+                netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
+            },
+            getScoreMethod: function() {
+                return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
+            }
+        },
+        netScoreFunc_Default : {
+            calculate: function() {
+                var totalOf4 = 0;
+                for(var index = 0;index<4;index++) {
+                    var pt = globalVariables.positionTotal[index];
+                       totalOf4 = totalOf4 + parseInt(pt);
+                };
+            },
+            onGameScoreInput: function() {
+                var scoreMode = addScoreDialog.getScoreMode();
+                var loserButtonText;
+                if ( 1 === scoreMode) {
+                    //自摸
+                    win3Others();
+                    loserButtonText="包冲";
+                } else {
+                    loserButtonText="点炮";
+                    var positions = globalVariables.positions;
+                    var inputValue = document.getElementById("gameScore").value;
+                    var winPos = addScoreDialog.getWinPos();
+                    //document.getElementById('loserScores').style.visibility  = 'visible';
+                    score.setScore(winPos,inputValue*3);
+                    for(var i=0;i<4;i++) {
+                        if ( positions[i]===winPos){
+                            continue;
+                        }
+                        score.setScore(positions[i],inputValue);
+                    }
+                }
+
+                 for(var i=1;i<4;i++) {
+                    document.getElementById("loser"+i+"buttonDiv").style.visibility = "visible";
+                    document.getElementById("loser"+i+"buttonDiv").style.width = "25%";
+                    document.getElementById("loser"+i+"button").innerHTML = loserButtonText;
+                    document.getElementById("loser"+i+"inputDiv").style.width = "25%";
+                 }
+            },
+            getScoreMethod: function() {
+                return 1;
+            }
+        },
+        //点炮,只有点炮方付钱，其他不付钱
+        dianPao: function(loserIndex) {
+            var scoreMode = addScoreDialog.getScoreMode();
+            var gameScore = document.getElementById("gameScore").value;
+            for ( var i=1;i<4;i++) {
+                if ( i === loserIndex) {
+                    var dianPaoPosInput= document.getElementById("loser"+i+"input");
+                    if ( 0 === scoreMode ) {
+                        dianPaoPosInput.value = gameScore;
+                    } else {
+                        dianPaoPosInput.value = gameScore*3;
+                    }
+                } else {
+                    document.getElementById("loser"+i+"input").value = 0;
+                }
+
+            }
+        }
+    };
+}();
 
 var scoreConfig = function () {
 	
@@ -470,8 +521,8 @@ var scorePageSetting = function() {
     return {
         init:function() {
             var config_ = scoreConfig.getGameScoreConfig();
-            var scoreMode_ = eval("netScoreFuncConfig.netScoreFunc_"+ config_+".getScoreMode")();
-            if ( 0 == scoreMode_ ) {
+            var scoreMethod_ = eval("netScoreFuncConfig.netScoreFunc_"+ config_+".getScoreMethod")();
+            if ( 0 == scoreMethod_ ) {
                 //自摸和胡的算分模式是一样的，‘自摸’和‘胡了’两个按钮合并成‘自摸/胡了’一个按钮 -- XFZ@2017-12-17
                 document.getElementById('eastWin0').style.visibility = 'hidden';
                 document.getElementById('southWin0').style.visibility = 'hidden';
