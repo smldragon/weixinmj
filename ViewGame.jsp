@@ -239,9 +239,9 @@
 			</div>
 		</div>
 		<br>
-		<div id='scoreDialogButton' class="weui-dialog__ft" style="width:100%;height:130%; visibility:hidden;">
-            <a href="#" class="weui-dialog__btn default" onClick="addScoreDialog.doOkFunction()"  >确定</a>
-            <a href="#" class="weui-dialog__btn default" onClick="addScoreDialog.doCancelFunction()"  >取消</a>
+		<div id='scoreDialogButton' class="weui-dialog__ft" style="width:100%;height:130%;">
+            <a href="#" id='scoreDialogOkBtn' class="weui-dialog__btn default" onClick="addScoreDialog.doOkFunction()"  >确定</a>
+            <a href="#" id='scoreDialogClBtn' class="weui-dialog__btn default" onClick="addScoreDialog.doCancelFunction()"  >取消</a>
         </div>
 	<!--结束修改部分 -->
     </div>

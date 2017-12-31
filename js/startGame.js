@@ -170,6 +170,7 @@ var addScoreDialog = function() {
             winnerScoreDiv.style.visibility = "visible";
             loserScoresDiv.style.visibility = "visible";
             scoreDialogButtonDiv.style.visibility = "visible";
+            document.getElementById("scoreDialogOkBtn").style.visibility="visible";
             //set losers field properties
             var count=1;
             for(var i=0;i<4;i++) {
@@ -209,7 +210,8 @@ var addScoreDialog = function() {
     function refresh() {
         document.getElementById("winnerScore").style.visibility="hidden";
         document.getElementById("loserScores").style.visibility="hidden";
-        document.getElementById("scoreDialogButton").style.visibility="hidden";
+//        document.getElementById("scoreDialogButton").style.visibility="hidden";
+        document.getElementById("scoreDialogOkBtn").style.visibility="hidden";
         document.getElementById("loser1buttonDiv").style.visibility="hidden";
         document.getElementById("loser2buttonDiv").style.visibility="hidden";
         document.getElementById("loser3buttonDiv").style.visibility="hidden";
