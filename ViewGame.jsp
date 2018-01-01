@@ -179,7 +179,7 @@
 		<div style="height:250px;font-size:130%;line-height:190%;" >
 			<div  style="height:10%;width:100%;padding-top:8%;">
 			    <div style="float:left;width:50%;text-align:left;text-indent:3%;">
-            	    胡的分数:
+            	    本局分数:
             	</div>
             	<div style="float:left;height:100%;width:50%;">
             		<input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="gameScore"  style="width:90%;height:75%;margin-left:-5%;" oninput="addScoreDialog.onGameScoreInput()"/>
