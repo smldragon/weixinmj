@@ -148,7 +148,7 @@ var addScoreDialog = function() {
         getWinPos: function() {
             return winPos;
         },
-        // 0: 胡了; 1:自摸
+        // 0: 胡了; 1:自摸; 2:包输三家
         getScoreMode: function() {
             return scoreMode;
         },
@@ -160,13 +160,22 @@ var addScoreDialog = function() {
             this.hide();
          },
         onGameScoreInput: function() {
+            var winnerPromptSuffix;
+            var loserPromptSuffix;
+            if ( 2 === addScoreDialog.getScoreMode() ) {
+                winnerPromptSuffix = "输分";
+                loserPromptSuffix = "赢分";
+            } else {
+                winnerPromptSuffix = "赢分";
+                loserPromptSuffix = "输分";
+            }
             var winnerPos = this.getWinPos();
             var winnerScorePromptDiv = getElementInsideContainer(this.addScoreDialogDivId,'winnerScorePrompt');
             var winnerScoreDiv = getElementInsideContainer(this.addScoreDialogDivId,'winnerScore');
             var loserScoresDiv = getElementInsideContainer(this.addScoreDialogDivId,'loserScores');
             var scoreDialogButtonDiv = getElementInsideContainer(this.addScoreDialogDivId,'scoreDialogButton');
             winPlayer = positionConvertor.convertToPlayerName(winnerPos);
-            winnerScorePromptDiv.innerHTML = winPlayer+"的得分:";
+            winnerScorePromptDiv.innerHTML = winPlayer+"的"+winnerPromptSuffix+":";
             winnerScoreDiv.style.visibility = "visible";
             loserScoresDiv.style.visibility = "visible";
             scoreDialogButtonDiv.style.visibility = "visible";
@@ -182,7 +191,7 @@ var addScoreDialog = function() {
                   }
                   var loserDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count);
                   var serverValue = globalVariables.playerNames[i];
-                  loserDiv.innerHTML = positionConvertor.getPlayerNameAtPos(globalVariables.positions[i],serverValue)+'的输分';
+                  loserDiv.innerHTML = positionConvertor.getPlayerNameAtPos(globalVariables.positions[i],serverValue)+'的'+loserPromptSuffix+':';
                   var loserInputDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count+'input');
                   loserInputDiv.name = globalVariables.positions[i]+'input';
 
@@ -199,7 +208,7 @@ var addScoreDialog = function() {
             }
             scoreConfig.onGameScoreInput();
         },
-        //type: 0 -- 胡了; 1 -- 自摸
+        //mode: 0 -- 胡了; 1 -- 自摸; 2 -- 包三家。这个mode的值在服务端DyScore.addScore()用到 -- 2018-01-01
         show: function(winnerPos,mode) {
             if ( gameAction.getIsHost() != true) {
                 showMessage("你没有权限算分，只有主办才有权限");
@@ -212,6 +221,13 @@ var addScoreDialog = function() {
             scoreMode = mode;
             this.addScoreDialogDivObj = document.getElementById(this.addScoreDialogDivId);
             this.addScoreDialogDivObj.style.display='';
+
+            var gameScorePrompt = getElementInsideContainer(this.addScoreDialogDivId,"gameScorePrompt");
+            if( 2 === mode ) {
+                gameScorePrompt.innerHTML = "包输分数：";
+            } else {
+                gameScorePrompt.innerHTML = "本局分数：";
+            }
         },
         hide: function() {
             this.addScoreDialogDivObj.style.display="none";

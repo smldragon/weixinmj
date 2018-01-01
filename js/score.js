@@ -13,6 +13,9 @@ var netScoreFuncConfig = function() {
         }
     }
     return {
+        lostTo3Other: function() {
+            win3Others();
+        },
         //configuration suffix is resolved in scoreConfig.netScoreFunction()  -- XFZ@2017-12-19
         netScoreFunc_FZ : {
             calculate: function() {
@@ -44,7 +47,7 @@ var netScoreFuncConfig = function() {
                 return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
             }
         },
-        netScoreFunc_NJ : {
+        netScoreFunc_SC : {
             calculate: function() {
                 netScoreFuncConfig.netScoreFunc_Default.calculate();
             },
@@ -54,6 +57,17 @@ var netScoreFuncConfig = function() {
             getScoreMethod: function() {
                 return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
             }
+        },
+        netScoreFunc_GD : {
+           calculate: function() {
+                netScoreFuncConfig.netScoreFunc_Default.calculate();
+           },
+           onGameScoreInput: function(inputFieldId) {
+                netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
+           },
+           getScoreMethod: function() {
+                return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
+           }
         },
         netScoreFunc_Default : {
             calculate: function() {
@@ -181,8 +195,12 @@ var scoreConfig = function () {
 		},
 		//invoked in ViewGame.jsp onInput() addScoreDialog.onGameScoreInput() in startGame.js -- XFZ@2017-12-27
 		onGameScoreInput: function() {
-		    var scoreSetting = this.getGameScoreConfig();
-        	eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".onGameScoreInput")();
+		    if ( 2 === addScoreDialog.getScoreMode() ) {
+		        netScoreFuncConfig.lostTo3Other();
+		    } else {
+                var scoreSetting = this.getGameScoreConfig();
+                eval("netScoreFuncConfig.netScoreFunc_"+ scoreSetting+".onGameScoreInput")();
+        	}
 		},
 		setGameScoreConfig: function(gameScoreConfig_) {
 			gameScoreConfig = gameScoreConfig_;
@@ -342,6 +360,7 @@ var score = function () {
             jsonObj[globalVariables.OpenIdName] =  webSocketObj.getOpenId();
             jsonObj[globalVariables.WebSocketEventTypeHandler] = handleScoreWebSocketResponse.getType();
             jsonObj["winnerPosition"] = addScoreDialog.getWinPos();
+            jsonObj["scoreMode"] = addScoreDialog.getScoreMode();
             jsonObj[globalVariables.MessageModeHandler ] = "AddScore";
             for(var i=0;i<4;i++) {
                 var pos = positions[i];
@@ -559,19 +578,19 @@ var scorePageSetting = function() {
 //                remove('southWin0');
 //                remove('westWin0');
 //                remove('northWin0');
-                document.getElementById('eastWin1').innerHTML = '胡了/自摸';
-                document.getElementById('southWin1').innerHTML = '胡了/自摸';
-                document.getElementById('westWin1').innerHTML = '胡了/自摸';
-                document.getElementById('northWin1').innerHTML = '胡了/自摸';
+                document.getElementById('eastWin1').innerHTML = '胡/自摸';
+                document.getElementById('southWin1').innerHTML = '胡/自摸';
+                document.getElementById('westWin1').innerHTML = '胡/自摸';
+                document.getElementById('northWin1').innerHTML = '胡/自摸';
             } else {
                  document.getElementById('eastWin0').style.visibility = 'visible';
                  document.getElementById('southWin0').style.visibility = 'visible';
                  document.getElementById('westWin0').style.visibility = 'visible';
                  document.getElementById('northWin0').style.visibility = 'visible';
-                 document.getElementById('eastWin0').innerHTML = '胡了';
-                 document.getElementById('southWin0').innerHTML = '胡了';
-                 document.getElementById('westWin0').innerHTML = '胡了';
-                 document.getElementById('northWin0').innerHTML = '胡了';
+                 document.getElementById('eastWin0').innerHTML = '胡';
+                 document.getElementById('southWin0').innerHTML = '胡';
+                 document.getElementById('westWin0').innerHTML = '胡';
+                 document.getElementById('northWin0').innerHTML = '胡';
                  document.getElementById('eastWin1').innerHTML = '自摸';
                  document.getElementById('southWin1').innerHTML = '自摸';
                  document.getElementById('westWin1').innerHTML = '自摸';

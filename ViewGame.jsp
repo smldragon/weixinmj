@@ -44,7 +44,7 @@
 		</div -->
 		
 		<div class="PositionTouLie"  style="width:30%;">
-			去算分
+			算分
 		</div>
 				
 	</div>
@@ -72,7 +72,8 @@
 		<div class="PositionJiFenLie">
 			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
 			<a id='eastWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("east",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
-			<a id='eastWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("east",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;"">自摸</a>
+			<a id='eastWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("east",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+			<a id='eastLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("east",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -95,6 +96,7 @@
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
 			<a id='southWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("south",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 			<a id='southWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("south",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+			<a id='southLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("south",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -116,6 +118,7 @@
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
 			<a id='westWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("west",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 			<a id='westWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("west",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+			<a id='westLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("west",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>
 	</div>
 	<div class="PositionHang1">
@@ -137,6 +140,7 @@
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
 			<a id='northWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("north",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 			<a id='northWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("north",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+			<a id='northLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("north",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>
 	</div>
 </div>		
@@ -178,7 +182,7 @@
     <!-- 以下是需要修改的布局 -->
 		<div style="height:250px;font-size:130%;line-height:190%;" >
 			<div  style="height:10%;width:100%;padding-top:8%;">
-			    <div style="float:left;width:50%;text-align:left;text-indent:3%;">
+			    <div id='gameScorePrompt' style="float:left;width:50%;text-align:left;text-indent:3%;">
             	    本局分数:
             	</div>
             	<div style="float:left;height:100%;width:50%;">
