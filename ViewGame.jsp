@@ -201,9 +201,6 @@
 					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:3%;">
 						这里的文字由onGameScoreInput() in startGame.js设置
 					</div>
-					 <%
-                        //输入框的宽度由score.js动态决定,不再由style="width:50%"决定
-                     %>
 					<div id='loser1inputDiv' style="float:left;height:100%;width:25%">
                         <input type="number" min="0" placeholder=""  id='loser1input'  style="height:75%;margin-left:-5%;"/>
 					</div>

@@ -87,9 +87,9 @@ var netScoreFuncConfig = function() {
 
                  for(var i=1;i<4;i++) {
                     document.getElementById("loser"+i+"buttonDiv").style.visibility = "visible";
-                    document.getElementById("loser"+i+"buttonDiv").style.width = "25%";
+//                    document.getElementById("loser"+i+"buttonDiv").style.width = "25%";
                     document.getElementById("loser"+i+"button").innerHTML = loserButtonText;
-                    document.getElementById("loser"+i+"inputDiv").style.width = "25%";
+//                    document.getElementById("loser"+i+"inputDiv").style.width = "25%";
                  }
             },
             getScoreMethod: function() {
