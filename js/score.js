@@ -4,12 +4,12 @@ var netScoreFuncConfig = function() {
         var inputValue = document.getElementById("gameScore").value;
         var winnerPos = addScoreDialog.getWinPos();
         //document.getElementById('loserScores').style.visibility  = 'visible';
-        score.setScore(winnerPos,inputValue*3);
+        score.setScore(winnerPos,parseInt(inputValue)*3);
         for(var i=0;i<4;i++) {
             if ( positions[i]===winnerPos){
                 continue;
             }
-            score.setScore(positions[i],inputValue);
+            score.setScore(positions[i],parseInt(inputValue));
         }
     }
     return {
@@ -76,12 +76,12 @@ var netScoreFuncConfig = function() {
                     var inputValue = document.getElementById("gameScore").value;
                     var winPos = addScoreDialog.getWinPos();
                     //document.getElementById('loserScores').style.visibility  = 'visible';
-                    score.setScore(winPos,inputValue*3);
+                    score.setScore(winPos,parseInt(inputValue));
                     for(var i=0;i<4;i++) {
                         if ( positions[i]===winPos){
                             continue;
                         }
-                        score.setScore(positions[i],inputValue);
+                        score.setScore(positions[i],'');
                     }
                 }
 
@@ -97,22 +97,42 @@ var netScoreFuncConfig = function() {
             }
         },
         //点炮,只有点炮方付钱，其他不付钱
-        dianPao: function(loserIndex) {
+        dianPao: function(loserIndex,position) {
             var scoreMode = addScoreDialog.getScoreMode();
             var gameScore = document.getElementById("gameScore").value;
+            var winPos = addScoreDialog.getWinPos();
+            //clear loser scores
+            for(var i=0;i<4;i++) {
+                if ( globalVariables.positions[i] === winPos) {
+                    continue;
+                }
+                score.setScore(globalVariables.positions[i],0);
+            }
+
             for ( var i=1;i<4;i++) {
+                var dianPaoPosInput= document.getElementById("loser"+i+"input");
                 if ( i === loserIndex) {
-                    var dianPaoPosInput= document.getElementById("loser"+i+"input");
                     if ( 0 === scoreMode ) {
                         dianPaoPosInput.value = gameScore;
                     } else {
                         dianPaoPosInput.value = gameScore*3;
                     }
+                    score.setScore(position,parseInt(dianPaoPosInput.value));
                 } else {
-                    document.getElementById("loser"+i+"input").value = 0;
+                    dianPaoPosInput.value = 0;
                 }
-
             }
+        },
+        //用户输入
+        onLoserInput:function(loserIndex,position) {
+            var dianPaoPosInput= document.getElementById("loser"+loserIndex+"input");
+            var value = parseInt(dianPaoPosInput.value);
+            score.setScore(position,value);
+        },
+        onWinnerInput:function() {
+            var winnerInput= document.getElementById("winnerScoreField");
+            var value = parseInt(winnerInput.value);
+            score.setScore(addScoreDialog.getWinPos(),value);
         }
     };
 }();
@@ -261,10 +281,13 @@ var score = function () {
 	webSocketObj.addListener(handleScoreWebSocketResponse);
 	return {
 	    setScore: function(pos,score) {
-	        scoresMap.set(pos,score);
 	        var inputId = findInputId(pos);
-	        var inputElement = document.getElementById(inputId);
-	        inputElement.value = score;
+            var inputElement = document.getElementById(inputId);
+            inputElement.value = score;
+	        if ( '' === score) {
+	            score = 0;
+	        }
+	        scoresMap.set(pos,score);
 	    },
 	    getScore: function(pos) {
 	        return scoresMap.get(pos);

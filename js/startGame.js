@@ -185,6 +185,16 @@ var addScoreDialog = function() {
                   loserDiv.innerHTML = positionConvertor.getPlayerNameAtPos(globalVariables.positions[i],serverValue)+'的输分';
                   var loserInputDiv = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count+'input');
                   loserInputDiv.name = globalVariables.positions[i]+'input';
+
+                  var loserButton = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count+"button");
+                  var position = globalVariables.positions[i];
+                  var dianPaoFunc = makeUserInputFunction(count,position).dianPao;
+                  loserButton.onclick = dianPaoFunc;
+
+                  var loserInput = getElementInsideContainer(this.addScoreDialogDivId,'loser'+count+"input");
+                  var inputFunc = makeUserInputFunction(count,position).onLoserInput;
+                  loserInput.oninput = inputFunc;
+
                   count = count+1;
             }
             scoreConfig.onGameScoreInput();
@@ -207,6 +217,16 @@ var addScoreDialog = function() {
             this.addScoreDialogDivObj.style.display="none";
         }
     };
+    function makeUserInputFunction(index,position) {
+        return {
+            dianPao: function() {
+                netScoreFuncConfig.dianPao(index,position);
+            },
+            onLoserInput: function() {
+                netScoreFuncConfig.onLoserInput(index,position);
+            }
+        }
+    }
     function refresh() {
         document.getElementById("winnerScore").style.visibility="hidden";
         document.getElementById("loserScores").style.visibility="hidden";
