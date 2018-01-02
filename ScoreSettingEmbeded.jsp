@@ -26,6 +26,7 @@
         		说明文字
         	</div -->
         	<div  class="weui-cell__hd"  >
+        	    <!-- display is set in function CellSelection in Function.js -->
         		<i class="weui-icon-success-no-circle" style="display:none"></i>
         	</div>
         </a>

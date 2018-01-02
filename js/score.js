@@ -38,38 +38,39 @@ var netScoreFuncConfig = function() {
         },
         netScoreFunc_SH  : {
             calculate: function() {
-                netScoreFuncConfig.netScoreFunc_Default.calculate();
+                netScoreFuncConfig.netScoreFunc_MR.calculate();
             },
             onGameScoreInput: function() {
-                netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
+                netScoreFuncConfig.netScoreFunc_MR.onGameScoreInput();
             },
             getScoreMethod: function() {
-                return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
+                return netScoreFuncConfig.netScoreFunc_MR.getScoreMethod();
             }
         },
         netScoreFunc_SC : {
             calculate: function() {
-                netScoreFuncConfig.netScoreFunc_Default.calculate();
+                netScoreFuncConfig.netScoreFunc_MR.calculate();
             },
             onGameScoreInput: function(inputFieldId) {
-                netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
+                netScoreFuncConfig.netScoreFunc_MR.onGameScoreInput();
             },
             getScoreMethod: function() {
-                return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
+                return netScoreFuncConfig.netScoreFunc_MR.getScoreMethod();
             }
         },
         netScoreFunc_GD : {
            calculate: function() {
-                netScoreFuncConfig.netScoreFunc_Default.calculate();
+                netScoreFuncConfig.netScoreFunc_MR.calculate();
            },
            onGameScoreInput: function(inputFieldId) {
-                netScoreFuncConfig.netScoreFunc_Default.onGameScoreInput();
+                netScoreFuncConfig.netScoreFunc_MR.onGameScoreInput();
            },
            getScoreMethod: function() {
-                return netScoreFuncConfig.netScoreFunc_Default.getScoreMethod();
+                return netScoreFuncConfig.netScoreFunc_MR.getScoreMethod();
            }
         },
-        netScoreFunc_Default : {
+        //default
+        netScoreFunc_MR : {
             calculate: function() {
                 var totalOf4 = 0;
                 for(var index = 0;index<4;index++) {
@@ -239,7 +240,8 @@ var scoreConfig = function () {
 
 //CellSelection is defined in Functions.js, 
 //the css class "weui-icon-success-no-circle" is defined in weui.css. same value as used in changeScoreSetting.jsp <i> tag
-var scoreConfigSelection = new CellSelection("scoreSetting","weui-icon-success-no-circle"); 
+var scoreConfigSelection = new CellSelection("scoreSetting","weui-icon-success-no-circle");
+scoreConfigSelection.setValue("Default");
 
 //scoreConfigSettingType = "game" or "player", this function is called by  showScoreConfigModifier via button action in ViewGame.jsp 	
 function setScoreConfig(scoreConfigSettingType,scoreConfigValue){
