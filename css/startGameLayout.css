@@ -47,7 +47,7 @@ div.RowHeadertable{
 
 div.RowHeader{
 	background-color:white;
-	height:6%;
+	height:4%;
 	width:100%;
 	font-size:130%;
 	border-bottom:1px solid #CCCCCC;
@@ -65,7 +65,16 @@ div.PositionTouLie{
 	
 div.PositionHang1{
 	background-color:white;
-	height:16%;
+	height:14%;
+	width:100%;
+	 
+	border-bottom:1px solid #E6E6E6;
+	 
+}
+
+div.PositionHang2{
+	background-color:white;
+	height:4%;
 	width:100%;
 	 
 	border-bottom:1px solid #E6E6E6;
@@ -76,7 +85,7 @@ div.PositionWeiZhiLie{
 	background-color:white;
 	 
 	height:100%; 
-	width:20%;
+	width:30%;
 	float:left;
 	
 	text-align:center;
@@ -102,10 +111,10 @@ div.PositionWeiZhiLie{
 
 div.PositionWanJiaLie{
 	position: relative;
-	left:0%;
+	left:10%;
 	top:15%;
 	
-	width:20%;
+	width:40%;
 	height:100%;
 	float:left;
 	text-align:center;
@@ -142,11 +151,11 @@ img.Playerimg{
 }
 
 div.PlayerName{
-	width:90%;
+	width:45%;
 	height:20%;
 	
 	position: absolute;
-	left:5%;
+	left:3%;
 	top:45%;
 	
 	
@@ -223,7 +232,7 @@ div.Position5{
 .divbtn1{
 
 	width:90%;
-	height:20%;
+	
 	
 	position:absolute; 
 	top: 78%;

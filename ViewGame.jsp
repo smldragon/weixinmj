@@ -26,11 +26,11 @@
 			
 	<div class="RowHeader">
 			
-		<div class="PositionTouLie"  style="width:20%;">
+		<div class="PositionTouLie"  style="width:30%;">
 			位置
 		</div>
 				
-		<div class="PositionTouLie"  style="width:20%;">
+		<div class="PositionTouLie"  style="width:40%;">
 			玩家
 		</div>
 				
@@ -43,9 +43,7 @@
 			净赢分
 		</div -->
 		
-		<div class="PositionTouLie"  style="width:30%;">
-			算分
-		</div>
+	
 				
 	</div>
 			
@@ -56,7 +54,7 @@
 		</div>
 
 		<div class="PositionWanJiaLie">
-			<div class='row' onClick="gameAction.joinGameAtPos('<%=positions[0]%>')" >
+			<div class='row' onClick="gameAction.joinGameAtPos('<%=positions[0]%>')"   >
 				<img class="Playerimg" id='<%=positions[0]+"_"+gameId%>' class='icon' src='<%=view.getPlayerImageUrl(0)%>' >
 				<div class="PlayerName" id='<%=positions[0]+"_"+gameId+"_PlayerName"%>'><%=view.getPlayerDesc(0)%></div>
 			</div>
@@ -68,14 +66,22 @@
 		<!-- div id='eastTotalNet' class="PositionDeFenLie">
 
 		</div -->
-				
-		<div class="PositionJiFenLie">
-			<!-- input class="inputJiFen" id='eastScore' type='text' / -->
-			<a id='eastWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("east",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
-			<a id='eastWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("east",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
-			<a id='eastLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("east",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
-		</div>
 	</div>
+	
+	<div class="PositionHang2">
+				<!-- input class="inputJiFen" id='eastScore' type='text' / -->
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">		
+				<a id='eastWin0' class="" href='#' onClick='addScoreDialog.show("east",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
+		</div>		
+		<div class="PositionHang2AnNiu1" style="width:33%; float: left; text-align: center;">		
+				<a id='eastWin1' class="" href='#' onClick='addScoreDialog.show("east",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+		</div>
+		<div class="PositionHang2AnNiu1" style="width:33%; float: left; text-align: center;">		
+				<a id='eastLost3' class="" href='#' onClick='addScoreDialog.show("east",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
+		</div>		
+	</div>
+		
+	
 	<div class="PositionHang1">
 		<div class="PositionWeiZhiLie" >
 			<%=posDisp[1]%><!--南-->
@@ -92,12 +98,19 @@
 		</div>
 		<!-- div id='southTotalNet' class="PositionDeFenLie">
 		</div -->
-		<div class="PositionJiFenLie">
+	</div>	
+	<div class="PositionHang2">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
-			<a id='southWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("south",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
-			<a id='southWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("south",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
-			<a id='southLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("south",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
+			<a id='southWin0' class="" href='#' onClick='addScoreDialog.show("south",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 		</div>
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
+			<a id='southWin1' class="" href='#' onClick='addScoreDialog.show("south",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+		</div>	
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
+			<a id='southLost3' class="" href='#' onClick='addScoreDialog.show("south",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
+		</div>	
+	
 	</div>
 	<div class="PositionHang1">
 		<div class="PositionWeiZhiLie">
@@ -113,13 +126,20 @@
 			<%=positionTotal[2]%>
 		</div>
 		<!-- div id='westTotalNet' class="PositionDeFenLie">
-		</div -->
-		<div class="PositionJiFenLie">
+		</div -->.
+	</div>	
+	<div class="PositionHang2">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
-			<a id='westWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("west",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
-			<a id='westWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("west",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
-			<a id='westLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("west",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
+			<a id='westWin0' class="" href='#' onClick='addScoreDialog.show("west",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 		</div>
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
+			<a id='westWin1' class="" href='#' onClick='addScoreDialog.show("west",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+		</div>	
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
+			<a id='westLost3' class="" href='#' onClick='addScoreDialog.show("west",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
+		</div>	
+
 	</div>
 	<div class="PositionHang1">
 		<div class="PositionWeiZhiLie" >
@@ -136,19 +156,25 @@
 		</div>
 		<!-- div id='northTotalNet' class="PositionDeFenLie">
 		</div -->
-		<div class="PositionJiFenLie">
+	</div>	
+	<div class="PositionHang2">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
-			<a id='northWin0' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("north",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
-			<a id='northWin1' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("north",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
-			<a id='northLost3' class="weui-btn weui-btn_plain-primary" href='#' onClick='addScoreDialog.show("north",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
+			<a id='northWin0' class="" href='#' onClick='addScoreDialog.show("north",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 		</div>
-	</div>
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
+			<a id='northWin1' class="" href='#' onClick='addScoreDialog.show("north",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
+		</div>	
+		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
+			<a id='northLost3' class="" href='#' onClick='addScoreDialog.show("north",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
+		</div>	
+    </div>
 </div>		
-<div class="weui-msg_ZhuXiao" style="height:20%; width:100%;">
+<div class="weui-msg_ZhuXiao" style="height:14%; width:100%;">
     <div class="divbtn1"   >
-		<div style="height:100%; width:100%; ">
+		
 			<a href="#" onClick="scoreHist.toggleScoreHist()" class="weui-btn weui-btn_plain-primary" style="height:40%; width:95%;margin-top:12%">得分表</a>
-		</div>
+		
 	</div>
 </div>
 <!-- 输入玩家名称的DIV -->
