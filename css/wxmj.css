@@ -53,7 +53,7 @@ div.table{
 }
 div.row {
 /*	display:table-row; */	
-	width:50%;
+	width:40%;
 	clear:both;
 }
 div.row:after {

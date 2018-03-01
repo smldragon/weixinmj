@@ -65,7 +65,7 @@ div.PositionTouLie{
 	
 div.PositionHang1{
 	background-color:white;
-	height:13%;
+	height:10%;
 	width:100%;
 	 
 	border-bottom:1px solid #E6E6E6;
@@ -74,11 +74,13 @@ div.PositionHang1{
 
 div.PositionHang2{
 	background-color:white;
-	height:5%;
+	height:8%;
 	width:100%;
 	font-size: 150%;
 	 
 	border-bottom:1px solid #A2A2A2;
+	
+	line-height: 250%;
 	 
 }
 
@@ -90,7 +92,7 @@ div.PositionWeiZhiLie{
 	float:left;
 	
 	text-align:center;
-	line-height:600%;  
+	line-height:400%;  
 	font-size:120%;
 	/*	
 	position:fixed;
@@ -152,7 +154,7 @@ img.Playerimg{
 }
 
 div.PlayerName{
-	width:45%;
+	width:35%;
 	height:20%;
 	
 	position: absolute;
@@ -173,7 +175,7 @@ div.PositionZongFenLie{
 	float:left;
 	
 	text-align:center;
-	line-height:500%; 
+	line-height:300%; 
 	font-size:150%;
 	
 }	
