@@ -65,7 +65,7 @@ div.PositionTouLie{
 	
 div.PositionHang1{
 	background-color:white;
-	height:10%;
+	height:11%;
 	width:100%;
 	 
 	border-bottom:1px solid #E6E6E6;
@@ -74,14 +74,14 @@ div.PositionHang1{
 
 div.PositionHang2{
 	background-color:white;
-	height:8%;
+	height:7%;
 	width:100%;
 	font-size: 150%;
 	 
 	border-bottom:1px solid #A2A2A2;
-	
+	/*
 	line-height: 250%;
-	 
+	*/ 
 }
 
 div.PositionWeiZhiLie{

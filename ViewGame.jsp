@@ -71,15 +71,15 @@
 	<div class="PositionHang2">
 				<!-- input class="inputJiFen" id='eastScore' type='text' / -->
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-				<img src="/weixinmj/icon/TB1.jpg" style="margin-top:12%;"></img>
+				<img src="/weixinmj/icon/TB1.jpg" style="margin-top:10%; vertical-align: text-bottom; "  />
 				<a id='eastWin0' class="" href='#' onClick='addScoreDialog.show("east",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 		</div>		
 		<div class="PositionHang2AnNiu1" style="width:33%; float: left; text-align: center;">
-				<img src="/weixinmj/icon/TB2.jpg" style="margin-top:12%;"></img>	
+				<img src="/weixinmj/icon/TB2.jpg" style="margin-top:10%; vertical-align: text-bottom; "  />
 				<a id='eastWin1' class="" href='#' onClick='addScoreDialog.show("east",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>
 		<div class="PositionHang2AnNiu1" style="width:33%; float: left; text-align: center;">
-				<img src="/weixinmj/icon/TB3.jpg" style="margin-top:12%;"></img>
+				<img src="/weixinmj/icon/TB3.jpg" style="margin-top:10%; vertical-align: text-bottom; "  />
 				<a id='eastLost3' class="" href='#' onClick='addScoreDialog.show("east",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>		
 	</div>
@@ -105,15 +105,15 @@
 	<div class="PositionHang2">
 			<!-- input class="inputJiFen" id='southScore' type='text' / -->
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">	
-			<img src="/weixinmj/icon/TB1.jpg" style="margin-top:12%;"></img>
+			<img src="/weixinmj/icon/TB1.jpg" style="margin-top:10%; vertical-align: text-bottom; "  />
 			<a id='southWin0' class="" href='#' onClick='addScoreDialog.show("south",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 		</div>
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB2.jpg" style="margin-top:12%;"></img>
+			<img src="/weixinmj/icon/TB2.jpg" style="margin-top:10%; vertical-align: text-bottom; "  />
 			<a id='southWin1' class="" href='#' onClick='addScoreDialog.show("south",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>	
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB3.jpg" style="margin-top:12%;"></img>
+			<img src="/weixinmj/icon/TB3.jpg" style="margin-top:10%; vertical-align: text-bottom; "  />
 			<a id='southLost3' class="" href='#' onClick='addScoreDialog.show("south",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>	
 	
@@ -137,15 +137,15 @@
 	<div class="PositionHang2">
 			<!-- input class="inputJiFen" id='westScore' type='text' / -->
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB1.jpg" style="margin-top:12%;"></img>	
+			<img src="/weixinmj/icon/TB1.jpg" style="margin-top:10%; vertical-align: text-bottom; " />	
 			<a id='westWin0' class="" href='#' onClick='addScoreDialog.show("west",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 		</div>
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB2.jpg" style="margin-top:12%;"></img>
+			<img src="/weixinmj/icon/TB2.jpg" style="margin-top:10%; vertical-align: text-bottom; " />
 			<a id='westWin1' class="" href='#' onClick='addScoreDialog.show("west",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>	
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB3.jpg" style="margin-top:12%;"></img>
+			<img src="/weixinmj/icon/TB3.jpg" style="margin-top:10%; vertical-align: text-bottom; " />
 			<a id='westLost3' class="" href='#' onClick='addScoreDialog.show("west",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>	
 
@@ -169,15 +169,15 @@
 	<div class="PositionHang2">
 			<!-- input class="inputJiFen" id='northScore' type='text'/ -->
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB1.jpg" style="margin-top:12%;"></img>	
+			<img src="/weixinmj/icon/TB1.jpg" style="margin-top:10%; vertical-align: bottom; " />
 			<a id='northWin0' class="" href='#' onClick='addScoreDialog.show("north",0)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">胡了</a>
 		</div>
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB2.jpg" style="margin-top:12%;"></img>
+			<img src="/weixinmj/icon/TB2.jpg" style="margin-top:10%; vertical-align: bottom; " />
 			<a id='northWin1' class="" href='#' onClick='addScoreDialog.show("north",1)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">自摸</a>
 		</div>	
 		<div class="PositionHang2AnNiu1" style=" width:33%; float: left; text-align: center;">
-			<img src="/weixinmj/icon/TB3.jpg" style="margin-top:12%;"></img>
+			<img src="/weixinmj/icon/TB3.jpg" style="margin-top:10%; vertical-align: bottom; " />
 			<a id='northLost3' class="" href='#' onClick='addScoreDialog.show("north",2)' style="height:30%; width:80%; margin-top:12%; font-size:90%;">包三家</a>
 		</div>	
     </div>
