@@ -114,7 +114,7 @@ div.PositionWeiZhiLie{
 
 div.PositionWanJiaLie{
 	position: relative;
-	left:10%;
+	left:13%;
 	top:15%;
 	
 	width:40%;
@@ -147,19 +147,19 @@ div.row2:after
 }
 
 img.Playerimg{
-	width:90%;
-	height:65%;
+	width:92%;
+	height:70%;
 	
 	
 }
 
 div.PlayerName{
-	width:35%;
-	height:20%;
+	width:37%;
+	height:27%;
 	
 	position: absolute;
-	left:3%;
-	top:45%;
+	left:2%;
+	top:43%;
 	
 	
 	text-align:center;
