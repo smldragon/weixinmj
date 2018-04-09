@@ -216,31 +216,31 @@
 <!-- 输入分数的DIV -->
 <div id='<%=addScoreDialogDivId%>' class="weui_dialog_confirm" style="display:none" >
     <div class="weui-mask"></div>
-    <div class="weui-dialog"  >
+    <div class="weui-dialog" style="height:60%;" >
     <!-- 以下是需要修改的布局 -->
-		<div style="height:250px;font-size:130%;line-height:190%;" >
-			<div  style="height:10%;width:100%;padding-top:8%;">
-			    <div id='gameScorePrompt' style="float:left;width:50%;text-align:left;text-indent:3%;">
+		<div style="height:90%;font-size:130%;line-height:190%;" >
+			<div  style="height:20%;width:100%;">
+			    <div id='gameScorePrompt' style="float:left;width:50%;text-align:left;text-indent:6%;">
             	    本局分数:
             	</div>
-            	<div style="float:left;height:100%;width:50%;">
-            		<input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="gameScore"  style="width:90%;height:75%;margin-left:-5%;" oninput="addScoreDialog.onGameScoreInput()"/>
+            	<div style="float:left;height:90%;width:50%;">
+            		<input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="gameScore"  style="width:90%;height:45%;margin-left:-5%;" oninput="addScoreDialog.onGameScoreInput()"/>
             	</div>
 			</div>
-			<br>
-			<div id = 'winnerScore' style="visibility:hidden" >
-                <div id='winnerScorePrompt' style="float:left;width:50%;text-align:left;text-indent:3%;">
+			
+			<div id = 'winnerScore' style="height:20%; visibility:hidden; " >
+                <div id='winnerScorePrompt' style="float:left;width:50%;text-align:left;text-indent:6%; height:12%;">
                     <!-- 文字由startGame.js的addScoreDialog.show()设置-->
                     东的得分
                 </div>
                 <div style="float:left;width:50%;">
-                    <input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="winnerScoreField" style="width:90%;margin-left:-5%;" oninput="netScoreFuncConfig.onWinnerInput()" />
+                    <input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="winnerScoreField" style="width:90%;height:45%; margin-left:-5%;" oninput="netScoreFuncConfig.onWinnerInput()" />
                 </div>
             </div>
-            <br>
-			<div id='loserScores'style="visibility:hidden">
-				<div style="height:18%;width:100%;">
-					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:3%;">
+            
+			<div id='loserScores'style="height:60%; visibility:hidden">
+				<div style="height:33%;width:100%;">
+					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:6%;">
 						这里的文字由onGameScoreInput() in startGame.js设置
 					</div>
 					<div id='loser1inputDiv' style="float:left;height:100%;width:25%">
@@ -250,9 +250,9 @@
 					    <button id='loser1button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height:60%;font-size:100%;">包冲</button>
 					</div>
 				</div>
-				<br>
-				<div style="height:18%;width:100%;">
-					<div id='loser2' style="float:left;width:50%;text-align:left;text-indent:3%;"> 
+				
+				<div style="height:33%;width:100%;">
+					<div id='loser2' style="float:left;width:50%;text-align:left;text-indent:6%;"> 
 						这里的文字由onGameScoreInput() in startGame.js设置
 					</div>
 					<div id='loser2inputDiv' style="float:left;height:100%;width:25%">
@@ -262,9 +262,9 @@
                         <button id='loser2button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height:60%;font-size:100%;">包冲</button>
                     </div>
 				 </div >
-				 <br>
-				 <div style="height:18%;width:100%;">
-					<div id='loser3' style="float:left;width:50%;text-align:left;text-indent:3%;">
+				 
+				 <div style="height:33%;width:100%;">
+					<div id='loser3' style="float:left;width:50%;text-align:left;text-indent:6%;">
 						这里的文字由onGameScoreInput() in startGame.js设置
 					</div>
 					<div id='loser3inputDiv' style="float:left;height:100%;width:25%">
@@ -274,11 +274,11 @@
                         <button id='loser3button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height:60%;font-size:100%;">包冲</button>
                     </div>
 				</div>
-				<br>
+				
 			</div>
 		</div>
-		<br>
-		<div id='scoreDialogButton' class="weui-dialog__ft" style="width:100%;height:130%;">
+		
+		<div id='scoreDialogButton' class="weui-dialog__ft" style="width:100%;height:10%;">
             <a href="#" id='scoreDialogOkBtn' class="weui-dialog__btn default" onClick="addScoreDialog.doOkFunction()"  >确定</a>
             <a href="#" id='scoreDialogClBtn' class="weui-dialog__btn default" onClick="addScoreDialog.doCancelFunction()"  >取消</a>
         </div>
