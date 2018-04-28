@@ -220,58 +220,58 @@
     <!-- 以下是需要修改的布局 -->
 		<div style="height:90%;font-size:130%;line-height:190%;" >
 			<div  style="height:20%;width:100%;">
-			    <div id='gameScorePrompt' style="float:left;width:50%;text-align:left;text-indent:6%;">
+			    <div id='gameScorePrompt' style="float:left;width:50%; line-height:300%;text-indent:6%;">
             	    本局分数:
             	</div>
             	<div style="float:left;height:90%;width:50%;">
-            		<input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="gameScore"  style="width:90%;height:45%;margin-left:-5%;" oninput="addScoreDialog.onGameScoreInput()"/>
+            		<input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="gameScore"  style="width:90%;height:45%;margin-left:-5%; margin-top:8% ;" oninput="addScoreDialog.onGameScoreInput()"/>
             	</div>
 			</div>
 			
 			<div id = 'winnerScore' style="height:20%; visibility:hidden; " >
-                <div id='winnerScorePrompt' style="float:left;width:50%;text-align:left;text-indent:6%; height:12%;">
+                <div id='winnerScorePrompt' style="float:left;width:50%;line-height:300%;text-indent:6%; ">
                     <!-- 文字由startGame.js的addScoreDialog.show()设置-->
                     东的得分
                 </div>
                 <div style="float:left;width:50%;">
-                    <input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="winnerScoreField" style="width:90%;height:45%; margin-left:-5%;" oninput="netScoreFuncConfig.onWinnerInput()" />
+                    <input type="number" min="0" placeholder=" 请输入分数, 如100 "  id="winnerScoreField" style="width:90%;height:45%; margin-left:-5%; margin-top:8% ;" oninput="netScoreFuncConfig.onWinnerInput()" />
                 </div>
             </div>
             
 			<div id='loserScores'style="height:60%; visibility:hidden">
 				<div style="height:33%;width:100%;">
-					<div id='loser1' style="float:left;width:50%;text-align:left;text-indent:6%;">
+					<div id='loser1' style="float:left;width:50%;line-height:300%;text-indent:6%;">
 						这里的文字由onGameScoreInput() in startGame.js设置
 					</div>
 					<div id='loser1inputDiv' style="float:left;height:100%;width:25%">
-                        <input type="number" min="0" placeholder=""  id='loser1input'  style="height:75%;margin-left:-5%;"/>
+                        <input type="number" min="0" placeholder=""  id='loser1input'  style="height: 50%; width: 120%; margin-left: 1%; margin-top: 8%;"/>
 					</div>
-					<div id='loser1buttonDiv' style="float:left;width:25%">
-					    <button id='loser1button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height:60%;font-size:100%;">包冲</button>
+					<div id='loser1buttonDiv' style="float:left;height:100%;width:25%">
+					    <button id='loser1button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height: 50%;width: 70%;font-size:100%;margin-top: 8%;">包冲</button>
 					</div>
 				</div>
 				
 				<div style="height:33%;width:100%;">
-					<div id='loser2' style="float:left;width:50%;text-align:left;text-indent:6%;"> 
+					<div id='loser2' style="float:left;width:50%;line-height:300%;text-indent:6%;"> 
 						这里的文字由onGameScoreInput() in startGame.js设置
 					</div>
 					<div id='loser2inputDiv' style="float:left;height:100%;width:25%">
-						<input type="number" min="0" placeholder=""  id='loser2input'  style="height:75%;margin-left:-5%;"/>
+						<input type="number" min="0" placeholder=""  id='loser2input'  style="height: 50%; width: 120%; margin-left: 1%; margin-top: 4%;"/>
 					</div>
 					<div id='loser2buttonDiv' style="float:left;width:25%">
-                        <button id='loser2button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height:60%;font-size:100%;">包冲</button>
+                        <button id='loser2button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height: 50%;width: 70%;font-size:100%;margin-top: 4%;">包冲</button>
                     </div>
 				 </div >
 				 
 				 <div style="height:33%;width:100%;">
-					<div id='loser3' style="float:left;width:50%;text-align:left;text-indent:6%;">
+					<div id='loser3' style="float:left;width:50%;line-height:300%;text-indent:6%;">
 						这里的文字由onGameScoreInput() in startGame.js设置
 					</div>
 					<div id='loser3inputDiv' style="float:left;height:100%;width:25%">
-						<input type="number" min="0" placeholder=""  id='loser3input'  style="height:75%;margin-left:-5%;"/>
+						<input type="number" min="0" placeholder=""  id='loser3input'  style="height: 50%; width: 120%; margin-left: 1%; margin-top: 1%;"/>
 					</div>
 					<div id='loser3buttonDiv' style="float:left;width:25%">
-                        <button id='loser3button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height:60%;font-size:100%;">包冲</button>
+                        <button id='loser3button' onClick='--动作在onGameScoreInput() in startGame.js定义--' style="height: 50%;width: 70%;font-size:100%;margin-top: 1%;">包冲</button>
                     </div>
 				</div>
 				
